@@ -1,0 +1,24 @@
+---
+layout: post
+title: Fix eclipse random crash with libsoup-2.4
+date: 2014-03-16 12:19:20.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Bugs
+- Linux
+tags: []
+meta:
+  _edit_last: '422218'
+  _publicize_pending: '1'
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>After upgrading libsoup to version 2.4 on funtoo, eclipse began to present random crash while using auto-completation; the fail-log says that the problem is in libsoup.</p>
+<p>The fix is easy, just add this line to your eclipse.ini, don't ask me why:</p>
+<blockquote><p><em>-Dorg.eclipse.swt.browser.DefaultType=mozilla</em></p></blockquote>

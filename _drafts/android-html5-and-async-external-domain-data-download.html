@@ -1,0 +1,34 @@
+---
+layout: post
+title: Android, HTML5 and async external domain data download
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Android
+- Diario
+- Framework
+- Javascript
+- JQuery
+- JQueryMobile
+- Progetti
+tags: []
+meta:
+  _edit_last: '422218'
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>Working with opendata and using html5 as framework for your Android apps, will take you to an hard problem: how I can access data hosted in different origin? That's the <a href="http://en.wikipedia.org/wiki/Same-origin_policy">Same-origin policy problem</a>.</p>
+<p>My solution for this problem, use a bi-directional communication between the Android java application and the javascript software, and could be used in different cases; the solution is divided in 3 part of software:</p>
+<ul>
+<li>Android JSInterface that provide an function that prepare and execute a new task.</li>
+<li>Android Async Task that start the download and will call a js callback when the download is finished.</li>
+<li>Javascript part that call the JSInterface, and provide a callback for the finished download.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

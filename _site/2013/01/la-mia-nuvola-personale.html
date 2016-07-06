@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="t-orange">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>La mia nuvola personale</title>
+  <meta name="description" content="Ho sempre desiderato poter sfruttare la potenza di calcolo del mio pc casalingo ovunque mi trovassi, senza la necessita' di averlo con me. Con quest'obiettiv...">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono:400,500' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://alexcarpenter.me/2013/01/la-mia-nuvola-personale">
+  <link rel="alternate" type="application/rss+xml" title="Davide Gessa" href="http://alexcarpenter.me/feed.xml">
+</head>
+
+  <body>
+    <nav class="c-navigation is-fixed">
+  <div class="c-navigation__container u-container">
+    <a class="c-navigation__item " href="/">Home</a>
+    <a class="c-navigation__item " href="/articles/">Articles</a>
+    <a class="c-navigation__item " href="/about/">About</a>
+  </div>
+</nav>
+
+
+    <article class="c-article">
+  <header class="c-header c-article__header">
+    <div class="u-container">
+      <h1 class="c-header__title">La mia nuvola personale</h1>
+    </div>
+  </header>
+
+  <div class="c-article__main">
+    <p><a href="http://davidegessa.files.wordpress.com/2013/01/2013-01-06-21-21-50.jpg"><img class="aligncenter" alt="2013-01-06 21.21.50" src="/assets/2013-01-06-21-21-50.jpg?w=519" width="519" height="389" /></a></p>
+<p>Ho sempre desiderato poter sfruttare la potenza di calcolo del mio pc casalingo ovunque mi trovassi, senza la necessita' di averlo con me. Con quest'obiettivo, oggi ho messo a punto la mia linux box per poterla utilizzare in remoto tramite tablet/cellulare o qualsiasi altro pc con a disposizione una connessione internet ed un client vnc.</p>
+<p><!--more--></p>
+<p>Sostanzialmente ho solo installato un server vnc e ssh, settato il forwarding sul router e creato uno script per avere l'ip del pc sempre a disposizione.</p>
+<p>1. Installazione tightvnc (su gentoo linux)</p>
+<blockquote><p># echo "net-misc/tightvnc server" &gt; /etc/portage/package.use"<br />
+# emerge tightvnc<br />
+# rc-update add vnc default</p></blockquote>
+<p>2. Configurazione /etc/conf.d/vnc (utente 'dak', grandezza schermo '800x480')</p>
+<blockquote><p>DISPLAYS="dak:1"<br />
+VNC_OPTS="-geometry 800x480"</p></blockquote>
+<p>2.1. Password vnc per l'utente dak</p>
+<blockquote><p>$ vncpasswd</p></blockquote>
+<p>2.2. Script di startup per la sessione ~/.vnc/xstartup (io ho scelto di usare gnome)</p>
+<blockquote><p>#!/bin/sh<br />
+xrdb $HOME/.Xresources<br />
+gnome-session</p></blockquote>
+<p>3. Avvio server vnc</p>
+<blockquote><p># /etc/init.d/vnc start</p></blockquote>
+<p>4. Port forwarding delle porte 5901 (vnc) e 22 (ssh) dal router al mio pc.</p>
+<p>5. Creazione di uno script per salvare l'indirizzo ip pubblico su file; mettetelo in una posizione raggiungibile dal vostro server cron</p>
+<blockquote><p>#!/usr/bin/python2<br />
+import urllib2 as ul2</p>
+<p>ip = ul2.urlopen('http://www.mio-ip.it/').read().split(' &lt;h1&gt;')[1].split("&lt;")[0]<br />
+f = open("/home/dak/Dropbox/ip.txt",'w')<br />
+f.write(ip)<br />
+f.close()</p></blockquote>
+<p>6. Aggiunta dello script nel crontab con frequenza @hourly</p>
+<p>7. Ora il mio pc e' raggiungibile su vnc e ssh tramite l'ip che ogni ora viene scritto nella mia cartella di dropbox.</p>
+<p>Per quanto riguarda le prestazioni:</p>
+<ul>
+<li>in locale si hanno delle prestazioni ottimali anche con 4byte di colore</li>
+<li>con connessione remota tramite wifi, 256 colori permettono una buona frequenza di refresh</li>
+<li>con connessione remota tramite 3g vodafone, lagga pure in bianco e nero, meglio lasciar stare</li>
+</ul>
+
+
+  </div>
+</article>
+
+
+    <footer class="c-footer">
+  <div class="u-container c-footer__container">
+    <p>&copy; Davide Gessa 2016</p>
+    <p>
+      <a href="https://twitter.com/dagide">Twitter</a>
+      <a href="https://github.com/dakk">Github</a>
+      
+      
+    </p>
+  </div>
+</footer>
+
+  </body>
+</html>

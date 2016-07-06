@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="t-orange">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MonoGame con F# su Linux</title>
+  <meta name="description" content="In quest'articolo vi illustro brevemente come utilizzare F# su Linux per realizzare videogames multipiattaforma tramite la libreria MonoGame (Un clone openso...">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono:400,500' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://alexcarpenter.me/2013/09/monogame-con-f-su-linux">
+  <link rel="alternate" type="application/rss+xml" title="Davide Gessa" href="http://alexcarpenter.me/feed.xml">
+</head>
+
+  <body>
+    <nav class="c-navigation is-fixed">
+  <div class="c-navigation__container u-container">
+    <a class="c-navigation__item " href="/">Home</a>
+    <a class="c-navigation__item " href="/articles/">Articles</a>
+    <a class="c-navigation__item " href="/about/">About</a>
+  </div>
+</nav>
+
+
+    <article class="c-article">
+  <header class="c-header c-article__header">
+    <div class="u-container">
+      <h1 class="c-header__title">MonoGame con F# su Linux</h1>
+    </div>
+  </header>
+
+  <div class="c-article__main">
+    <p>In quest'articolo vi illustro brevemente come utilizzare F# su Linux per realizzare videogames multipiattaforma tramite la libreria MonoGame (Un clone opensource di Microsoft XNA).<br />
+Perchè scriverci un articolo? Fondamentalmente perchè  non tutto funziona al volo come i team di Xamarin e MonoGame vogliono farti credere; o almeno, non a me, non su gentoo linux e monodevelop4.</p>
+<p><!--more--></p>
+<p><strong>1. Download</strong></p>
+<p>Per prima cosa dobbiamo scaricare MonoGame; andate sulla sezione download di MonoGame e scaricate la versione per Xamarin studio (monodevelop4). Il file scaricato è un pacchetto mpack, installabile tramite l'AddIn Manager di monodevelop; il problema è il numero cospicuo di errori a runtime utilizzando il framework (provatelo comunque, magari avete più fortuna di me).</p>
+<p><strong>2. Installazione librerie</strong></p>
+<p>Se non avete avuto fortuna con il pacchetto, allora scompattatelo (è un semplice file zip), e spostate le librerie presenti in <em>assemblies/Linux</em> in una posizione a voi favorevole.</p>
+<p><strong>3. Creazione del progetto</strong></p>
+<p>Create ora un nuovo progetto <em>F# Console</em>: nelle <em>References </em> del progetto aggiungete le librerie <em>Lidgren, MonoGame, OpenTK </em>e <em>TAO</em> che avete estratto in precedenza. Create inoltre una cartella <em>Content </em>nella root directory del progetto (vi servirà per l'inserimento dei contenuti).</p>
+<p><strong>4. Sorgente</strong></p>
+<p>Inseriamo un pò di codice di Test nel progetto; per prima cosa una classe Game1 che implementa <em>Microsoft.Xna.Framework.Game.</em> L'esempio in questione si occupa semplicemente di presentare una finestra, il cui interno viene dipinto del colore <em>Color.CornflowerBlue</em>.</p>
+<p><code><br />
+open System<br />
+open Microsoft.Xna.Framework<br />
+open Microsoft.Xna.Framework.Graphics<br />
+open Microsoft.Xna.Framework.Storage<br />
+open Microsoft.Xna.Framework.Input</code><br />
+<code><br />
+type Game1() as this =<br />
+inherit Game ()<br />
+do<br />
+this.Content.RootDirectory &lt;- "Content"<br />
+</code><code><br />
+member val graphics : GraphicsDeviceManager = new GraphicsDeviceManager (this) with get, set<br />
+member val spriteBatch : SpriteBatch = null with get, set<br />
+</code><code><br />
+override this.Initialize () =<br />
+base.Initialize ()<br />
+</code><code><br />
+override this.LoadContent () =<br />
+this.spriteBatch<br />
+</code><code><br />
+override this.Update (gameTime) =<br />
+base.Update (gameTime)<br />
+</code><code><br />
+override this.Draw (gameTime) =<br />
+this.graphics.GraphicsDevice.Clear (Color.CornflowerBlue)<br />
+base.Draw (gameTime)<br />
+</code></p>
+<p>Infine modifichiamo Program.fs in questo modo:<code></code><br />
+<code><br />
+open System<br />
+let main args =<br />
+let ob = new Game1()<br />
+do<br />
+ob.Run ()<br />
+0</code></p>
+<p>Provate a compilare ed eseguire, et voilà!</p>
+<p><a href="http://davidegessa.files.wordpress.com/2013/09/screenshot.png"><img class="aligncenter size-large wp-image-175" alt="MonoGame quickstart F#" src="/assets/screenshot.png?w=519" width="519" height="291" /></a></p>
+<p>Funziona, ma probabilmente vi starete chiedendo "Ma senza un plugin dell'IDE come faccio ad inserire i contenuti sonori e grafici nel progetto e convertirli in automatico in <em>.xnb</em>?" Potete utilizzare <a href="http://xnacontentcompiler.codeplex.com/">XNA4 Content Compiler</a>.</p>
+
+
+  </div>
+</article>
+
+
+    <footer class="c-footer">
+  <div class="u-container c-footer__container">
+    <p>&copy; Davide Gessa 2016</p>
+    <p>
+      <a href="https://twitter.com/dagide">Twitter</a>
+      <a href="https://github.com/dakk">Github</a>
+      
+      
+    </p>
+  </div>
+</footer>
+
+  </body>
+</html>

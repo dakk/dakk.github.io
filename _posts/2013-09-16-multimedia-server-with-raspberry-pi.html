@@ -1,0 +1,102 @@
+---
+layout: post
+title: Multimedia Server with Raspberry Pi
+date: 2013-09-16 20:37:37.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Diario
+- Linux
+- Progetti
+- Raspberry Pi
+tags: []
+meta:
+  _edit_last: '422218'
+  _publicize_pending: '1'
+  _oembed_0e0740e0fd32e1f68facfe7622e71713: "{{unknown}}"
+  _oembed_fd5624df4076a2dcded8473159379b7b: "{{unknown}}"
+  _oembed_44cba4180c3f6c2d84ae3af1f7cba945: "{{unknown}}"
+  _oembed_5ee9dfc4c09e428f76297b550001cc89: "{{unknown}}"
+  _oembed_ec3b162cef7596fa800a753849eee3da: "{{unknown}}"
+  _oembed_47cf5b8eb3702f0c602043c9b4434c65: "{{unknown}}"
+  _oembed_9acf8dbd338fc08fee29823c8d9473a8: '<div class="embed-slideshare"><iframe
+    src="https://www.slideshare.net/slideshow/embed_code/15970415" width="479" height="511"
+    frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px
+    solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen>
+    </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/dejansoftware/how-toreallyuselinked-indigitalen-15970415"
+    title="How to-really-use-linked in-digital-en" target="_blank">How to-really-use-linked
+    in-digital-en</a> </strong> from <strong><a href="http://www.slideshare.net/dejansoftware"
+    target="_blank">Majkic.net</a></strong> </div></div>'
+  _oembed_time_9acf8dbd338fc08fee29823c8d9473a8: '1414977412'
+  _oembed_bb28cdf37dc2c3fb9ed7e78f4c2146be: "{{unknown}}"
+  _oembed_b314d7a42697fa49f34d7eb9a9f3bf39: "{{unknown}}"
+  _oembed_da5c784357969d12003a106c2926c95c: "{{unknown}}"
+  _oembed_67e6582a8ac7f55589438c1bd005d5c3: "{{unknown}}"
+  _oembed_ad063b975a523f45614cfeb8c630734a: "{{unknown}}"
+  _oembed_34baabbeccb221f0e64add23d4a69701: "{{unknown}}"
+  _oembed_0bf7fd42e0c3c932a7ec60c7fd1d4bdd: "{{unknown}}"
+  _oembed_c765c31f2e572806657351c548de89df: "{{unknown}}"
+  _oembed_dd80398978e8ba222aba7968ea8afdf7: "{{unknown}}"
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>Tired of switch on the notebook every time I need to download something, watch telefilms or listen music, today I made a black box using a <a href="https://en.wikipedia.org/wiki/Raspberry_pi">RaspberryPi</a> to make these things.</p>
+<p><a href="http://davidegessa.files.wordpress.com/2013/09/2013-09-16-22-19-50.jpg"><img class="aligncenter size-large wp-image-231" alt="2013-09-16 22.19.50" src="{{ site.baseurl }}/assets/2013-09-16-22-19-50.jpg?w=519" width="519" height="389" /></a></p>
+<p>The box provides these services:</p>
+<ul>
+<li>SSH network filesystem</li>
+<li>Realtime Media streaming</li>
+<li>Music player with web interface</li>
+<li>Torrent daemon with web interface</li>
+</ul>
+<p><!--more--></p>
+<p><strong>Hardware</strong></p>
+<p><strong></strong>The hardware setup consists in a RaspberryPi A-Model connected with an usb-hub which connects to an ethernet adapter and a external hard drive.</p>
+<p><strong></strong><strong>Software</strong></p>
+<p>I chose archlinux as linux distro for the server. Download the latest archlinux raspberry release and write to an SD with dd:</p>
+<p><em>dd if=archlinux-hf-2013-07-22.img of=/dev/mmcblk0 bs=1M</em></p>
+<p>Find your raspberry address with nmap:</p>
+<p><em>nmap -sV --open 192.168.1.0/24 -p22</em></p>
+<p>Login with ssh:</p>
+<p><em>ssh root@192.168.1.x</em> (the default password should be root)</p>
+<p>Update the system with <em>pacman -Suy</em> (it takes several minutes), set the root password and reboot.</p>
+<p><strong>External Hard Drive</strong></p>
+<p>Now we configure the external hard drive. First of all, we write mounting rules on <em>/etc/fstab</em>. For me that I've an external drive with two partition, I wrote:</p>
+<p><em>/dev/sda1               /mnt/backups        ext4            defaults,auto,user     0 0</em><br />
+<em>/dev/sda2               /mnt/media        ntfs            defaults,auto,user     0 0</em></p>
+<p>Now you can use this hard drive as an external drive for all PCs in your LAN, you only need to configure it in the clients. For example, you can use <em>sshfs-fuse </em>to automatically mount this drive in your linux box using this <em>/etc/fstab</em> rule:</p>
+<p><em>sshfs#root@rpi_ip:/ /mnt/rpi fuse defaults,auto,user,idmap=user 0 0</em></p>
+<p><strong>Torrent daemon</strong></p>
+<p>Another useful thing to do with the raspberry, is to set it as a "Torrent daemon" to handle your downlaods, and control them with a web interface. I chose Transmission as daemon; let's install it with:</p>
+<p><em>pacman -S transmission-cli</em></p>
+<p>Then enable the daemon:</p>
+<p><em>systemctl enable transmission</em></p>
+<p>You may want to personalize the daemon settings, therefore you should edit <em>/var/lib/transmission/transmission-daemon/.config/settings.json </em>(while the daemon is stopped). Then start it:</p>
+<p><em>systemctl start transmission</em></p>
+<p>The web interface is available by default at <em>http://rpi_ip:9091.</em></p>
+<p><strong>Music station</strong></p>
+<p>The Raspberry Pi provide an analog audio output; then why don't use it? Maybe isn't cool controlling the playlist easily lying on the sofa? I don't think so. The steps are easy, first install alsa stuff and your prefered music player (I choose cmus, that implements also remote control):<br />
+<em>pacman -S alsa-utils alsa-firmware alsa-lib alsa-plugins cmus libmad<br />
+</em></p>
+<p>Then enable cmus daemon:</p>
+<p><em>cmus --listen 0.0.0.0</em></p>
+<p>If you want this daemon started at boot time, you should put this bashline on autostart file. If you decided to use cmus, I advise <a href="https://github.com/dreur/cmus-droid-remote">cmus-droid-remote</a>, that allows you to control your cmus instance. You can also install <a href="https://github.com/jboynyc/cmus_app">cmus-app</a> to add a web interface.</p>
+<p><strong>Realtime Media streaming</strong></p>
+<p>The last thing I done is install a realtime media streamer with a remote control interface; I choose  jinzora. Install it following <a href="https://wiki.archlinux.org/index.php/Jinzora">this article</a>.</p>
+<p><strong>Final trick</strong></p>
+<p>At the end, I wrote a shell script to stop transmission and umount external filesystem before reboot the cpu:</p>
+<blockquote><p><em>echo Stopping transmission...</em><br />
+<em>sleep 1</em><br />
+<em><em>systemctl</em> stop transmission</em></p>
+<p><em>echo Umounting external hd...</em><br />
+<em>sleep 2</em><br />
+<em>umount /mnt/backup</em><br />
+<em>umount /mnt/media</em></p>
+<p><em>echo Reboot.</em><br />
+<em>sleep 2</em><br />
+<em>reboot</em></p></blockquote>

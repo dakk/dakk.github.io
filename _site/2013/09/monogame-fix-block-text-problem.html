@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="t-orange">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MonoGame: fix block text problem</title>
+  <meta name="description" content="Yesterday I've started to write the UI of my game with monogame on linux. After writing a window system, I've tried to display some text with SpriteFonts, bu...">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono:400,500' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://alexcarpenter.me/2013/09/monogame-fix-block-text-problem">
+  <link rel="alternate" type="application/rss+xml" title="Davide Gessa" href="http://alexcarpenter.me/feed.xml">
+</head>
+
+  <body>
+    <nav class="c-navigation is-fixed">
+  <div class="c-navigation__container u-container">
+    <a class="c-navigation__item " href="/">Home</a>
+    <a class="c-navigation__item " href="/articles/">Articles</a>
+    <a class="c-navigation__item " href="/about/">About</a>
+  </div>
+</nav>
+
+
+    <article class="c-article">
+  <header class="c-header c-article__header">
+    <div class="u-container">
+      <h1 class="c-header__title">MonoGame: fix block text problem</h1>
+    </div>
+  </header>
+
+  <div class="c-article__main">
+    <p>Yesterday I've started to write the UI of my game with monogame on linux. After writing a window system, I've tried to display some text with SpriteFonts, but has displayed black blocks instead of text.</p>
+<p><a href="http://davidegessa.files.wordpress.com/2013/09/black_fonts.png"><img class="size-full wp-image aligncenter" id="i-204" alt="Immagine" src="/assets/black_fonts.png?w=297" /></a></p>
+<p>Searching on google, someone said that I should create my spritefonts using the monogame content processor; done, but same result.<br />
+Searching deeply on google, someone else said to install libtxc_dxtn to fix the problem: this has worked, thanks <a href="https://github.com/ShaneG">ShaneG</a>.<br />
+<a href="http://davidegessa.files.wordpress.com/2013/09/text_ok.png"><img class="size-full wp-image aligncenter" id="i-209" alt="Immagine" src="/assets/text_ok.png?w=254" /></a></p>
+
+
+  </div>
+</article>
+
+
+    <footer class="c-footer">
+  <div class="u-container c-footer__container">
+    <p>&copy; Davide Gessa 2016</p>
+    <p>
+      <a href="https://twitter.com/dagide">Twitter</a>
+      <a href="https://github.com/dakk">Github</a>
+      
+      
+    </p>
+  </div>
+</footer>
+
+  </body>
+</html>

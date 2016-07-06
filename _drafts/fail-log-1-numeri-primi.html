@@ -1,0 +1,43 @@
+---
+layout: post
+title: 'Fail Log #1: numeri primi'
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Fail Log
+- Machine Learning
+- Progetti
+tags: []
+meta:
+  _edit_last: '422218'
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>Ho notato che tra i miei progetti, la proporzione successi/insuccessi e' 1 a 10, quindi mi pare giusto dedicare un po' di spazio anche agli insuccessi.</p>
+<p>Qualche mese ho fatto un sogno: nel sogno ho realizzato un programma capace di generare un sequenza infinita di numeri primi, il tutto funzionava bene, poggiato su solide basi teoriche (??).<br />
+Al risveglio ho acceso il pc ed ho verificato che era solo un sogno; ancora stontonato dal risveglio, mi e' venuta un idea: perche' non realizzare un programma che tramite la programmazione genetica realizzi il software che ho sognato? Ho scritto il vaneggio sul mio diario e son tornato a dormire.</p>
+<p>Il giorno dopo l'idea mi sembrava ancora sensata, percio' ho deciso di iniziare il progetto; ho scelto il C++ come linguaggio di implementazione dell'architettura.</p>
+<p><em>Step 1</em>, realizzare un linguaggio assembly con il quale l'algoritmo genetico puo' realizzare il programma<br />
+Questa parte e' stata abbastanza semplice, ho realizzato un linguaggio touring complete simile all'assembly intel, ma con la possibilita' di operare su precisione arbitraria tramite la libreria GNU Multi Precision Library. Il linguaggio prevede queste operazioni:</p>
+<ul>
+<li>Funzioni aritmetiche: add, sub, mul, div, radquad, mod, esp, quad, ln, log</li>
+<li>Funzioni trigonometriche: tan, sin, cos, hyp, archyp, arcsin, arccos, arctan</li>
+<li>Funzioni boolean: and, or, not, xor, nand</li>
+<li>Controllo di flusso: label, jne, je, jng, jg, jnl, jl, jmp</li>
+<li>Terminazione di flusso: return</li>
+<li>Costanti: e</li>
+<li>Funzioni di riempimento: nop</li>
+</ul>
+<p>Per quanto riguarda il codice, questa prima parte prevedeva solo una FSM capace di interpetare il bytecode del mio linguaggio assembly, controllare la validita' del codice, e poter ricevere un output dal programma.</p>
+<p><em>Step 2, framework genetico<br />
+</em>Questa parte del programma deve semplicemente implementare un algoritmo genetico con popolazione variabile (naturalmente con una dimensione massima, fissata a 100MB di bytecode, ovvero 104857600 cromosomi totali).<em></em><br />
+<em>Step 3, trovare un server dedicato all'esecuzione e fissare un endterm<br />
+</em>La parte piu' semplice, affittare un server dedicato ed eseguire il programma, fissando un endterm; ho deciso di limitare l'esperimento a 4 mesi di vita, con un report settimale per verificare i progressi.<em></em></p>
+<p>Risultati finali</p>
+<p>&nbsp;</p>

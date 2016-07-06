@@ -1,0 +1,35 @@
+---
+layout: post
+title: Link delay, Energize.js e JQueryMobile
+date: 2014-02-09 17:54:14.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Diario
+- Framework
+- Javascript
+- JQuery
+- JQueryMobile
+- Progetti
+- Updates
+tags: []
+meta:
+  _edit_last: '422218'
+  _publicize_pending: '1'
+  _oembed_5f971ec29e212f38590126bf39f56100: "{{unknown}}"
+  _oembed_3eab5ae5bf5b7520cfdcb5e620afc3f3: "{{unknown}}"
+  _oembed_9b6ac7c0acf7dfa613b9f5a77bc802ee: "{{unknown}}"
+  _oembed_1073646ce251e23046515e3a3e3496af: "{{unknown}}"
+  _oembed_3ca028955e1535a2424c910d11e6b1ab: "{{unknown}}"
+  _oembed_eb704ed6b9eeb2821a42f7f0e282c5be: "{{unknown}}"
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>Siete rimasti un po turbati dal delay dei click event sulle vostre applicazione JQueryMobile su Android e iPhone? Il problema non è causato dalle prestazioni del dispositivo, ma è il modo con cui le webview cercano di individuare i doubletap. E' possibile disabilitare questa feature (che nel mio caso provocava seri problemi all'usabilità dell'interfaccia), includendo un semplice script nelle vostre pagine responsive, energize.js:</p>
+<p>https://github.com/davidcalhoun/energize.js</p>
+<p>Vi basta inserire lo script nella cartella del vostro software, e caricarlo nelle pagine prima del caricamento degli altri script che interagisconono con gli eventi click (jquery.js, jquerymobile.js).</p>

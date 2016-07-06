@@ -1,0 +1,29 @@
+---
+layout: post
+title: 'Apache2: redirect different domains to subfolder'
+date: 2014-05-04 10:26:09.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Diario
+- Linux
+- Sysadmin
+tags: []
+meta:
+  _edit_last: '422218'
+  _publicize_pending: '1'
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour, I found that I can do that with a VirtualHosts!</p>
+<p>Just edit the file /etc/apache2/sites-available/default and add a rule for each domain at the end of file:</p>
+<p>&lt;VirtualHost *:80&gt;<br />
+ServerName www.domain.org<br />
+DocumentRoot /var/www/vhosts/domain.org/www<br />
+&lt;/VirtualHost&gt;</p>
+<p>It's easy, if you know.</p>

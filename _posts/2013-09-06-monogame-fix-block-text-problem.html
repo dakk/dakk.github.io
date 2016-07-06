@@ -1,0 +1,30 @@
+---
+layout: post
+title: 'MonoGame: fix block text problem'
+date: 2013-09-06 23:09:24.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Diario
+- F#
+- Linux
+- MonoGame
+- Videogames
+- WIP
+tags: []
+meta:
+  _publicize_pending: '1'
+  _edit_last: '422218'
+author:
+  login: dagide
+  email: gessadavide@gmail.com
+  display_name: davide
+  first_name: ''
+  last_name: ''
+---
+<p>Yesterday I've started to write the UI of my game with monogame on linux. After writing a window system, I've tried to display some text with SpriteFonts, but has displayed black blocks instead of text.</p>
+<p><a href="http://davidegessa.files.wordpress.com/2013/09/black_fonts.png"><img class="size-full wp-image aligncenter" id="i-204" alt="Immagine" src="{{ site.baseurl }}/assets/black_fonts.png?w=297" /></a></p>
+<p>Searching on google, someone said that I should create my spritefonts using the monogame content processor; done, but same result.<br />
+Searching deeply on google, someone else said to install libtxc_dxtn to fix the problem: this has worked, thanks <a href="https://github.com/ShaneG">ShaneG</a>.<br />
+<a href="http://davidegessa.files.wordpress.com/2013/09/text_ok.png"><img class="size-full wp-image aligncenter" id="i-209" alt="Immagine" src="{{ site.baseurl }}/assets/text_ok.png?w=254" /></a></p>

@@ -1,0 +1,23 @@
+# Site settings
+title: Davide Gessa
+email: gessadavide@gmail.com
+description: >
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: ""
+url: "http://alexcarpenter.me"
+fixedNav: 'true' # true or false
+theme: orange # green, blue, orange, purple, grey
+twitterUsername: dagide
+githubUsername: dakk
+dribbbleUsername:
+codepenUsername:
+
+# Build settings
+permalink: /:year/:month/:title
+markdown: kramdown
+include: [_pages]
+exclude: [_site, CHANGELOG.md, LICENSE, README.md]
+sass:
+  style: compressed
