@@ -40,6 +40,9 @@ google_analytics: UA-43862044-30
 minima:
   skin: dark
 
+disqus:
+  shortname: dakkgithubio
+
 plugins:
   - jekyll-feed
 
