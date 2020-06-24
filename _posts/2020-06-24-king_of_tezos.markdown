@@ -122,3 +122,5 @@ We then try it on carthagenet:
 	And now we are the king of tezos. We can send further transactions doubling the amount every time.
 
 You can inspect the contract and few beTheKing call transactions on [bettercalldev](https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations).
+
+![Operation list](/assets/2020-06-24-king_of_tezos.png)
