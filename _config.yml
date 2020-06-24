@@ -23,8 +23,8 @@ email: gessadavide@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   That's me, Davide Gessa.
   I'm a software developer, computer scientist and sailor from Sardinia, Italy.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://dakk.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ""
+url: "https://dakk.github.io/"
 twitter_username: dagide
 github_username:  dakk
 linkedin_username: davide-gessa-71798b80

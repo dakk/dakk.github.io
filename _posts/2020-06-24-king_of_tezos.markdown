@@ -7,7 +7,7 @@ categories: tezos
 
 While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.
 
-So I did for [yallo-lang](https://github.com/yallo-lang), a (still experimental) smart contract language for Tezos; for starting I chose a contract already existing on ethereum, [king_of_ether](https://www.kingoftheether.com) (that's right guys, a smart-ponzi). 
+So I did for [yallo-lang](https://github.com/dakk/yallo-lang), a (still experimental) smart contract language for Tezos; for starting I chose a contract already existing on ethereum, [king_of_ether](https://www.kingoftheether.com) (that's right guys, a smart-ponzi). 
 
 Our minimal implementation is very simple: a single endpoint which allow the caller to become the king if he sends the contract balance * 2; the old king is then dismissed, but he receives in exchange twice the amount he sent to become a king. And so on.
 
