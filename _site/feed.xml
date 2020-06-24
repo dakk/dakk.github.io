@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-06-24T12:23:24+02:00</updated><id>/feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>That's me, Davide Gessa. I'm a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><entry><title type="html">Favorite dev quote</title><link href="/random/2020/06/24/favorite_quote.html" rel="alternate" type="text/html" title="Favorite dev quote" /><published>2020-06-24T11:59:28+02:00</published><updated>2020-06-24T11:59:28+02:00</updated><id>/random/2020/06/24/favorite_quote</id><content type="html" xml:base="/random/2020/06/24/favorite_quote.html">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-06-24T16:33:47+02:00</updated><id>/feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>That's me, Davide Gessa. I'm a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><entry><title type="html">King of Tezos: a smart-ponzi on Tezos</title><link href="/tezos/2020/06/24/king_of_tezos.html" rel="alternate" type="text/html" title="King of Tezos: a smart-ponzi on Tezos" /><published>2020-06-24T15:59:28+02:00</published><updated>2020-06-24T15:59:28+02:00</updated><id>/tezos/2020/06/24/king_of_tezos</id><content type="html" xml:base="/tezos/2020/06/24/king_of_tezos.html">&lt;p&gt;While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.&lt;/p&gt;
+
+&lt;p&gt;So I did for &lt;a href=&quot;https://github.com/yallo-lang&quot;&gt;yallo-lang&lt;/a&gt;, a (still experimental) smart contract language for Tezos; for starting I chose a contract already existing on ethereum, &lt;a href=&quot;https://www.kingoftheether.com&quot;&gt;king_of_ether&lt;/a&gt; (that’s right guys, a smart-ponzi).&lt;/p&gt;
+
+&lt;p&gt;Our minimal implementation is very simple: a single endpoint which allow the caller to become the king if he sends the contract balance * 2; the old king is then dismissed, but he receives in exchange twice the amount he sent to become a king. And so on.&lt;/p&gt;
+
+&lt;p&gt;We start with the yallo contract:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;contract KingOfTezos {
+	field theKing: address;
+	field currentPrice: mutez;
+
+	entry beTheKing() {
+		assert (Tezos.amount() &amp;gt;= this.currentPrice);
+		let op = Tezos.transfer (this.theKing, this.currentPrice);
+		this.theKing = Tezos.sender();
+		this.currentPrice = Tezos.amount() * 2n;
+		[ op ]
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We transpile it to ligo:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yallo.exe compile king_of_tezos.yallo -target ligo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At that is the result:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;type storage = {  theKing: address;  currentPrice: tez;  }
+
+type action = | BeTheKing of unit
+
+let beTheKing (s: storage) = 
+  let ovverraidable = if ((Tezos.amount) &amp;gt;= (s.currentPrice)) then () else failwith &quot;Assertion&quot; in
+  let op: operation = Tezos.transaction (unit) (s.currentPrice) (match (Tezos.get_contract_opt s.theKing : unit contract option) with| None -&amp;gt; (failwith &quot;invalid contract&quot;: unit contract) | Some(c) -&amp;gt; c) in
+  let s = { s with theKing=Tezos.sender } in
+  let s = { s with currentPrice=(Tezos.amount) * (2n) } in
+  (([op]: operation list), (s: storage))
+
+
+let main(a, s: action * storage): (operation list * storage) = 
+  match a with | BeTheKing (arg) -&amp;gt; beTheKing(s)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then ligo compiler does the rest, and we got king.tz:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{ parameter unit ;
+  storage (pair (mutez %currentPrice) (address %theKing)) ;
+  code { DUP ;
+         CDR ;
+         DUP ;
+         CAR ;
+         AMOUNT ;
+         COMPARE ;
+         GE ;
+         IF { PUSH unit Unit } { PUSH string &quot;Assertion&quot; ; FAILWITH } ;
+         DIG 1 ;
+         DUP ;
+         DUG 2 ;
+         CDR ;
+         CONTRACT unit ;
+         IF_NONE
+           { PUSH string &quot;invalid contract&quot; ; FAILWITH }
+           { DUP ; DIP { DROP } } ;
+         DIG 2 ;
+         DUP ;
+         DUG 3 ;
+         CAR ;
+         UNIT ;
+         TRANSFER_TOKENS ;
+         DIG 2 ;
+         DUP ;
+         DUG 3 ;
+         CAR ;
+         SENDER ;
+         SWAP ;
+         PAIR ;
+         DUP ;
+         PUSH nat 2 ;
+         AMOUNT ;
+         MUL ;
+         SWAP ;
+         CDR ;
+         SWAP ;
+         PAIR ;
+         DUP ;
+         NIL operation ;
+         DIG 4 ;
+         DUP ;
+         DUG 5 ;
+         CONS ;
+         PAIR ;
+         DIP { DROP 6 } } }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We then try it on carthagenet:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Deploy
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; tezos-client originate contract kot transferring 1 from my_account running king.tz --init &quot;(Pair 2000000 \&quot;tz1VnNQMNQ796WrY2TyWDaFpwsRTP41mKXWH\&quot;)&quot; --force --burn-cap 0.555
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We try to become the king with an invalid amount
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; tezos-client transfer 1 from my_account2 to kot --arg &quot;Unit&quot; --burn-cap 0.004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Obviusly the simulation fails with: &lt;em&gt;script reached FAILWITH instruction&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;We try to become the king with a valid amount
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; tezos-client transfer 2 from my_account to kot --arg &quot;Unit&quot; --burn-cap 0.004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And now we are the king of tezos. We can send further transactions doubling the amount every time.&lt;/p&gt;
+
+&lt;p&gt;You can inspect the contract and few beTheKing call transactions on &lt;a href=&quot;https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations&quot;&gt;bettercalldev&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="tezos" /><summary type="html">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.</summary></entry><entry><title type="html">Favorite dev quote</title><link href="/random/2020/06/24/favorite_quote.html" rel="alternate" type="text/html" title="Favorite dev quote" /><published>2020-06-24T11:59:28+02:00</published><updated>2020-06-24T11:59:28+02:00</updated><id>/random/2020/06/24/favorite_quote</id><content type="html" xml:base="/random/2020/06/24/favorite_quote.html">&lt;blockquote&gt;
   &lt;p&gt;Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name></name></author><category term="random" /><summary type="html">Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing</summary></entry><entry><title type="html">New blog</title><link href="/random/2020/06/24/new_blog.html" rel="alternate" type="text/html" title="New blog" /><published>2020-06-24T10:59:28+02:00</published><updated>2020-06-24T10:59:28+02:00</updated><id>/random/2020/06/24/new_blog</id><content type="html" xml:base="/random/2020/06/24/new_blog.html">&lt;p&gt;This is my new blog, based on jekyll. I’ll soon import old posts from &lt;a href=&quot;https://davidegessa.wordpress.com&quot;&gt;my old blog&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="random" /><summary type="html">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.</summary></entry><entry><title type="html">Dices provably fair - Nonce overflow vulnerability</title><link href="/bitcoin/2015/02/26/dice_nonce_overflow.html" rel="alternate" type="text/html" title="Dices provably fair - Nonce overflow vulnerability" /><published>2015-02-26T23:00:01+01:00</published><updated>2015-02-26T23:00:01+01:00</updated><id>/bitcoin/2015/02/26/dice_nonce_overflow</id><content type="html" xml:base="/bitcoin/2015/02/26/dice_nonce_overflow.html">&lt;p&gt;Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server seed and client seed) combined with a session nonce in the aim to provide a fair random number for each bet and usually this nonce is initialized to 0 after each seed change.&lt;/p&gt;
 
