@@ -1,5 +1,5 @@
 all:
 	JEKYLL_ENV=production jekyll build
 
-server:
+serve:
 	jekyll serve
