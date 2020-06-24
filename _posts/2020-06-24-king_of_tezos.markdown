@@ -112,13 +112,13 @@ We then try it on carthagenet:
 	tezos-client transfer 1 from my_account2 to kot --arg "Unit" --burn-cap 0.004
 ```
 
-Obviusly the simulation fails with: *script reached FAILWITH instruction*
+	Obviusly the simulation fails with: *script reached FAILWITH instruction*
 
 3. We try to become the king with a valid amount
 ```
 	tezos-client transfer 2 from my_account to kot --arg "Unit" --burn-cap 0.004
 ```
 
-And now we are the king of tezos. We can send further transactions doubling the amount every time.
+	And now we are the king of tezos. We can send further transactions doubling the amount every time.
 
 You can inspect the contract and few beTheKing call transactions on [bettercalldev](https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations).
