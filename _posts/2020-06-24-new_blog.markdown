@@ -4,4 +4,4 @@ title:  "New blog"
 date:   2020-06-24 10:59:28 +0200
 categories: random
 ---
-This is my new blog, based on jekyll.
+This is my new blog, based on jekyll. I'll soon import old posts from [my old blog](https://davidegessa.wordpress.com).
