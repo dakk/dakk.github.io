@@ -28,9 +28,17 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: dagide
 github_username:  dakk
 linkedin_username: davide-gessa-71798b80
+instagram_username: dagide
+stackoverflow_username: dakk
+gitlab_username: dakk
 
 # Build settings
 theme: minima
+show_excerpts: true
+
+minima:
+  skin: dark
+
 plugins:
   - jekyll-feed
 

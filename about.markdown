@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-That's me, Davide Gessa.
+That's me, Davide Gessa aka dakk.
 I'm a software developer, computer scientist and sailor from Sardinia, Italy.
 
 Have fun with my github at [github.com/dakk](http://github.com/dakk).
