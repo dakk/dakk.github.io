@@ -159,19 +159,16 @@ let main(a, s: action * storage): (operation list * storage) =
   <li>We try to become the king with an invalid amount
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> tezos-client transfer 1 from my_account2 to kot --arg "Unit" --burn-cap 0.004
 </code></pre></div>    </div>
+
+    <p>Obviusly the simulation fails with: <em>script reached FAILWITH instruction</em></p>
   </li>
-</ol>
-
-<p>Obviusly the simulation fails with: <em>script reached FAILWITH instruction</em></p>
-
-<ol>
   <li>We try to become the king with a valid amount
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> tezos-client transfer 2 from my_account to kot --arg "Unit" --burn-cap 0.004
 </code></pre></div>    </div>
+
+    <p>And now we are the king of tezos. We can send further transactions doubling the amount every time.</p>
   </li>
 </ol>
-
-<p>And now we are the king of tezos. We can send further transactions doubling the amount every time.</p>
 
 <p>You can inspect the contract and few beTheKing call transactions on <a href="https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations">bettercalldev</a>.</p>
 

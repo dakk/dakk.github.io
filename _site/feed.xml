@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-06-24T16:33:47+02:00</updated><id>/feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>That's me, Davide Gessa. I'm a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><entry><title type="html">King of Tezos: a smart-ponzi on Tezos</title><link href="/tezos/2020/06/24/king_of_tezos.html" rel="alternate" type="text/html" title="King of Tezos: a smart-ponzi on Tezos" /><published>2020-06-24T15:59:28+02:00</published><updated>2020-06-24T15:59:28+02:00</updated><id>/tezos/2020/06/24/king_of_tezos</id><content type="html" xml:base="/tezos/2020/06/24/king_of_tezos.html">&lt;p&gt;While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-06-24T16:36:09+02:00</updated><id>/feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>That's me, Davide Gessa. I'm a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><entry><title type="html">King of Tezos: a smart-ponzi on Tezos</title><link href="/tezos/2020/06/24/king_of_tezos.html" rel="alternate" type="text/html" title="King of Tezos: a smart-ponzi on Tezos" /><published>2020-06-24T15:59:28+02:00</published><updated>2020-06-24T15:59:28+02:00</updated><id>/tezos/2020/06/24/king_of_tezos</id><content type="html" xml:base="/tezos/2020/06/24/king_of_tezos.html">&lt;p&gt;While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.&lt;/p&gt;
 
 &lt;p&gt;So I did for &lt;a href=&quot;https://github.com/yallo-lang&quot;&gt;yallo-lang&lt;/a&gt;, a (still experimental) smart contract language for Tezos; for starting I chose a contract already existing on ethereum, &lt;a href=&quot;https://www.kingoftheether.com&quot;&gt;king_of_ether&lt;/a&gt; (that’s right guys, a smart-ponzi).&lt;/p&gt;
 
@@ -100,19 +100,16 @@ let main(a, s: action * storage): (operation list * storage) =
   &lt;li&gt;We try to become the king with an invalid amount
     &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; tezos-client transfer 1 from my_account2 to kot --arg &quot;Unit&quot; --burn-cap 0.004
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Obviusly the simulation fails with: &lt;em&gt;script reached FAILWITH instruction&lt;/em&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Obviusly the simulation fails with: &lt;em&gt;script reached FAILWITH instruction&lt;/em&gt;&lt;/p&gt;
-
-&lt;ol&gt;
   &lt;li&gt;We try to become the king with a valid amount
     &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; tezos-client transfer 2 from my_account to kot --arg &quot;Unit&quot; --burn-cap 0.004
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;And now we are the king of tezos. We can send further transactions doubling the amount every time.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;p&gt;And now we are the king of tezos. We can send further transactions doubling the amount every time.&lt;/p&gt;
 
 &lt;p&gt;You can inspect the contract and few beTheKing call transactions on &lt;a href=&quot;https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations&quot;&gt;bettercalldev&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="tezos" /><summary type="html">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.</summary></entry><entry><title type="html">Favorite dev quote</title><link href="/random/2020/06/24/favorite_quote.html" rel="alternate" type="text/html" title="Favorite dev quote" /><published>2020-06-24T11:59:28+02:00</published><updated>2020-06-24T11:59:28+02:00</updated><id>/random/2020/06/24/favorite_quote</id><content type="html" xml:base="/random/2020/06/24/favorite_quote.html">&lt;blockquote&gt;
   &lt;p&gt;Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing&lt;/p&gt;
