@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Yallo, a new Tezos language | Davide Gessa @dakk</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="Yallo, a new Tezos language" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang." />
+<meta property="og:description" content="As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang." />
+<link rel="canonical" href="https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html" />
+<meta property="og:url" content="https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html" />
+<meta property="og:site_name" content="Davide Gessa @dakk" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-07T15:00:28+02:00" />
+<script type="application/ld+json">
+{"description":"As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang.","headline":"Yallo, a new Tezos language","dateModified":"2020-07-07T15:00:28+02:00","datePublished":"2020-07-07T15:00:28+02:00","@type":"BlogPosting","url":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://dakk.github.io//feed.xml" title="Davide Gessa @dakk" /><script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43862044-30', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Davide Gessa @dakk</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Yallo, a new Tezos language</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-07-07T15:00:28+02:00" itemprop="datePublished">Jul 7, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a>.</p>
+
+<p>Yallo (which stands for yet another language lo?) is essentially a functional language which integrates (a sort of) object oriented paradigm. Instead of classes, interfaces and objects, in yallo we have contracts, contract interfaces and contract instances. I begin with an example to give a better explanation.</p>
+
+<p>Let’s suppose we want to create a contract that defines a new token; we first define its interface (which is not mandatory for the Token contract, but useful for other contract calling a Token contract instance):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">IToken</span> <span class="o">{</span>
+    <span class="n">entry</span> <span class="nf">transfer</span><span class="o">(</span><span class="nl">from:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">to:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">val:</span> <span class="n">nat</span><span class="o">);</span>
+    <span class="n">view</span> <span class="nf">getBalance</span><span class="o">(</span><span class="nl">ad:</span> <span class="n">address</span><span class="o">):</span> <span class="n">nat</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As you can see, our interface has two entrypoints: transfer which allows to send token from an address to another, and getBalance which is used from another contract to retrieve the token balance of the given address. Note that we defined getBalance as a “view”, which is a syntactic sugar for entrypoints which callback to an a’ contract passed as argument.</p>
+
+<p>Interfaces can also be extended, so we can create an interface IMintableToken which also has a mint entrypoint.</p>
+
+<p>And now let’s see an implementation for this interface, the contract (something like a class); first we declare our storage, which is composed of typed fields. Then we declare a parametrized constructor which is useful for contract deploy (we will investigate this later). And finally we declare our two entrypoints.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">contract</span> <span class="nc">Token</span> <span class="kd">implements</span> <span class="nc">IToken</span> <span class="o">{</span>
+    <span class="n">field</span> <span class="nl">balances:</span> <span class="o">(</span><span class="n">address</span><span class="o">,</span> <span class="n">nat</span><span class="o">)</span> <span class="n">big_map</span><span class="o">;</span>
+    <span class="n">field</span> <span class="nl">totalSupply:</span> <span class="n">nat</span><span class="o">;</span>
+    <span class="n">field</span> <span class="nl">symbol:</span> <span class="n">string</span><span class="o">;</span>
+
+    <span class="n">constructor</span> <span class="o">(</span><span class="nl">owner:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">supply:</span> <span class="n">nat</span><span class="o">,</span> <span class="nl">symbol:</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">balances</span> <span class="o">=</span> <span class="o">[</span> <span class="o">{</span> <span class="nl">owner:</span> <span class="n">supply</span> <span class="o">}</span> <span class="o">];</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">totalSupply</span> <span class="o">=</span> <span class="n">supply</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">symbol</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">entry</span> <span class="nf">transfer</span><span class="o">(</span><span class="nl">from:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">to:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">val:</span> <span class="n">nat</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">let</span> <span class="nl">a:</span> <span class="n">nat</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">);</span>
+        <span class="n">let</span> <span class="nl">b:</span> <span class="n">nat</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">);</span>
+        <span class="k">assert</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">val</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">val</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">val</span><span class="o">);</span> 
+        <span class="o">[]</span>
+    <span class="o">}</span>
+
+    <span class="n">view</span> <span class="nf">getBalance</span><span class="o">(</span><span class="nl">ad:</span> <span class="n">address</span><span class="o">):</span> <span class="n">nat</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ad</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>After compiling and deploying our amazing Token contract, from another yallo contract is really easy to interact with it. Inside our new contract entrypoint, we call the Token getBalance using the IToken.of(address) which returns a typed contract instance of IToken; then we call getBalance passing an address and our callback.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">IToken.yallo</span><span class="err">"</span><span class="o">;</span>
+
+<span class="kd">const</span> <span class="nl">tokenContractAddress:</span> <span class="n">address</span> <span class="o">=</span> <span class="nd">@KT1ThEdxfUcWUwqsdergy3QnbCWGHSUHeHJq</span><span class="o">;</span>
+
+<span class="n">contract</span> <span class="n">usingAToken</span> <span class="o">{</span>
+    <span class="n">field</span> <span class="nl">bal:</span> <span class="n">nat</span><span class="o">;</span>
+
+    <span class="n">entry</span> <span class="nf">checkBalance</span><span class="o">(</span><span class="nl">a:</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">[</span><span class="nc">IToken</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">tokenContractAddress</span><span class="o">).</span><span class="na">getBalance</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">checkBalanceCallback</span><span class="o">)]</span>
+    <span class="o">}</span>
+
+    <span class="n">entry</span> <span class="nf">checkBalanceCallback</span><span class="o">(</span><span class="nl">b:</span> <span class="n">nat</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bal</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+        <span class="o">[]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Another feature I introduced, is the ability to deploy a contract from another contract; in yallo we do as follow. We call the createContract passing the result of Token(…), which creates a pair composed with the code of Token, and the initial storage generated by its constructor.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">Token.yallo</span><span class="s">";
+
+contract deployAToken {
+    field tokenAddress: address;
+
+    entry deployToken() {
+        let (a: address, op: operation) = Tezos.createContract (Token(Tezos.selfAddress(), 100, "</span><span class="n">ourToken</span><span class="err">"</span><span class="o">),</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tokenAddress</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+        <span class="o">[</span><span class="n">op</span><span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>At the moment, the compiler will feature cameligo as the only target language, but I’ll work also on a Coq compilation backend. The code and the language itself is in active development and it is not yet ready to use, but any ideas and comments are welcome.</p>
+
+<p>If you liked yallo, please put a star on <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a></p>
+
+  </div><div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html';
+      this.page.identifier = 'https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://dakkgithubio.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><a class="u-url" href="/tezos/2020/07/07/yallo_a_new_tezos_language.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Davide Gessa @dakk</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Davide Gessa @dakk</li><li><a class="u-email" href="mailto:gessadavide@gmail.com">gessadavide@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/dakk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">dakk</span></a></li><li><a href="https://instagram.com/dagide"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">dagide</span></a></li><li><a href="https://www.linkedin.com/in/davide-gessa-71798b80"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">davide-gessa-71798b80</span></a></li><li><a href="https://www.twitter.com/dagide"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">dagide</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>That&#39;s me, Davide Gessa. I&#39;m a software developer, computer scientist and sailor from Sardinia, Italy.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
