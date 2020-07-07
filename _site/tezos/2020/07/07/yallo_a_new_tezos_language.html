@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v4.1.0" />
 <meta property="og:title" content="Yallo, a new Tezos language" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang." />
-<meta property="og:description" content="As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang." />
+<meta name="description" content="As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project github.com/dakk/yallo-lang." />
+<meta property="og:description" content="As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project github.com/dakk/yallo-lang." />
 <link rel="canonical" href="https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html" />
 <meta property="og:url" content="https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html" />
 <meta property="og:site_name" content="Davide Gessa @dakk" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-07T15:00:28+02:00" />
 <script type="application/ld+json">
-{"description":"As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project github.com/dakk/yallo-lang.","headline":"Yallo, a new Tezos language","dateModified":"2020-07-07T15:00:28+02:00","datePublished":"2020-07-07T15:00:28+02:00","@type":"BlogPosting","url":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html"},"@context":"https://schema.org"}</script>
+{"description":"As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project github.com/dakk/yallo-lang.","headline":"Yallo, a new Tezos language","dateModified":"2020-07-07T15:00:28+02:00","datePublished":"2020-07-07T15:00:28+02:00","@type":"BlogPosting","url":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://dakk.github.io//tezos/2020/07/07/yallo_a_new_tezos_language.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://dakk.github.io//feed.xml" title="Davide Gessa @dakk" /><script>
 if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
@@ -57,9 +57,9 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>As someone noticed from previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly, and the joke compiler is now becoming a “real language” I’ll continue as an hobby project <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a>.</p>
+    <p>As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a>.</p>
 
-<p>Yallo (which stands for yet another language lo?) is essentially a functional language which integrates (a sort of) object oriented paradigm. Instead of classes, interfaces and objects, in yallo we have contracts, contract interfaces and contract instances. I begin with an example to give a better explanation.</p>
+<p>Yallo (which stands for yet another language lo?) is essentially a functional language which integrates (a sort of) object oriented paradigm. Instead of classes, interfaces and objects, in yallo we have contracts, contract interfaces and contract instances. Here it is an exemple to show how it works.</p>
 
 <p>Let’s suppose we want to create a contract that defines a new token; we first define its interface (which is not mandatory for the Token contract, but useful for other contract calling a Token contract instance):</p>
 
@@ -69,7 +69,8 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>As you can see, our interface has two entrypoints: transfer which allows to send token from an address to another, and getBalance which is used from another contract to retrieve the token balance of the given address. Note that we defined getBalance as a “view”, which is a syntactic sugar for entrypoints which callback to an a’ contract passed as argument.</p>
+<p>As you can see, our interface has two entrypoints: transfer allows to send tokens from an address to another, and <em>getBalance</em> is used by another contract to retrieve the token balance of the given address.
+Note that we defined getBalance as a “view”, which is a syntactic sugar for entrypoints which callback to an ‘a contract passed as argument.</p>
 
 <p>Interfaces can also be extended, so we can create an interface IMintableToken which also has a mint entrypoint.</p>
 
@@ -101,7 +102,7 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>After compiling and deploying our amazing Token contract, from another yallo contract is really easy to interact with it. Inside our new contract entrypoint, we call the Token getBalance using the IToken.of(address) which returns a typed contract instance of IToken; then we call getBalance passing an address and our callback.</p>
+<p>After compiling and deploying our amazing Token contract, other yallo contracts can easily interact with it. Inside our new contract entrypoint, we call the Token getBalance using the IToken.of(address) which returns a typed contract instance of IToken; then we call getBalance passing an address and our callback.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">IToken.yallo</span><span class="err">"</span><span class="o">;</span>
 
@@ -121,7 +122,7 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Another feature I introduced, is the ability to deploy a contract from another contract; in yallo we do as follow. We call the createContract passing the result of Token(…), which creates a pair composed with the code of Token, and the initial storage generated by its constructor.</p>
+<p>Another powerful feature that I introduced is the ability to deploy a contract from another contract, as follows. We call the createContract passing the result of Token(…), which creates a pair composed with the code of Token, and the initial storage generated by its constructor.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">Token.yallo</span><span class="s">";
 
