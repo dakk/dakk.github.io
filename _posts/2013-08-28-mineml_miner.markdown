@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title:  "MineML: F# miner"
 date:   2013-08-28 10:59:28 +0200
 categories: bitcoin

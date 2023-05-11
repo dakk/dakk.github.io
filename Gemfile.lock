@@ -95,6 +95,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll
+  jekyll-include-cache
   minima
   minimal-mistakes-jekyll
 

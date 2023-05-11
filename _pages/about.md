@@ -1,7 +1,8 @@
 ---
-layout: page
+layout: pages
 title: About
 permalink: /about/
+author_profile: true
 ---
 
 I'm Davide Gessa (aka dak[k]*), a software developer, computer scientist and sailor from Sardinia, Italy.

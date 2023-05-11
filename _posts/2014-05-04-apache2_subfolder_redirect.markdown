@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title:  "Apache2: redirect different domains to subfolder"
 date:   2014-05-04 00:00:01 +0200
 categories: sys

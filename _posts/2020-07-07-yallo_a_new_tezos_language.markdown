@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title:  "Yallo, a new Tezos language"
 date:   2020-07-07 15:00:28 +0200
 categories: tezos

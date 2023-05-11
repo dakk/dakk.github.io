@@ -19,10 +19,10 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Davide Gessa @dakk
+name: Davide Gessa
 email: gessadavide@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  That's me, Davide Gessa.
-  I'm a software developer, computer scientist and sailor from Sardinia, Italy.
+  I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.
 baseurl: ""
 url: "https://dakk.github.io/"
 twitter_username: dagide
@@ -33,20 +33,61 @@ stackoverflow_username: dakk
 gitlab_username: dakk
 
 # Build settings
-theme: minima
-#theme: minimal-mistakes-jekyll
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 show_excerpts: true
 google_analytics: UA-43862044-30
-
-minima:
-  skin: dark
 
 disqus:
   shortname: dakkgithubio
 
 plugins:
   - jekyll-feed
+  - jekyll-include-cache 
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      show_date: true
+
+
+
+author:
+  name: "Davide Gessa @dakk"
+  avatar: "/assets/avatar.jpg"
+  bio: " I'm Davide Gessa, a software developer, computer scientist and sailor." 
+  location: "Sardinia - Italy"
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/dagide"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/dakk"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/dagide"
+    - label: "Medium"
+      icon: "fab fa-fw fa-medium"
+      url: "https://medium.com/@dakk"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

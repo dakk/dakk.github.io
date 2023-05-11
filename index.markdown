@@ -4,6 +4,5 @@
 
 layout: home
 comments: true
+author_profile: true
 ---
-
-<!-- ![Avatar](/assets/avatar.jpg) -->
