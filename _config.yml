@@ -34,6 +34,8 @@ gitlab_username: dakk
 
 # Build settings
 theme: minima
+#theme: minimal-mistakes-jekyll
+
 show_excerpts: true
 google_analytics: UA-43862044-30
 

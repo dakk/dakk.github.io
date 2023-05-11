@@ -3,3 +3,6 @@ all:
 
 serve:
 	jekyll serve
+
+prereq:
+	bundle install

@@ -5,3 +5,5 @@
 layout: home
 comments: true
 ---
+
+<!-- ![Avatar](/assets/avatar.jpg) -->
