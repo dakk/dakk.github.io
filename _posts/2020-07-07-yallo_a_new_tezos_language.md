@@ -3,6 +3,7 @@ layout: posts
 title:  "Yallo, a new Tezos language"
 date:   2020-07-07 15:00:28 +0200
 categories: tezos
+canonical_url: https://medium.com/coinmonks/yallo-a-new-tezos-language-f1298069d268
 ---
 
 As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a "real language" that I’ll continue as an hobby project [github.com/dakk/yallo-lang](https://github.com/dakk/yallo-lang).

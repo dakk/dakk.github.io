@@ -1,4 +1,5 @@
 all:
+	rm _posts/*.html
 	JEKYLL_ENV=production jekyll build
 
 serve:
@@ -12,4 +13,4 @@ deploy:
 	git add _site
 
 import:
-	jekyll import medium --username dakk --canonical_link --render_audio
+	jekyll import medium --username dakk --canonical_link

@@ -3,6 +3,7 @@ layout: posts
 title:  "OCaml and Quantum Computing"
 date:   2020-07-29 11:00:28 +0200
 categories: quantum
+canonical_url: https://medium.com/@dakk/ocaml-and-quantum-computing-fcf4b60d3159
 ---
 Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quantum computer. Qiskit is a very good environment for moving first steps in QC: it’s powerful, but simple at the same time; furthermore it provides many learning resources (ie: the textbook and Abraham (Abe) Asfaw youtube tutorials).
 

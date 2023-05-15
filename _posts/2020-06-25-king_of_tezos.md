@@ -3,6 +3,7 @@ layout: posts
 title:  "King of Tezos: a smart-ponzi on Tezos"
 date:   2020-06-24 15:59:28 +0200
 categories: tezos
+canonical_url: https://medium.com/@dakk/king-of-tezos-a-smart-ponzi-on-tezos-db381b84c3c9?source=rss-cabef10421d0------2
 ---
 
 While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.
