@@ -12,4 +12,4 @@ deploy:
 	git add _site
 
 import:
-	bundle-2.7 exec ruby-2.7 import_feed.rb
+	jekyll import medium --username dakk --canonical_link --render_audio
