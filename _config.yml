@@ -42,9 +42,12 @@ google_analytics: UA-43862044-30
 disqus:
   shortname: dakkgithubio
 
+include: ["_pages"]
+
 plugins:
   - jekyll-feed
   - jekyll-include-cache 
+  - jekyll-seo-tag
 
 defaults:
   # _pages

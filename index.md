@@ -4,5 +4,4 @@
 
 layout: home
 comments: true
-author_profile: true
 ---
