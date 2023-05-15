@@ -1,5 +1,5 @@
 all:
-	rm _posts/*.html
+	rm -f _posts/*.html
 	JEKYLL_ENV=production jekyll build
 
 serve:

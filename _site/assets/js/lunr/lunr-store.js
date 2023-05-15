@@ -46,4 +46,10 @@ var store = [{
         "tags": [],
         "url": "/quantum/2020/07/29/ocaml_quantum.html",
         "teaser": null
+      },{
+        "title": "Ship detection from Sentinel-2 satellite images",
+        "excerpt":"A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters. What astonished mew as the fact that all...","categories": ["ml"],
+        "tags": [],
+        "url": "/ml/2023/05/15/sentinel_ship_detection.html",
+        "teaser": null
       }]
