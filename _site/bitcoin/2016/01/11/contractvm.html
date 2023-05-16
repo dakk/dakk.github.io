@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>King of Tezos: a smart-ponzi on Tezos - Davide Gessa @dakk</title>
-<meta name="description" content="While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.">
+<!-- begin _includes/seo.html --><title>Contractvm: decentralized applications on Bitcoin - Davide Gessa @dakk</title>
+<meta name="description" content="Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="King of Tezos: a smart-ponzi on Tezos">
-<meta property="og:url" content="https://medium.com/@dakk/king-of-tezos-a-smart-ponzi-on-tezos-db381b84c3c9?source=rss-cabef10421d0------2">
+<meta property="og:title" content="Contractvm: decentralized applications on Bitcoin">
+<meta property="og:url" content="https://dakk.github.io//bitcoin/2016/01/11/contractvm.html">
 
 
-  <meta property="og:description" content="While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2020-06-24T15:59:28+02:00">
+  <meta property="og:description" content="Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table.">
 
 
 
 
 
 
-<link rel="canonical" href="https://medium.com/@dakk/king-of-tezos-a-smart-ponzi-on-tezos-db381b84c3c9?source=rss-cabef10421d0------2">
+
+  <meta property="article:published_time" content="2016-01-11T11:00:01+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//bitcoin/2016/01/11/contractvm.html">
 
 
 
@@ -259,124 +259,16 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">King of Tezos: a smart-ponzi on Tezos</h1>
+      <h1 id="page-title" class="page__title">Contractvm: decentralized applications on Bitcoin</h1>
     
-    <p>While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.</p>
+    <p>Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table.</p>
 
-<p>So I did for <a href="https://github.com/dakk/yallo-lang">yallo-lang</a>, a (still experimental) smart contract language for Tezos; for starting I chose a contract already existing on ethereum, <a href="https://www.kingoftheether.com">king_of_ether</a> (that’s right guys, a smart-ponzi).</p>
+<p>This project was my master degree thesis.</p>
 
-<p>Our minimal implementation is very simple: a single endpoint which allow the caller to become the king if he sends the contract balance * 2; the old king is then dismissed, but he receives in exchange twice the amount he sent to become a king. And so on.</p>
-
-<p>We start with the yallo contract:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>contract KingOfTezos {
-	field theKing: address;
-	field currentPrice: mutez;
-
-	entry beTheKing() {
-		assert (Tezos.amount() &gt;= this.currentPrice);
-		let op = Tezos.transfer (this.theKing, this.currentPrice);
-		this.theKing = Tezos.sender();
-		this.currentPrice = Tezos.amount() * 2n;
-		[ op ]
-	}
-}
-</code></pre></div></div>
-
-<p>We transpile it to ligo:
-<code class="language-plaintext highlighter-rouge">yallo.exe compile king_of_tezos.yallo -target ligo</code></p>
-
-<p>At that is the result:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>type storage = {  theKing: address;  currentPrice: tez;  }
-
-type action = | BeTheKing of unit
-
-let beTheKing (s: storage) = 
-  let ovverraidable = if ((Tezos.amount) &gt;= (s.currentPrice)) then () else failwith "Assertion" in
-  let op: operation = Tezos.transaction (unit) (s.currentPrice) (match (Tezos.get_contract_opt s.theKing : unit contract option) with| None -&gt; (failwith "invalid contract": unit contract) | Some(c) -&gt; c) in
-  let s = { s with theKing=Tezos.sender } in
-  let s = { s with currentPrice=(Tezos.amount) * (2n) } in
-  (([op]: operation list), (s: storage))
-
-
-let main(a, s: action * storage): (operation list * storage) = 
-  match a with | BeTheKing (arg) -&gt; beTheKing(s)
-</code></pre></div></div>
-
-<p>Then ligo compiler does the rest, and we got king.tz:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ parameter unit ;
-  storage (pair (mutez %currentPrice) (address %theKing)) ;
-  code { DUP ;
-         CDR ;
-         DUP ;
-         CAR ;
-         AMOUNT ;
-         COMPARE ;
-         GE ;
-         IF { PUSH unit Unit } { PUSH string "Assertion" ; FAILWITH } ;
-         DIG 1 ;
-         DUP ;
-         DUG 2 ;
-         CDR ;
-         CONTRACT unit ;
-         IF_NONE
-           { PUSH string "invalid contract" ; FAILWITH }
-           { DUP ; DIP { DROP } } ;
-         DIG 2 ;
-         DUP ;
-         DUG 3 ;
-         CAR ;
-         UNIT ;
-         TRANSFER_TOKENS ;
-         DIG 2 ;
-         DUP ;
-         DUG 3 ;
-         CAR ;
-         SENDER ;
-         SWAP ;
-         PAIR ;
-         DUP ;
-         PUSH nat 2 ;
-         AMOUNT ;
-         MUL ;
-         SWAP ;
-         CDR ;
-         SWAP ;
-         PAIR ;
-         DUP ;
-         NIL operation ;
-         DIG 4 ;
-         DUP ;
-         DUG 5 ;
-         CONS ;
-         PAIR ;
-         DIP { DROP 6 } } }
-</code></pre></div></div>
-
-<p>We then try it on carthagenet:</p>
-
-<ol>
-  <li>Deploy
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> tezos-client originate contract kot transferring 1 from my_account running king.tz --init "(Pair 2000000 \"tz1VnNQMNQ796WrY2TyWDaFpwsRTP41mKXWH\")" --force --burn-cap 0.555
-</code></pre></div>    </div>
-  </li>
-  <li>We try to become the king with an invalid amount
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> tezos-client transfer 1 from my_account2 to kot --arg "Unit" --burn-cap 0.004
-</code></pre></div>    </div>
-
-    <p>Obviusly the simulation fails with: <em>script reached FAILWITH instruction</em></p>
-  </li>
-  <li>We try to become the king with a valid amount
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> tezos-client transfer 2 from my_account to kot --arg "Unit" --burn-cap 0.004
-</code></pre></div>    </div>
-
-    <p>And now we are the king of tezos. We can send further transactions doubling the amount every time.</p>
-  </li>
-</ol>
-
-<p>You can inspect the contract and few beTheKing call transactions on <a href="https://better-call.dev/carthagenet/KT1NLkwCzuUwhUe9N2iqpt8yNrT3D4hXAVYp/operations">bettercalldev</a>.</p>
-
-<p><img src="/assets/2020-06-24-king_of_tezos.png" alt="Operation list" /></p>
+<p><a href="http://contractvm.github.io/">Website</a>
+<a href="https://contractvm.github.io/doc/">Documentation</a>
+<a href="https://github.com/contractvm">Github</a>
+<a href="http://contractvm.github.io/cvm-whitepaper.pdf">Whitepaper</a></p>
 
 
 <ul class="taxonomy__index">

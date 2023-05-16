@@ -17,6 +17,12 @@ var store = [{
         "url": "/bitcoin/2015/02/26/dice_nonce_overflow.html",
         "teaser": null
       },{
+        "title": "Contractvm: decentralized applications on Bitcoin",
+        "excerpt":"Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely...","categories": ["bitcoin"],
+        "tags": [],
+        "url": "/bitcoin/2016/01/11/contractvm.html",
+        "teaser": null
+      },{
         "title": "New blog",
         "excerpt":"This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.  ","categories": ["random"],
         "tags": [],

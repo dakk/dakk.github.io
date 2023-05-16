@@ -1,7 +1,7 @@
 ---
 layout: posts
 title:  "Ship detection from Sentinel-2 satellite images"
-date:   2023-05-15 11:00:28 +0200
+date:   2023-05-15 15:30:28 +0200
 categories: ml
 canonical_url: https://medium.com/@dakk/ship-detection-from-sentinel-2-satellite-images-3312d8930df6
 ---
