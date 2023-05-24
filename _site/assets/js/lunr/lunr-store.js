@@ -58,4 +58,10 @@ var store = [{
         "tags": [],
         "url": "/ml/2023/05/15/sentinel_ship_detection.html",
         "teaser": null
+      },{
+        "title": "Free near real-time 10-meter resolution satellite imagery with 5 lines of code",
+        "excerpt":"Satellite imagery has been a game-changer in many fields, from meteorology and environmental sciences to city planning and real estate. The ability to look at our planet from above offers insights that ground-based observation cannot provide. However, accessibility to such high-resolution imagery has often been perceived as costly and complicated....","categories": ["python"],
+        "tags": [],
+        "url": "/python/2023/05/24/sentinelsat_download.html",
+        "teaser": null
       }]

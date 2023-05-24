@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Apache2: redirect different domains to subfolder - Davide Gessa @dakk</title>
-<meta name="description" content="In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour, I found that I can do that with a VirtualHosts.">
+<!-- begin _includes/seo.html --><title>Free near real-time 10-meter resolution satellite imagery with 5 lines of code - Davide Gessa @dakk</title>
+<meta name="description" content="">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="Apache2: redirect different domains to subfolder">
-<meta property="og:url" content="https://dakk.github.io//sys/2014/05/04/apache2_subfolder_redirect.html">
+<meta property="og:title" content="Free near real-time 10-meter resolution satellite imagery with 5 lines of code">
+<meta property="og:url" content="https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab">
 
 
-  <meta property="og:description" content="In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour, I found that I can do that with a VirtualHosts.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2014-05-04T00:00:01+02:00">
+  <meta property="og:description" content="">
 
 
 
 
 
 
-<link rel="canonical" href="https://dakk.github.io//sys/2014/05/04/apache2_subfolder_redirect.html">
+
+  <meta property="article:published_time" content="2023-05-24T17:02:28+02:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab">
 
 
 
@@ -259,19 +259,43 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">Apache2: redirect different domains to subfolder</h1>
+      <h1 id="page-title" class="page__title">Free near real-time 10-meter resolution satellite imagery with 5 lines of code</h1>
     
-    <p>In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour, I found that I can do that with a VirtualHosts.</p>
+    <p><img src="/assets/2023-05-24-image.webp" alt="Satellite image" /></p>
 
-<p>Just edit the file /etc/apache2/sites-available/default and add a rule for each domain at the end of file:</p>
+<p>Satellite imagery has been a game-changer in many fields, from meteorology and environmental sciences to city planning and real estate. The ability to look at our planet from above offers insights that ground-based observation cannot provide. However, accessibility to such high-resolution imagery has often been perceived as costly and complicated. It doesn’t have to be!
+The European Space Agency (ESA) has a wealth of satellite imagery that is not just high resolution (up to 10 meters) but also free to access, download, and use. This resource is provided through their Earth Observation Program, with the Copernicus mission at its heart.
+Imagine the potential of this! Whether you’re an environmental researcher looking to analyze deforestation, an urban planner in need of accurate city topography, or a tech enthusiast eager to experiment with satellite imagery data, you now have a powerful tool at your fingertips.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;VirtualHost *:80&gt;
-ServerName http://www.domain.org
-DocumentRoot /var/www/vhosts/domain.org/www
-&lt;/VirtualHost&gt;
+<h2 id="getting-started-sign-up-at-copernicus-scihub">Getting Started: Sign Up at Copernicus Scihub</h2>
+<p>To get started, you first need to sign up on Copernicus Scihub. This is ESA’s gateway for satellite data distribution, offering petabytes of information just a few clicks away. The sign-up process is straightforward: go to the Copernicus Open Access Hub, click on the sign-up button, and fill in the required details. Make sure to remember your username and password because you will need them in the next steps.</p>
+
+<h2 id="access-satellite-imagery-withcode">Access Satellite Imagery With Code</h2>
+
+<p>Now, let’s get to the exciting part. First install sentinelsat with the following command:
+<code class="language-plaintext highlighter-rouge">pip install sentinelsat</code></p>
+
+<p>Now with just 4 lines of Python code, you can access this treasure trove of satellite data. Here’s the basic script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">fnmatch</span>
+<span class="kn">from</span> <span class="nn">sentinelsat</span> <span class="kn">import</span> <span class="n">SentinelAPI</span><span class="p">,</span> <span class="n">make_path_filter</span>
+
+<span class="n">sapi</span> <span class="o">=</span> <span class="n">SentinelAPI</span><span class="p">(</span><span class="s">'user'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">,</span> <span class="s">'https://scihub.copernicus.eu/dhus/'</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">sapi</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="p">(</span><span class="s">'NOW-1DAYS'</span><span class="p">,</span> <span class="s">'NOW'</span><span class="p">),</span> <span class="n">platformname</span><span class="o">=</span><span class="s">'Sentinel-2'</span><span class="p">,</span> <span class="n">processinglevel</span><span class="o">=</span><span class="s">'Level-2A'</span><span class="p">)</span>
+<span class="n">sapi</span><span class="p">.</span><span class="n">downloadall</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="s">'./tempdataset'</span><span class="p">,</span> <span class="n">nodefilter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">fnmatch</span><span class="p">.</span><span class="n">fnmatch</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s">'node_path'</span><span class="p">],</span> <span class="s">'*_TCI_10m.jp2'</span><span class="p">))</span>
 </code></pre></div></div>
+<p>In these four lines of code:</p>
+<ul>
+  <li>We import the SentinelAPI module from the sentinelsat library. If you don’t have the sentinelsat library installed yet, you can easily add it to your Python environment using pip: pip install sentinelsat.</li>
+  <li>We create an instance of the SentinelAPI class, providing our Copernicus Scihub credentials and the URL of the Scihub server.</li>
+  <li>We use the query method to search for available satellite imagery based on specific criteria.
+Finally, we use the download_all method to download all the images that matched our query.</li>
+</ul>
 
-<p>It’s easy, if you know.</p>
+<p>The beauty of this approach is its flexibility. You can adjust the query parameters based on your specific needs, like the date range, the satellite platform, or the acceptable cloud cover percentage.
+It’s that simple! Now, you can start exploring, analyzing, and using high-resolution satellite imagery, free of charge, and with just a few lines of code. The sky is not the limit; it’s the starting point!</p>
+
+<p>Article on <a href="https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab">medium</a>.</p>
 
 
 <ul class="taxonomy__index">
@@ -403,7 +427,7 @@ DocumentRoot /var/www/vhosts/domain.org/www
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          4 minute read
+          3 minute read
         
       </span>
     
