@@ -64,4 +64,10 @@ var store = [{
         "tags": [],
         "url": "/python/2023/05/24/sentinelsat_download.html",
         "teaser": null
+      },{
+        "title": "My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure",
+        "excerpt":"This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund. For those unfamiliar, the UnitaryHack Hackathon is an event that gathers quantum computing enthusiasts from across the globe to work together and address...","categories": ["quantum-computing"],
+        "tags": [],
+        "url": "/quantum-computing/2023/05/24/unitaryhack.html",
+        "teaser": null
       }]

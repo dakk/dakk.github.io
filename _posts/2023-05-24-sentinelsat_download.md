@@ -28,7 +28,7 @@ from sentinelsat import SentinelAPI, make_path_filter
 
 sapi = SentinelAPI('user', 'password', 'https://scihub.copernicus.eu/dhus/')
 products = sapi.query(date=('NOW-1DAYS', 'NOW'), platformname='Sentinel-2', processinglevel='Level-2A')
-sapi.downloadall(products, './tempdataset', nodefilter=lambda a: fnmatch.fnmatch(a['node_path'], '*_TCI_10m.jp2'))
+sapi.download_all(products, './tempdataset', nodefilter=lambda a: fnmatch.fnmatch(a['node_path'], '*_TCI_10m.jp2'))
 ```
 In these four lines of code:
 - We import the SentinelAPI module from the sentinelsat library. If you don't have the sentinelsat library installed yet, you can easily add it to your Python environment using pip: pip install sentinelsat.
