@@ -70,4 +70,10 @@ var store = [{
         "tags": [],
         "url": "/quantum-computing/2023/05/24/unitaryhack.html",
         "teaser": null
+      },{
+        "title": "Quantum Computing on a Commodore 64 in 200 Lines of BASIC",
+        "excerpt":"In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler. Join me on this delightful...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2023/07/02/qc64.html",
+        "teaser": null
       }]
