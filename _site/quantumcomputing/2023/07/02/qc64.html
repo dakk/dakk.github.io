@@ -281,6 +281,138 @@
 
 <p>So next time when someone brags about their ultra-advanced quantum computer, remind them gently of the time when you performed quantum simulations on an 8-bit computer from the 1980s. The Commodore 64 might not break any speed records, but it will definitely break some preconceived notions about quantum computing.</p>
 
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">05</span> <span class="nv">rem</span> <span class="nv">r</span><span class="o">*</span> <span class="nv">are</span> <span class="nv">real</span> <span class="nv">parts</span> <span class="ow">and</span> <span class="nv">i</span><span class="o">*</span> <span class="nv">are</span> <span class="nv">imagenary</span> <span class="nv">parts</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">sv</span>
+<span class="mi">10</span> <span class="nv">r0</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nv">i0</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">r1</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">15</span> <span class="nv">r2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">r3</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i3</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">20</span> <span class="nv">a0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">25</span> <span class="nv">shots</span> <span class="o">=</span> <span class="mi">28</span>
+<span class="mi">30</span> <span class="k">print</span> <span class="nb">chr</span><span class="nv">$</span><span class="err">(</span><span class="nv">147</span><span class="p">)</span>
+<span class="mi">40</span> <span class="k">print</span> <span class="p">"</span><span class="s2">c64 quantum simulator</span><span class="p">"</span>
+<span class="mi">45</span> <span class="k">print</span> <span class="p">"</span><span class="s2">created by davide gessa (dakk)</span><span class="p">"</span>
+<span class="mi">50</span> <span class="k">print</span> <span class="p">"</span><span class="s2">enter gate seq (x0,x1,y0,y1,z0,z1,h0,h1,cx,sw)</span><span class="p">"</span>
+<span class="mi">60</span> <span class="nv">input</span> <span class="nv">g$</span>
+<span class="nv">65</span> <span class="k">print</span> <span class="p">"</span><span class="s2">calculating the statevector...</span><span class="p">";</span>
+<span class="mi">70</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">len</span><span class="p">(</span><span class="nv">g$</span><span class="p">)</span> <span class="nv">step</span> <span class="mi">2</span>
+<span class="mi">80</span>  <span class="nv">gate$</span> <span class="err">=</span> <span class="nv">mid$</span><span class="err">(</span><span class="nv">g</span><span class="vg">$,</span> <span class="nv">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">90</span>  <span class="nv">gosub</span> <span class="mi">200</span>
+<span class="mi">91</span>  <span class="k">print</span> <span class="p">"</span><span class="s2">.</span><span class="p">";</span>
+<span class="mi">100</span> <span class="k">next</span> <span class="nv">i</span>
+<span class="mi">101</span> <span class="k">print</span>
+
+<span class="mi">102</span> <span class="nv">sq</span> <span class="o">=</span> <span class="nv">r0</span><span class="o">*</span><span class="nv">r0</span> <span class="o">+</span> <span class="nv">i0</span><span class="o">*</span><span class="nv">i0</span> <span class="o">+</span> <span class="nv">r1</span><span class="o">*</span><span class="nv">r1</span> <span class="o">+</span> <span class="nv">i1</span><span class="o">*</span><span class="nv">i1</span> <span class="o">+</span> <span class="nv">r2</span><span class="o">*</span><span class="nv">r2</span> <span class="o">+</span> <span class="nv">i2</span><span class="o">*</span><span class="nv">i2</span> <span class="o">+</span> <span class="nv">r3</span><span class="o">*</span><span class="nv">r3</span> <span class="o">+</span> <span class="nv">i3</span><span class="o">*</span><span class="nv">i3</span>
+<span class="mi">103</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">sq</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.00001</span> <span class="k">then</span> <span class="nb">goto</span> <span class="mi">600</span>
+
+<span class="mi">105</span> <span class="k">print</span> <span class="p">"</span><span class="s2">running</span><span class="p">"</span> <span class="nv">shots</span> <span class="p">"</span><span class="s2">iterations...</span><span class="p">"</span>
+<span class="mi">110</span> <span class="nv">z0</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z1</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z3</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">115</span> <span class="nv">p0</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r0</span> <span class="o">*</span> <span class="nv">r0</span> <span class="o">+</span> <span class="nv">i0</span> <span class="o">*</span> <span class="nv">i0</span><span class="p">)</span>
+<span class="mi">120</span> <span class="nv">p1</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r1</span> <span class="o">*</span> <span class="nv">r1</span> <span class="o">+</span> <span class="nv">i1</span> <span class="o">*</span> <span class="nv">i1</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p0</span>
+<span class="mi">125</span> <span class="nv">p2</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r2</span> <span class="o">*</span> <span class="nv">r2</span> <span class="o">+</span> <span class="nv">i2</span> <span class="o">*</span> <span class="nv">i2</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p1</span>
+<span class="mi">130</span> <span class="nv">p3</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r3</span> <span class="o">*</span> <span class="nv">r3</span> <span class="o">+</span> <span class="nv">i3</span> <span class="o">*</span> <span class="nv">i3</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p2</span>
+
+<span class="mi">135</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">shots</span>
+<span class="mi">140</span>  <span class="nv">r</span> <span class="o">=</span> <span class="nv">rnd</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">141</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p0</span> <span class="k">then</span> <span class="nv">z0</span> <span class="o">=</span> <span class="nv">z0</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">142</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p0</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p1</span> <span class="k">then</span> <span class="nv">z1</span> <span class="o">=</span> <span class="nv">z1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">143</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p1</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p2</span> <span class="k">then</span> <span class="nv">z2</span> <span class="o">=</span> <span class="nv">z2</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">144</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p2</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p3</span> <span class="k">then</span> <span class="nv">z3</span> <span class="o">=</span> <span class="nv">z3</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mi">146</span> <span class="k">next</span> <span class="nv">i</span>
+
+<span class="mi">150</span> <span class="k">print</span> <span class="p">"</span><span class="s2">results:</span><span class="p">"</span>
+<span class="mi">155</span> <span class="k">print</span> <span class="p">"</span><span class="s2">00: [</span><span class="p">"</span><span class="nv">z0</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z0</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
+<span class="mi">165</span> <span class="k">print</span> <span class="p">"</span><span class="s2">01: [</span><span class="p">"</span><span class="nv">z2</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z2</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span> 
+<span class="mi">160</span> <span class="k">print</span> <span class="p">"</span><span class="s2">10: [</span><span class="p">"</span><span class="nv">z1</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z1</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
+<span class="mi">170</span> <span class="k">print</span> <span class="p">"</span><span class="s2">11: [</span><span class="p">"</span><span class="nv">z3</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z3</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
+<span class="mi">175</span> <span class="nb">goto</span> <span class="mi">1000</span>
+
+<span class="mi">200</span> <span class="nv">rem</span> <span class="nv">simulate</span> <span class="nv">gate</span> <span class="nv">operation</span>
+<span class="mi">210</span> <span class="k">if</span> <span class="nv">gate$</span> <span class="err">=</span> <span class="err">"</span><span class="nv">x0</span><span class="p">"</span><span class="s2"> then gosub 400
+220 if gate$ = </span><span class="p">"</span><span class="nv">x1</span><span class="p">"</span><span class="s2"> then gosub 420
+230 if gate$ = </span><span class="p">"</span><span class="nv">y0</span><span class="p">"</span><span class="s2"> then gosub 440
+240 if gate$ = </span><span class="p">"</span><span class="nv">y1</span><span class="p">"</span><span class="s2"> then gosub 460
+250 if gate$ = </span><span class="p">"</span><span class="nv">z0</span><span class="p">"</span><span class="s2"> then gosub 480
+260 if gate$ = </span><span class="p">"</span><span class="nv">z1</span><span class="p">"</span><span class="s2"> then gosub 500
+270 if gate$ = </span><span class="p">"</span><span class="nv">h0</span><span class="p">"</span><span class="s2"> then gosub 520
+280 if gate$ = </span><span class="p">"</span><span class="nv">h1</span><span class="p">"</span><span class="s2"> then gosub 540
+290 if gate$ = </span><span class="p">"</span><span class="nv">cx</span><span class="p">"</span><span class="s2"> then gosub 560
+300 if gate$ = </span><span class="p">"</span><span class="nv">sw</span><span class="p">"</span><span class="s2"> then gosub 580
+310 return
+
+400 rem x0 gate
+410 a0 = r0 : r0 = r1 : r1 = a0
+411 a0 = i0 : i0 = i1 : i1 = a0
+412 a0 = r2 : r2 = r3 : r3 = a0
+413 a0 = i2 : i2 = i3 : i3 = a0
+416 return
+
+420 rem x1 gate
+425 a0 = r1 : r1 = r3 : r3 = a0
+430 a0 = i1 : i1 = i3 : i3 = a0
+425 a0 = r0 : r0 = r2 : r2 = a0
+430 a0 = i0 : i0 = i2 : i2 = a0
+
+440 rem y0 gate
+446 a0 = i0 : i0 = -r0 : r0 = a0
+447 a0 = i1 : i1 = -r1 : r1 = a0
+448 a0 = i2 : i2 = -r2 : r2 = a0
+449 a0 = i3 : i3 = -r3 : r3 = a0
+450 return
+
+460 rem y1 gate
+466 a0 = i1 : i1 = -r1 : r1 = a0
+467 a0 = i3 : i3 = -r3 : r3 = a0
+468 return
+
+480 rem z0 gate
+482 i2 = -i2 : i3 = -i3
+483 return
+
+500 rem z1 gate
+502 i1 = -i1 : i3 = -i3
+503 return
+
+520 rem h0 gate
+521 a0 = (r0 + r1) / sqr(2) : a1 = (i0 + i1) / sqr(2)
+522 b0 = (r0 - r1) / sqr(2) : b1 = (i0 - i1) / sqr(2)
+523 r0 = a0 : i0 = a1 : r1 = b0 : i1 = b1
+525 a0 = (r2 + r3) / sqr(2) : a1 = (i2 + i3) / sqr(2)
+526 b0 = (r2 - r3) / sqr(2) : b1 = (i2 - i3) / sqr(2)
+527 r2 = a0 : i2 = a1 : r3 = b0 : i3 = b1
+527 return
+
+540 rem h1 gate
+541 a0 = (r0 + r2) / sqr(2) : a1 = (i0 + i2) / sqr(2)
+542 b0 = (r0 - r2) / sqr(2) : b1 = (i0 - i2) / sqr(2)
+543 r0 = a0 : i0 = a1 : r2 = b0 : i2 = b1
+545 a0 = (r1 + r3) / sqr(2) : a1 = (i1 + i3) / sqr(2)
+546 b0 = (r1 - r3) / sqr(2) : b1 = (i1 - i3) / sqr(2)
+547 r1 = a0 : i1 = a1 : r3 = b0 : i3 = b1
+548 return
+
+560 rem cx gate
+561 a0 = r1 : r1 = r3 : r3 = a0
+562 a0 = i1 : i1 = i3 : i3 = a0
+579 return 
+
+580 rem sw gate
+581 a0 = r1 : r1 = r2 : r2 = a0
+582 a0 = i1 : i1 = i2 : i2 = a0
+590 return
+
+600 rem statevcector normalization
+601 nf = sqr(1 / sq)
+602 r0 = r0 * nf
+603 i0 = i0 * nf
+604 r1 = r1 * nf
+605 i1 = i1 * nf
+606 r2 = r2 * nf
+607 i2 = i2 * nf
+608 r3 = r3 * nf
+609 i3 = i3 * nf
+610 return
+
+1000 end
+</span></code></pre></div></div>
+
 <p>The source code is accessible here: <a href="https://github.com/dakk/qc64">https://github.com/dakk/qc64</a>
 Twitter: <a href="https://twitter.com/dagide">@dagide</a></p>
 
@@ -369,7 +501,7 @@ Twitter: <a href="https://twitter.com/dagide">@dagide</a></p>
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 minute read
+          6 minute read
         
       </span>
     
