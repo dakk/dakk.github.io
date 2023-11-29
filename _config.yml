@@ -91,6 +91,9 @@ author:
     - label: "Medium"
       icon: "fab fa-fw fa-medium"
       url: "https://medium.com/@dakk"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/davide-gessa-71798b80"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
