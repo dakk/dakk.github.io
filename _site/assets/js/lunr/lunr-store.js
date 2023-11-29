@@ -76,4 +76,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2023/07/02/qc64.html",
         "teaser": null
+      },{
+        "title": "Qlasskit - a bridge between Python and Quantum algorithms",
+        "excerpt":"Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2023/11/29/qlasskit.html",
+        "teaser": null
       }]

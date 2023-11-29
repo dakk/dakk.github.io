@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2023-07-05T08:13:42+02:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">Quantum Computing on a Commodore 64 in 200 Lines of BASIC</title><link href="https://dakk.github.io//quantumcomputing/2023/07/02/qc64.html" rel="alternate" type="text/html" title="Quantum Computing on a Commodore 64 in 200 Lines of BASIC" /><published>2023-07-02T18:02:28+02:00</published><updated>2023-07-02T18:02:28+02:00</updated><id>https://dakk.github.io//quantumcomputing/2023/07/02/qc64</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2023/07/02/qc64.html">&lt;p&gt;In an age where companies are selling two-qubit quantum computers for a &lt;a href=&quot;https://www.beyondgames.biz/29903/spinq-is-selling-quantum-computers-to-consumers/&quot;&gt;sum of money&lt;/a&gt; that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2023-11-29T14:52:57+01:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">Qlasskit - a bridge between Python and Quantum algorithms</title><link href="https://dakk.github.io//quantumcomputing/2023/11/29/qlasskit.html" rel="alternate" type="text/html" title="Qlasskit - a bridge between Python and Quantum algorithms" /><published>2023-11-29T13:50:28+01:00</published><updated>2023-11-29T13:50:28+01:00</updated><id>https://dakk.github.io//quantumcomputing/2023/11/29/qlasskit</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2023/11/29/qlasskit.html">&lt;p&gt;Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Qlasskit&lt;/em&gt;, an open-source Python library developed with the support of a Unitary Fund microgrant, addresses this challenge head-on by allowing direct translation of standard Python code into invertible quantum circuits without any modification to the original code. Furthermore, &lt;em&gt;qlasskit&lt;/em&gt; implements some well-known quantum algorithms and offers a comprehensive interface for implementing new ones.&lt;/p&gt;
+
+&lt;p&gt;To illustrate &lt;em&gt;qlasskit&lt;/em&gt;’s capabilities, we will demonstrate its use in performing a pre-image attack on a cryptographic hash function using Grover’s search algorithm, obtaining a quadratic speedup compared to classical approaches. The beauty of &lt;em&gt;qlasskit&lt;/em&gt; lies in its simplicity – you can write the entire software without needing to understand any concept of quantum computing.&lt;/p&gt;
+
+&lt;p&gt;A pre-image attack, in cryptography, targets a hash function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h(m)&lt;/code&gt; with the aim to discover an original message &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;m&lt;/code&gt; that corresponds to a specific hash value. On a traditional computer, to perform this attack without any hints, we must run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h(m)&lt;/code&gt; with every possible input (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N=2**n&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Thanks to the Grover search algorithm, we are able to find a pre-image with only &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pi/2 * sqrt(N)&lt;/code&gt; iterations, obtaining the quadratic speedup I mentioned before.&lt;/p&gt;
+
+&lt;p&gt;We write a toy hash function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hash_simp&lt;/code&gt; which operates on messages composed of two 4 bit values and uses bitwise xor to create an 8 bit hash value.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/hash_simp_code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first things you can notice in this code are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;qlassf&lt;/code&gt; decorators, indicating that the function will be translated to a quantum circuit.&lt;/li&gt;
+  &lt;li&gt;special bit-sized types Qlist, Qint4, and Qint8. These are required as qubits are a precious resource, and we want to use as few as possible.&lt;/li&gt;
+  &lt;li&gt;and, it is normal Python code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To see the resulting quantum circuit we can export and draw in qiskit:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/circuit_draw_code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And this is the resulting circuit, produced by the &lt;em&gt;qlasskit&lt;/em&gt; internal compiler:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/circuit_result.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks to the fact that &lt;em&gt;qlasskit&lt;/em&gt; function are standard Python functions, we can call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;original_f&lt;/code&gt; to perform some kind of analysis and test on the hash function. Since the input space is tiny (it is a toy hash function), we can check if the hash function is uniform (if it maps equally to the output space).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/output_space.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/output_space_result.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We got that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hash_simp&lt;/code&gt; is following an uniform distribution.&lt;/p&gt;
+
+&lt;p&gt;Now we use our quantum function as an oracle for a Grover search, in order to find which input maps to the value &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xca&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/grover_search.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we use our prefered framework and simulator for sampling the result; this is an example using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;qiskit&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aer_simulator&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/simulation_code.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And this is the result of the simulation, where we can see that the pre-image that leds to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h(x) = 0xca&lt;/code&gt; is the list &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[12,12]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/simulation_result.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QlassF.original_f&lt;/code&gt; we can double check the result without invoking a quantum simulator; calling it with the list &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[12,12]&lt;/code&gt; must result in the hash value &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0xca&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2023-11-09-qlasskit/result_check.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/assets/2023-11-09-qlasskit/result.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Although &lt;em&gt;qlasskit&lt;/em&gt; can handle hundreds of qubits, in this post we use a toy hash function because currently, we lack a simulator or quantum computer capable of handling hundreds of qubits. Using these same tools, in the near future we may be able to perform a Grover search on real hash functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;md5&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sha2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A special thanks to the &lt;a href=&quot;https://unitary.fund/&quot;&gt;Unitary Fund&lt;/a&gt; that funded this idea. If you have any questions or comments, feel free to reach out to me on twitter &lt;a href=&quot;https://twitter.com/dagide&quot;&gt;dagide&lt;/a&gt;, linkedin &lt;a href=&quot;https://linkedin.com/in/davide-gessa-71798b80&quot;&gt;Davide Gessa&lt;/a&gt; and medium &lt;a href=&quot;https://medium.com/@dakk&quot;&gt;@dakk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Useful Links:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dakk/qlasskit&quot;&gt;Qlasskit library on github&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dakk.github.io/qlasskit&quot;&gt;Qlasskit docs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dakk.github.io/qlasskit/how_it_works.html&quot;&gt;How qlasskit works&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="quantumcomputing" /><summary type="html">Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.</summary></entry><entry><title type="html">Quantum Computing on a Commodore 64 in 200 Lines of BASIC</title><link href="https://dakk.github.io//quantumcomputing/2023/07/02/qc64.html" rel="alternate" type="text/html" title="Quantum Computing on a Commodore 64 in 200 Lines of BASIC" /><published>2023-07-02T18:02:28+02:00</published><updated>2023-07-02T18:02:28+02:00</updated><id>https://dakk.github.io//quantumcomputing/2023/07/02/qc64</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2023/07/02/qc64.html">&lt;p&gt;In an age where companies are selling two-qubit quantum computers for a &lt;a href=&quot;https://www.beyondgames.biz/29903/spinq-is-selling-quantum-computers-to-consumers/&quot;&gt;sum of money&lt;/a&gt; that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2023-07-02-bellstate.gif&quot; alt=&quot;QC64 preparing a Bell’s state&quot; /&gt;&lt;/p&gt;
 
@@ -83,9 +148,9 @@
 
 420 rem x1 gate
 425 a0 = r1 : r1 = r3 : r3 = a0
-430 a0 = i1 : i1 = i3 : i3 = a0
-425 a0 = r0 : r0 = r2 : r2 = a0
-430 a0 = i0 : i0 = i2 : i2 = a0
+426 a0 = i1 : i1 = i3 : i3 = a0
+427 a0 = r0 : r0 = r2 : r2 = a0
+428 a0 = i0 : i0 = i2 : i2 = a0
 
 440 rem y0 gate
 446 a0 = i0 : i0 = -r0 : r0 = a0
@@ -114,7 +179,7 @@
 525 a0 = (r2 + r3) / sqr(2) : a1 = (i2 + i3) / sqr(2)
 526 b0 = (r2 - r3) / sqr(2) : b1 = (i2 - i3) / sqr(2)
 527 r2 = a0 : i2 = a1 : r3 = b0 : i3 = b1
-527 return
+528 return
 
 540 rem h1 gate
 541 a0 = (r0 + r2) / sqr(2) : a1 = (i0 + i2) / sqr(2)
@@ -614,11 +679,4 @@ let main(a, s: action * storage): (operation list * storage) =
 
 &lt;p&gt;&lt;img src=&quot;/assets/2020-06-24-king_of_tezos.png&quot; alt=&quot;Operation list&quot; /&gt;&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="tezos" /><summary type="html">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleanness comparing to other languages.</summary></entry><entry><title type="html">Favorite dev quote</title><link href="https://dakk.github.io//random/2020/06/24/favorite_quote.html" rel="alternate" type="text/html" title="Favorite dev quote" /><published>2020-06-24T11:59:28+02:00</published><updated>2020-06-24T11:59:28+02:00</updated><id>https://dakk.github.io//random/2020/06/24/favorite_quote</id><content type="html" xml:base="https://dakk.github.io//random/2020/06/24/favorite_quote.html">&lt;blockquote&gt;
   &lt;p&gt;Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="random" /><summary type="html">Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing</summary></entry><entry><title type="html">New blog</title><link href="https://dakk.github.io//random/2020/06/24/new_blog.html" rel="alternate" type="text/html" title="New blog" /><published>2020-06-24T10:59:28+02:00</published><updated>2020-06-24T10:59:28+02:00</updated><id>https://dakk.github.io//random/2020/06/24/new_blog</id><content type="html" xml:base="https://dakk.github.io//random/2020/06/24/new_blog.html">&lt;p&gt;This is my new blog, based on jekyll. I’ll soon import old posts from &lt;a href=&quot;https://davidegessa.wordpress.com&quot;&gt;my old blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="random" /><summary type="html">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.</summary></entry><entry><title type="html">Contractvm: decentralized applications on Bitcoin</title><link href="https://dakk.github.io//bitcoin/2016/01/11/contractvm.html" rel="alternate" type="text/html" title="Contractvm: decentralized applications on Bitcoin" /><published>2016-01-11T11:00:01+01:00</published><updated>2016-01-11T11:00:01+01:00</updated><id>https://dakk.github.io//bitcoin/2016/01/11/contractvm</id><content type="html" xml:base="https://dakk.github.io//bitcoin/2016/01/11/contractvm.html">&lt;p&gt;Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table.&lt;/p&gt;
-
-&lt;p&gt;This project was my master degree thesis.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://contractvm.github.io/&quot;&gt;Website&lt;/a&gt;
-&lt;a href=&quot;https://contractvm.github.io/doc/&quot;&gt;Documentation&lt;/a&gt;
-&lt;a href=&quot;https://github.com/contractvm&quot;&gt;Github&lt;/a&gt;
-&lt;a href=&quot;http://contractvm.github.io/cvm-whitepaper.pdf&quot;&gt;Whitepaper&lt;/a&gt;&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="bitcoin" /><summary type="html">Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table.</summary></entry></feed>
+&lt;/blockquote&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="random" /><summary type="html">Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing</summary></entry><entry><title type="html">New blog</title><link href="https://dakk.github.io//random/2020/06/24/new_blog.html" rel="alternate" type="text/html" title="New blog" /><published>2020-06-24T10:59:28+02:00</published><updated>2020-06-24T10:59:28+02:00</updated><id>https://dakk.github.io//random/2020/06/24/new_blog</id><content type="html" xml:base="https://dakk.github.io//random/2020/06/24/new_blog.html">&lt;p&gt;This is my new blog, based on jekyll. I’ll soon import old posts from &lt;a href=&quot;https://davidegessa.wordpress.com&quot;&gt;my old blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="random" /><summary type="html">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.</summary></entry></feed>

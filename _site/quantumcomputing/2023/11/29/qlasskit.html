@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Yallo, a new Tezos language - Davide Gessa @dakk</title>
-<meta name="description" content="As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project github.com/dakk/yallo-lang.">
+<!-- begin _includes/seo.html --><title>Qlasskit - a bridge between Python and Quantum algorithms - Davide Gessa @dakk</title>
+<meta name="description" content="Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="Yallo, a new Tezos language">
-<meta property="og:url" content="https://medium.com/coinmonks/yallo-a-new-tezos-language-f1298069d268">
+<meta property="og:title" content="Qlasskit - a bridge between Python and Quantum algorithms">
+<meta property="og:url" content="https://dakk.github.io//quantumcomputing/2023/11/29/qlasskit.html">
 
 
-  <meta property="og:description" content="As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project github.com/dakk/yallo-lang.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2020-07-07T15:00:28+02:00">
+  <meta property="og:description" content="Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.">
 
 
 
 
 
 
-<link rel="canonical" href="https://medium.com/coinmonks/yallo-a-new-tezos-language-f1298069d268">
+
+  <meta property="article:published_time" content="2023-11-29T13:50:28+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//quantumcomputing/2023/11/29/qlasskit.html">
 
 
 
@@ -259,91 +259,75 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">Yallo, a new Tezos language</h1>
+      <h1 id="page-title" class="page__title">Qlasskit - a bridge between Python and Quantum algorithms</h1>
     
-    <p>As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially intended as a personal exercise for studying parsers, ast and other compiler’s things, but the code just go out of hand very quickly. The joke compiler is now becoming a “real language” that I’ll continue as an hobby project <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a>.</p>
+    <p>Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.</p>
 
-<p>Yallo (which stands for yet another language lo?) is essentially a functional language which integrates (a sort of) object oriented paradigm. Instead of classes, interfaces and objects, in yallo we have contracts, contract interfaces and contract instances. Here it is an exemple to show how it works.</p>
+<p><em>Qlasskit</em>, an open-source Python library developed with the support of a Unitary Fund microgrant, addresses this challenge head-on by allowing direct translation of standard Python code into invertible quantum circuits without any modification to the original code. Furthermore, <em>qlasskit</em> implements some well-known quantum algorithms and offers a comprehensive interface for implementing new ones.</p>
 
-<p>Let’s suppose we want to create a contract that defines a new token; we first define its interface (which is not mandatory for the Token contract, but useful for other contract calling a Token contract instance):</p>
+<p>To illustrate <em>qlasskit</em>’s capabilities, we will demonstrate its use in performing a pre-image attack on a cryptographic hash function using Grover’s search algorithm, obtaining a quadratic speedup compared to classical approaches. The beauty of <em>qlasskit</em> lies in its simplicity – you can write the entire software without needing to understand any concept of quantum computing.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">IToken</span> <span class="o">{</span>
-    <span class="n">entry</span> <span class="nf">transfer</span><span class="o">(</span><span class="nl">from:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">to:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">val:</span> <span class="n">nat</span><span class="o">);</span>
-    <span class="n">view</span> <span class="nf">getBalance</span><span class="o">(</span><span class="nl">ad:</span> <span class="n">address</span><span class="o">):</span> <span class="n">nat</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p>A pre-image attack, in cryptography, targets a hash function <code class="language-plaintext highlighter-rouge">h(m)</code> with the aim to discover an original message <code class="language-plaintext highlighter-rouge">m</code> that corresponds to a specific hash value. On a traditional computer, to perform this attack without any hints, we must run <code class="language-plaintext highlighter-rouge">h(m)</code> with every possible input (<code class="language-plaintext highlighter-rouge">N=2**n</code>).</p>
 
-<p>As you can see, our interface has two entrypoints: transfer allows to send tokens from an address to another, and <em>getBalance</em> is used by another contract to retrieve the token balance of the given address.
-Note that we defined getBalance as a “view”, which is a syntactic sugar for entrypoints which callback to an ‘a contract passed as argument.</p>
+<p>Thanks to the Grover search algorithm, we are able to find a pre-image with only <code class="language-plaintext highlighter-rouge">pi/2 * sqrt(N)</code> iterations, obtaining the quadratic speedup I mentioned before.</p>
 
-<p>Interfaces can also be extended, so we can create an interface IMintableToken which also has a mint entrypoint.</p>
+<p>We write a toy hash function <code class="language-plaintext highlighter-rouge">hash_simp</code> which operates on messages composed of two 4 bit values and uses bitwise xor to create an 8 bit hash value.</p>
 
-<p>And now let’s see an implementation for this interface, the contract (something like a class); first we declare our storage, which is composed of typed fields. Then we declare a parametrized constructor which is useful for contract deploy (we will investigate this later). And finally we declare our two entrypoints.</p>
+<p><img src="/assets/2023-11-09-qlasskit/hash_simp_code.png" alt="" /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">contract</span> <span class="nc">Token</span> <span class="kd">implements</span> <span class="nc">IToken</span> <span class="o">{</span>
-    <span class="n">field</span> <span class="nl">balances:</span> <span class="o">(</span><span class="n">address</span><span class="o">,</span> <span class="n">nat</span><span class="o">)</span> <span class="n">big_map</span><span class="o">;</span>
-    <span class="n">field</span> <span class="nl">totalSupply:</span> <span class="n">nat</span><span class="o">;</span>
-    <span class="n">field</span> <span class="nl">symbol:</span> <span class="n">string</span><span class="o">;</span>
+<p>The first things you can notice in this code are:</p>
 
-    <span class="n">constructor</span> <span class="o">(</span><span class="nl">owner:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">supply:</span> <span class="n">nat</span><span class="o">,</span> <span class="nl">symbol:</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">balances</span> <span class="o">=</span> <span class="o">[</span> <span class="o">{</span> <span class="nl">owner:</span> <span class="n">supply</span> <span class="o">}</span> <span class="o">];</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">totalSupply</span> <span class="o">=</span> <span class="n">supply</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">symbol</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span>
-    <span class="o">}</span>
+<ul>
+  <li>the <code class="language-plaintext highlighter-rouge">qlassf</code> decorators, indicating that the function will be translated to a quantum circuit.</li>
+  <li>special bit-sized types Qlist, Qint4, and Qint8. These are required as qubits are a precious resource, and we want to use as few as possible.</li>
+  <li>and, it is normal Python code.</li>
+</ul>
 
-    <span class="n">entry</span> <span class="nf">transfer</span><span class="o">(</span><span class="nl">from:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">to:</span> <span class="n">address</span><span class="o">,</span> <span class="nl">val:</span> <span class="n">nat</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">let</span> <span class="nl">a:</span> <span class="n">nat</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">);</span>
-        <span class="n">let</span> <span class="nl">b:</span> <span class="n">nat</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">);</span>
-        <span class="k">assert</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">val</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">val</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">val</span><span class="o">);</span> 
-        <span class="o">[]</span>
-    <span class="o">}</span>
+<p>To see the resulting quantum circuit we can export and draw in qiskit:</p>
 
-    <span class="n">view</span> <span class="nf">getBalance</span><span class="o">(</span><span class="nl">ad:</span> <span class="n">address</span><span class="o">):</span> <span class="n">nat</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">balances</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ad</span><span class="o">,</span> <span class="mi">0</span><span class="n">n</span><span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p><img src="/assets/2023-11-09-qlasskit/circuit_draw_code.png" alt="" /></p>
 
-<p>After compiling and deploying our amazing Token contract, other yallo contracts can easily interact with it. Inside our new contract entrypoint, we call the Token getBalance using the IToken.of(address) which returns a typed contract instance of IToken; then we call getBalance passing an address and our callback.</p>
+<p>And this is the resulting circuit, produced by the <em>qlasskit</em> internal compiler:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">IToken.yallo</span><span class="err">"</span><span class="o">;</span>
+<p><img src="/assets/2023-11-09-qlasskit/circuit_result.png" alt="" /></p>
 
-<span class="kd">const</span> <span class="nl">tokenContractAddress:</span> <span class="n">address</span> <span class="o">=</span> <span class="nd">@KT1ThEdxfUcWUwqsdergy3QnbCWGHSUHeHJq</span><span class="o">;</span>
+<p>Thanks to the fact that <em>qlasskit</em> function are standard Python functions, we can call the <code class="language-plaintext highlighter-rouge">original_f</code> to perform some kind of analysis and test on the hash function. Since the input space is tiny (it is a toy hash function), we can check if the hash function is uniform (if it maps equally to the output space).</p>
 
-<span class="n">contract</span> <span class="n">usingAToken</span> <span class="o">{</span>
-    <span class="n">field</span> <span class="nl">bal:</span> <span class="n">nat</span><span class="o">;</span>
+<p><img src="/assets/2023-11-09-qlasskit/output_space.png" alt="" /></p>
 
-    <span class="n">entry</span> <span class="nf">checkBalance</span><span class="o">(</span><span class="nl">a:</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
-        <span class="o">[</span><span class="nc">IToken</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">tokenContractAddress</span><span class="o">).</span><span class="na">getBalance</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">checkBalanceCallback</span><span class="o">)]</span>
-    <span class="o">}</span>
+<p><img src="/assets/2023-11-09-qlasskit/output_space_result.png" alt="" /></p>
 
-    <span class="n">entry</span> <span class="nf">checkBalanceCallback</span><span class="o">(</span><span class="nl">b:</span> <span class="n">nat</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">bal</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-        <span class="o">[]</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p>We got that <code class="language-plaintext highlighter-rouge">hash_simp</code> is following an uniform distribution.</p>
 
-<p>Another powerful feature that I introduced is the ability to deploy a contract from another contract, as follows. We call the createContract passing the result of Token(…), which creates a pair composed with the code of Token, and the initial storage generated by its constructor.</p>
+<p>Now we use our quantum function as an oracle for a Grover search, in order to find which input maps to the value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="err">"</span><span class="nn">Token.yallo</span><span class="s">";
+<p><img src="/assets/2023-11-09-qlasskit/grover_search.png" alt="" /></p>
 
-contract deployAToken {
-    field tokenAddress: address;
+<p>Then we use our prefered framework and simulator for sampling the result; this is an example using <code class="language-plaintext highlighter-rouge">qiskit</code> with <code class="language-plaintext highlighter-rouge">aer_simulator</code>.</p>
 
-    entry deployToken() {
-        let (a: address, op: operation) = Tezos.createContract (Token(Tezos.selfAddress(), 100, "</span><span class="n">ourToken</span><span class="err">"</span><span class="o">),</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">tokenAddress</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-        <span class="o">[</span><span class="n">op</span><span class="o">]</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p><img src="/assets/2023-11-09-qlasskit/simulation_code.png" alt="" /></p>
 
-<p>At the moment, the compiler will feature cameligo as the only target language, but I’ll work also on a Coq compilation backend. The code and the language itself is in active development and it is not yet ready to use, but any ideas and comments are welcome.</p>
+<p>And this is the result of the simulation, where we can see that the pre-image that leds to <code class="language-plaintext highlighter-rouge">h(x) = 0xca</code> is the list <code class="language-plaintext highlighter-rouge">[12,12]</code>.</p>
 
-<p>If you liked yallo, please put a star on <a href="https://github.com/dakk/yallo-lang">github.com/dakk/yallo-lang</a></p>
+<p><img src="/assets/2023-11-09-qlasskit/simulation_result.png" alt="" /></p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">QlassF.original_f</code> we can double check the result without invoking a quantum simulator; calling it with the list <code class="language-plaintext highlighter-rouge">[12,12]</code> must result in the hash value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
+
+<p><img src="/assets/2023-11-09-qlasskit/result_check.png" alt="" />
+<img src="/assets/2023-11-09-qlasskit/result.png" alt="" /></p>
+
+<p>Although <em>qlasskit</em> can handle hundreds of qubits, in this post we use a toy hash function because currently, we lack a simulator or quantum computer capable of handling hundreds of qubits. Using these same tools, in the near future we may be able to perform a Grover search on real hash functions like <code class="language-plaintext highlighter-rouge">md5</code> or <code class="language-plaintext highlighter-rouge">sha2</code>.</p>
+
+<p>A special thanks to the <a href="https://unitary.fund/">Unitary Fund</a> that funded this idea. If you have any questions or comments, feel free to reach out to me on twitter <a href="https://twitter.com/dagide">dagide</a>, linkedin <a href="https://linkedin.com/in/davide-gessa-71798b80">Davide Gessa</a> and medium <a href="https://medium.com/@dakk">@dakk</a>.</p>
+
+<p>Useful Links:</p>
+
+<ul>
+  <li><a href="https://github.com/dakk/qlasskit">Qlasskit library on github</a></li>
+  <li><a href="https://dakk.github.io/qlasskit">Qlasskit docs</a></li>
+  <li><a href="https://dakk.github.io/qlasskit/how_it_works.html">How qlasskit works</a></li>
+</ul>
+
 
 
 <ul class="taxonomy__index">
@@ -613,7 +597,7 @@ contract deployAToken {
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          4 minute read
+          3 minute read
         
       </span>
     
