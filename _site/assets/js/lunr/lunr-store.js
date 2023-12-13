@@ -82,4 +82,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2023/11/29/qlasskit.html",
         "teaser": null
+      },{
+        "title": "Expanding the Commodore 64 Quantum Emulator",
+        "excerpt":"In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantum circuit emulator on the venerable Commodore 64, writing only 200 lines of code. The source code, available on GitHub, sparked a flurry of...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2023/12/13/qc64_followup.html",
+        "teaser": null
       }]

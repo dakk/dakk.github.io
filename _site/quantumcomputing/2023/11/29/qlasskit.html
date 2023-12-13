@@ -279,7 +279,16 @@
 
 <p>We write a toy hash function <code class="language-plaintext highlighter-rouge">hash_simp</code> which operates on messages composed of two 4 bit values and uses bitwise xor to create an 8 bit hash value.</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/hash_simp_code.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qlasskit</span> <span class="kn">import</span> <span class="n">qlassf</span><span class="p">,</span> <span class="n">Qint4</span><span class="p">,</span> <span class="n">Qint8</span><span class="p">,</span> <span class="n">Qlist</span>
+
+<span class="o">@</span><span class="n">qlassf</span>
+<span class="k">def</span> <span class="nf">hash_simp</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">Qlist</span><span class="p">[</span><span class="n">Qint4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Qint8</span><span class="p">:</span>
+    <span class="n">hv</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">hv</span> <span class="o">=</span> <span class="p">((</span><span class="n">hv</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">hv</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span>
+
+    <span class="k">return</span> <span class="n">hv</span>
+</code></pre></div></div>
 
 <p>The first things you can notice in this code are:</p>
 
@@ -291,7 +300,8 @@
 
 <p>To see the resulting quantum circuit we can export and draw in qiskit:</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/circuit_draw_code.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hash_simp</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="s">'qiskit'</span><span class="p">).</span><span class="n">draw</span><span class="p">(</span><span class="s">'mpl'</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>And this is the resulting circuit, produced by the <em>qlasskit</em> internal compiler:</p>
 
@@ -299,7 +309,12 @@
 
 <p>Thanks to the fact that <em>qlasskit</em> function are standard Python functions, we can call the <code class="language-plaintext highlighter-rouge">original_f</code> to perform some kind of analysis and test on the hash function. Since the input space is tiny (it is a toy hash function), we can check if the hash function is uniform (if it maps equally to the output space).</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/output_space.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="n">original_f</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Hash function output space:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</code></pre></div></div>
 
 <p><img src="/assets/2023-11-09-qlasskit/output_space_result.png" alt="" /></p>
 
@@ -307,11 +322,26 @@
 
 <p>Now we use our quantum function as an oracle for a Grover search, in order to find which input maps to the value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/grover_search.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qlasskit.algorithms</span> <span class="kn">import</span> <span class="n">Grover</span>
+
+<span class="n">q_algo</span> <span class="o">=</span> <span class="n">Grover</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">,</span> <span class="n">Qint8</span><span class="p">(</span><span class="mh">0xca</span><span class="p">))</span>
+</code></pre></div></div>
 
 <p>Then we use our preferred framework and simulator for sampling the result; this is an example using <code class="language-plaintext highlighter-rouge">qiskit</code> with <code class="language-plaintext highlighter-rouge">aer_simulator</code>.</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/simulation_code.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="s">'qiskit'</span><span class="p">)</span>
+<span class="n">qc</span><span class="p">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="p">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s">"aer_simulator"</span><span class="p">)</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">circ</span><span class="p">).</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">get_counts</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+
+<span class="n">counts_readable</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="n">decode_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">discard_lower</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts_readable</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>And this is the result of the simulation, where we can see that the pre-image that leads to <code class="language-plaintext highlighter-rouge">h(x) = 0xca</code> is the list <code class="language-plaintext highlighter-rouge">[12,12]</code>.</p>
 
@@ -319,8 +349,10 @@
 
 <p>Using <code class="language-plaintext highlighter-rouge">QlassF.original_f</code> we can double check the result without invoking a quantum simulator; calling it with the list <code class="language-plaintext highlighter-rouge">[12,12]</code> must result in the hash value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
 
-<p><img src="/assets/2023-11-09-qlasskit/result_check.png" alt="" />
-<img src="/assets/2023-11-09-qlasskit/result.png" alt="" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="n">original_f</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p><img src="/assets/2023-11-09-qlasskit/result.png" alt="" /></p>
 
 <p>Although <em>qlasskit</em> can handle hundreds of qubits, in this post we use a toy hash function because currently, we lack a simulator or quantum computer capable of handling hundreds of qubits. Using these same tools, in the near future we may be able to perform a Grover search on real hash functions like <code class="language-plaintext highlighter-rouge">md5</code> or <code class="language-plaintext highlighter-rouge">sha2</code>.</p>
 
@@ -341,7 +373,7 @@
   
     <li>
       <a href="#2023">
-        <strong>2023</strong> <span class="taxonomy__count">5</span>
+        <strong>2023</strong> <span class="taxonomy__count">6</span>
       </a>
     </li>
   
@@ -383,6 +415,52 @@
   <section id="2023" class="taxonomy__section">
     <h2 class="archive__subtitle">2023</h2>
     <div class="entries-list">
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/quantumcomputing/2023/12/13/qc64_followup.html" rel="permalink">Expanding the Commodore 64 Quantum Emulator
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-12-13T11:18:22+01:00">December 13, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantu...</p>
+  </article>
+</div>
+
       
         
 
