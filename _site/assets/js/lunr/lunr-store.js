@@ -88,4 +88,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2023/12/13/qc64_followup.html",
         "teaser": null
+      },{
+        "title": "Solving Sudoku Puzzles on a Quantum Computer",
+        "excerpt":"Today, I’m going to show you how to use Qlasskit to create a quantum circuit able to search for Sudoku puzzle solutions. Qlasskit, is an open-source Python library developed with the support of a Unitary Fund microgrant, addresses this challenge head-on by allowing direct translation of standard Python code into...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2024/01/19/quantum_sudoku.html",
+        "teaser": null
       }]
