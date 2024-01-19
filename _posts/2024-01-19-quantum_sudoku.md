@@ -3,7 +3,7 @@ layout: posts
 title:  "Solving Sudoku Puzzles on a Quantum Computer"
 date:   2024-01-19 11:19:01 +0200
 categories: quantumcomputing
-canonical_url: 
+canonical_url: https://medium.com/@dakk/solving-sudoku-on-a-quantum-computer-b523a7cc2eff
 ---
 
 Today, I'm going to show you how to use *Qlasskit* to create a quantum circuit able to search for 
