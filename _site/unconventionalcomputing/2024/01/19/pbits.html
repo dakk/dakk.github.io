@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure - Davide Gessa @dakk</title>
-<meta name="description" content="This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund.">
+<!-- begin _includes/seo.html --><title>The Time I Built a Probabilistic Computer - Davide Gessa @dakk</title>
+<meta name="description" content="">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure">
-<meta property="og:url" content="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html">
+<meta property="og:title" content="The Time I Built a Probabilistic Computer">
+<meta property="og:url" content="https://medium.com/@dakk/solving-sudoku-on-a-quantum-computer-b523a7cc2eff">
 
 
-  <meta property="og:description" content="This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-05-24T17:02:28+02:00">
+  <meta property="og:description" content="">
 
 
 
 
 
 
-<link rel="canonical" href="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html">
+
+  <meta property="article:published_time" content="2024-01-19T10:19:01+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://medium.com/@dakk/solving-sudoku-on-a-quantum-computer-b523a7cc2eff">
 
 
 
@@ -263,26 +263,116 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure</h1>
+      <h1 id="page-title" class="page__title">The Time I Built a Probabilistic Computer</h1>
     
-    <p>This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the <a href="https://unitaryhack.dev">#UnitaryHack</a> Hackathon, hosted by the <a href="https://unitary.fund/">Unitary Fund</a>.</p>
+    <p><img src="/assets/2024-02-01-pbits/pbit-comp.jpg" alt="" /></p>
 
-<p>For those unfamiliar, the UnitaryHack Hackathon is an event that gathers quantum computing enthusiasts from across the globe to work together and address exciting challenges in the field. It was an journey where I had the opportunity to explore, learn, and contribute to the burgeoning open-source ecosystem of quantum computing.</p>
+<p>Digital computing, with its binary system of bits, has been the bedrock of technological advancement for decades. This deterministic approach, where bits are either 0 or 1, has propelled us into an era of unprecedented computational capabilities. However, as we stand on the precipice of a new computing frontier, the limitations of this binary paradigm have become increasingly evident.</p>
 
-<p>Here is the list of bounties that I tackled:</p>
+<p>The evolution of <strong>unconventional computing</strong> models, from the analog computing of yesteryears to the promises of quantum computing, has opened doors to new possibilities. Analog computers, with their continuous range of values, offered solutions to certain problems that were computationally intractable for digital systems. Quantum computing, on the other hand, harnesses the principles of superposition and entanglement to perform complex calculations at speeds unattainable by classical computers.</p>
+
+<p>In this ever-expanding landscape of computing paradigms, my curiosity led me to explore the uncharted territory of <strong>probabilistic computing</strong>. Embracing the inherent uncertainty of probabilistic bits, I embarked on a journey to build a hardware prototype that could compute in a fundamentally different way. This endeavor, while not seeking to overshadow the achievements of traditional and quantum computing, aimed to carve out its niche in addressing specific challenges with a unique perspective.</p>
+
+<p>In the upcoming chapters of this post, I will share the intricacies of my probabilistic computing prototype – the challenges encountered, the design choices made, and the insights gained along the way. Join me on this expedition into the world of probabilities, where the binary certainty of 0s and 1s gives way to a nuanced landscape of potentialities.</p>
+
+<h2 id="probabilistic-bits">Probabilistic bits</h2>
+
+<p>A probabilistic bit, also known as a p-bit, is a new type of computational unit that lies between classical bits and quantum bits (qubits). Unlike classical bits, which can only be either 0 or 1, p-bits can fluctuate between the states of 0 and 1. This means that they can represent and process information with greater efficiency than classical computers, and they can also perform certain computational tasks that are impossible for classical computers.</p>
+
+<p>P-bits were introduced by Supriyo Datta, a professor at Purdue University. <a href="https://www.purdue.edu/p-bit/">Datta’s research</a> suggests that p-bits could be used to create a new type of computer that is more powerful and energy-efficient than current computers.</p>
+
+<p><img src="/assets/2024-02-01-pbits/pbit.gif" alt="Source: https://www.purdue.edu/p-bit/" /></p>
+
+<p>Here are some of the key properties of p-bits:</p>
+
 <ul>
-  <li><a href="https://github.com/Qiskit/qiskit-aer/issues/1632">qiskit-aer: Qiskit Aer still uses execute</a></li>
-  <li><a href="https://github.com/bqskit/bqskit/issues/150">bqskit: Non-deterministic circuit iteration for regions</a></li>
-  <li><a href="https://github.com/qiskit-community/qiskit-braket-provider/issues/47">qiskit-braket-provider: add get_statevector support for BraketLocalBackend</a></li>
-  <li><a href="https://github.com/qiskit-community/qiskit-braket-provider/issues/37">qiskit-braket-provider: Updates for Qiskit to Braket circuit conversion</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/522">pulser: Adding a function to draw SequenceSamples</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/501">pulser: Drawing of Register goes out of window boundaries</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/497">pulser: Add an error when a Channel is called with an eom_config but without a modulation bandwidth</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/352">pulser: SPAM errors introduce large simulation overhead</a></li>
-  <li><a href="https://github.com/aws/amazon-braket-sdk-python/issues/320">amazon-braket-sdk-python: Support for the run_batch() method on LocalSimulator</a></li>
+  <li>Fluctuation: P-bits can fluctuate between the states of 0 and 1. This means that they can represent a range of values between 0 and 1, rather than just two discrete values.</li>
+  <li>Pinning: P-bits can be pinned to the state of 0 or 1 with a certain probability. This allows them to perform computations in a probabilistic manner, which can be more efficient than classical computations.</li>
+  <li>Compact representation: P-bits can be represented more compactly than classical bits or qubits. This makes them more suitable for use in compact, energy-efficient hardware.</li>
 </ul>
 
-<p>Each of these projects allowed me to dive deeper into quantum computing, tackle real-world problems, and collaborate with an incredible community of passionate learners and experienced professionals. This experience reaffirmed my belief in the power of open-source collaborations and their transformative role in shaping the future of technology.</p>
+<p>Datta has proposed a number of potential applications for p-bits, including optimization, machine learning and invertible logic.</p>
+
+<p>The application of p-bits that caught my attention the most, is the invertible logic; using p-bits we are able to implement any boolean function and find the input that produces a specific output in an efficient way.</p>
+
+<h2 id="implementing-p-bits">Implementing p-bits</h2>
+
+<p>There are several potential hardware approaches for implementing p-bits, but one of the most promising is to use spintronics. Spintronics is a field of electronics that utilizes the spin of electrons, in addition to their charge, to store and process information. Spintronics offers several advantages for implementing p-bits, including:</p>
+
+<ul>
+  <li>Room-temperature operation: Spintronics devices can operate at room temperature, which is a significant advantage over quantum computers, which require cryogenic temperatures.</li>
+  <li>Scalability: Spintronics devices can be scaled to large sizes, which is necessary for building practical computers.</li>
+  <li>Low power consumption: Spintronics devices are relatively low-power consumers, which is important for energy-efficient computing.</li>
+</ul>
+
+<p>One specific approach to implementing p-bits using spintronics is to use magnetic tunnel junctions (MTJs), where the spin is able to fluctuate randomly between the two orientation million of times in a second.</p>
+
+<h3 id="zener-diode-as-p-bits-entropy-source">Zener diode as p-bits entropy source</h3>
+
+<p>Zener diode avalanche breakdown is a phenomenon that occurs when a reverse-biased zener diode is subjected to a sufficiently high reverse voltage. The high electric field across the depletion region of the diode causes electrons to gain enough energy to break away from their covalent bonds and become free electrons. These free electrons collide with other electrons and atoms, creating a chain reaction that releases a large amount of energy in the form of heat and light.</p>
+
+<p>The avalanche breakdown process is a random event, and the amount of current that flows through the diode is not directly proportional to the applied voltage. This makes zener diodes a good source of entropy, which is a measure of randomness or uncertainty. For my prototype I choose to use this effect to generate the random oscillations of the p-bits.</p>
+
+<p><img src="/assets/2024-02-01-pbits/just-zener.png" alt="Source: http://www.reallyreallyrandom.com" /></p>
+
+<p>Here are some of the advantages of using zener diode avalanche breakdown as an entropy source:</p>
+
+<ul>
+  <li>High entropy: The avalanche breakdown process is a very random phenomenon, which means that it generates a lot of entropy.</li>
+  <li>Uniformity: The amount of entropy generated by zener diode avalanche breakdown is relatively uniform over a wide range of input voltages.</li>
+  <li>Scalability: Zener diodes can be easily scaled to generate high amounts of entropy.</li>
+</ul>
+
+<p>Here are some of the disadvantages of using zener diode avalanche breakdown as an entropy source:</p>
+
+<ul>
+  <li>Power consumption: The avalanche breakdown process is a non-ideal process, and it generates some heat. This means that zener diodes consume some power while generating entropy.</li>
+  <li>Noise: The avalanche breakdown process can also generate noise, which can interfere with other electronic signals.</li>
+</ul>
+
+<h2 id="the-prototype">The prototype</h2>
+
+<p>The first step in building the prototype was to design the PCB layout. This was done using the free and open-source electronic design automation (EDA) tool KiCad. The PCB layout for the prototype was relatively simple, consisting of a handful of components, including TL072 op-amps, zener diodes, and passive components like resistors and capacitors. The op-amps were used to amplify the random signals generated by the zener diodes and to combine them with p-bit inputs, while the passive components were used to condition the signals and provide biasing for the op-amps.</p>
+
+<p>Once the PCB layout was finalized, it was exported to a Gerber file, which is the standard file format used for PCB printing. The Gerber file was then sent to a PCB fabrication service, where five copies of the PCB were printed on a high-quality circuit board material.</p>
+
+<p><img src="/assets/2024-02-01-pbits/pcb.jpg" alt="" /></p>
+
+<p>With the PCBs in hand, the next step was to assemble the circuit. This involved carefully placing the components onto the PCBs and soldering them in place. The process was relatively straightforward, but it required patience and attention to detail to ensure that the components were properly aligned and soldered.</p>
+
+<p><img src="/assets/2024-02-01-pbits/assembly.jpg" alt="" /></p>
+
+<p>Once the circuit was assembled, it was time to test it. This involved connecting the prototype to a power supply and measuring the output signals. The output signals were found to be random, as expected, with a high entropy content. This confirmed that the prototype was successfully generating random numbers using the zener diode avalanche breakdown technique.</p>
+
+<h2 id="testing-the-prototype">Testing the prototype</h2>
+
+<p>With the hardware prototype assembled, I was eager to put it to the test and explore the computational capabilities of probabilistic computing. To begin, I focused on implementing fundamental reversible logic gates in the probabilistic domain.</p>
+
+<p><img src="/assets/2024-02-01-pbits/testing.jpg" alt="Not gate" /></p>
+
+<p>The reversible AND gate is a crucial component of probabilistic computing, enabling the manipulation of probabilistic states in a reversible manner. I designed a circuit that could implement the reversible AND gate using my probabilistic computing prototype.</p>
+
+<p><img src="/assets/2024-02-01-pbits/testing_osc.jpg" alt="" /></p>
+
+<p>In this video I show the probabilistic not gate implemented using two p-bits.</p>
+
+<p><img src="https://www.youtube.com/shorts/GNX7OaAMqR0" alt="" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The successful construction of my probabilistic computing prototype marked a significant milestone in my exploration of this emerging technology. While the prototype demonstrated the feasibility of probabilistic computing principles, scaling up to larger-scale systems remains a challenge.</p>
+
+<p>The current design employed a centralized approach, where all p-bits were interconnected (using a breadboard), making it impractical to scale to millions of p-bits. To address this scalability issue, decentralizing the p-bit circuitry and employing communication protocols to exchange information between p-bit clusters could be promising strategies.</p>
+
+<p>Further research is needed to optimize the hardware architecture and develop efficient communication protocols to enable scalable probabilistic computing systems. The potential of probabilistic computing to tackle complex problems with enhanced efficiency and robustness remains a compelling motivation for continued exploration and innovation.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>https://www.purdue.edu/p-bit/</li>
+  <li>https://rebootingcomputing.ieee.org/archived-articles-and-videos/feature-articles/probabilistic-bits-p-bits</li>
+  <li>http://www.reallyreallyrandom.com/zener/</li>
+</ul>
 
 
 <ul class="taxonomy__index">
@@ -373,7 +463,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          7 minute read
+          6 minute read
         
       </span>
     

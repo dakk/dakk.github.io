@@ -94,4 +94,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2024/01/19/quantum_sudoku.html",
         "teaser": null
+      },{
+        "title": "The Time I Built a Probabilistic Computer",
+        "excerpt":"Digital computing, with its binary system of bits, has been the bedrock of technological advancement for decades. This deterministic approach, where bits are either 0 or 1, has propelled us into an era of unprecedented computational capabilities. However, as we stand on the precipice of a new computing frontier, the...","categories": ["unconventionalcomputing"],
+        "tags": [],
+        "url": "/unconventionalcomputing/2024/01/19/pbits.html",
+        "teaser": null
       }]
