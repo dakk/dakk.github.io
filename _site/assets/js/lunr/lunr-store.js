@@ -96,7 +96,7 @@ var store = [{
         "teaser": null
       },{
         "title": "The Time I Built a Probabilistic Computer",
-        "excerpt":"The evolution of unconventional computing models, from the analog computing of yesteryears to the promises of quantum computing, has opened doors to new possibilities. Analog computers, with their continuous range of values, offered solutions to certain problems that were computationally intractable for digital systems. Quantum computing, on the other hand,...","categories": ["unconventionalcomputing"],
+        "excerpt":"In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype, and this is its story. The evolution of unconventional computing models, from the analog computing of yesteryears to the promises of quantum computing, has opened...","categories": ["unconventionalcomputing"],
         "tags": [],
         "url": "/unconventionalcomputing/2024/01/31/pbits.html",
         "teaser": null
