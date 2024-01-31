@@ -277,9 +277,9 @@
 
 <h2 id="probabilistic-bits">Probabilistic bits</h2>
 
-<p>A probabilistic bit, also known as a p-bit, is a new type of computational unit that lies between classical bits and quantum bits (qubits). Unlike classical bits, which can only be either 0 or 1, p-bits can fluctuate between the states of 0 and 1. This means that they can represent and process information with greater efficiency than classical computers, and they can also perform certain computational tasks that are impossible for classical computers.</p>
+<p>A probabilistic bit, also known as a <strong>p-bit</strong>, is a new type of computational unit that lies between classical bits and quantum bits (qubits). Unlike classical bits, which can only be either 0 or 1, p-bits can <strong>fluctuate</strong> between the states of 0 and 1. This means that they can represent and process information with greater efficiency than classical computers, and they can also perform certain computational tasks way better than a classical computers.</p>
 
-<p>P-bits were introduced by Supriyo Datta, a professor at Purdue University. <a href="https://www.purdue.edu/p-bit/">Datta’s research</a> suggests that p-bits could be used to create a new type of computer that is more powerful and energy-efficient than current computers.</p>
+<p>P-bits were introduced by <strong>Supriyo Datta</strong>, a professor at Purdue University. <a href="https://www.purdue.edu/p-bit/">Datta’s research</a> suggests that p-bits could be used to create a new type of computer that is more powerful and energy-efficient than current computers.</p>
 
 <p><img src="/assets/2024-02-01-pbits/pbit.gif" alt="Source: https://www.purdue.edu/p-bit/" /></p>
 
@@ -288,12 +288,11 @@
 <ul>
   <li>Fluctuation: P-bits can fluctuate between the states of 0 and 1. This means that they can represent a range of values between 0 and 1, rather than just two discrete values.</li>
   <li>Pinning: P-bits can be pinned to the state of 0 or 1 with a certain probability. This allows them to perform computations in a probabilistic manner, which can be more efficient than classical computations.</li>
-  <li>Compact representation: P-bits can be represented more compactly than classical bits or qubits. This makes them more suitable for use in compact, energy-efficient hardware.</li>
 </ul>
 
 <p>Datta has proposed a number of potential applications for p-bits, including optimization, machine learning and invertible logic.</p>
 
-<p>The application of p-bits that caught my attention the most, is the invertible logic; using p-bits we are able to implement any boolean function and find the input that produces a specific output in an efficient way.</p>
+<p>The application of p-bits that caught my attention the most, is the <strong>invertible logic</strong>; using p-bits we are able to implement any boolean function and find the input that produces a specific output in an efficient way. This process resembles the one performed by a <strong>Grover search</strong> in a quantum computer.</p>
 
 <h2 id="implementing-p-bits">Implementing p-bits</h2>
 
@@ -305,34 +304,19 @@
   <li>Low power consumption: Spintronics devices are relatively low-power consumers, which is important for energy-efficient computing.</li>
 </ul>
 
-<p>One specific approach to implementing p-bits using spintronics is to use magnetic tunnel junctions (MTJs), where the spin is able to fluctuate randomly between the two orientation million of times in a second.</p>
+<p>One specific approach to implementing p-bits using spintronics is to use <strong>magnetic tunnel junctions</strong> (MTJs), where the spin is able to fluctuate randomly between the two orientation million of times in a second.</p>
 
 <h3 id="zener-diode-as-p-bits-entropy-source">Zener diode as p-bits entropy source</h3>
 
-<p>Zener diode avalanche breakdown is a phenomenon that occurs when a reverse-biased zener diode is subjected to a sufficiently high reverse voltage. The high electric field across the depletion region of the diode causes electrons to gain enough energy to break away from their covalent bonds and become free electrons. These free electrons collide with other electrons and atoms, creating a chain reaction that releases a large amount of energy in the form of heat and light.</p>
-
-<p>The avalanche breakdown process is a random event, and the amount of current that flows through the diode is not directly proportional to the applied voltage. This makes zener diodes a good source of entropy, which is a measure of randomness or uncertainty. For my prototype I choose to use this effect to generate the random oscillations of the p-bits.</p>
+<p><em>Zener diode avalanche breakdown</em> is a phenomenon that occurs when a reverse-biased zener diode is subjected to a sufficiently high reverse voltage. The high electric field across the depletion region of the diode causes electrons to gain enough energy to break away from their covalent bonds and become free electrons. These free electrons collide with other electrons and atoms, creating a chain reaction that releases a large amount of energy in the form of heat and light.</p>
 
 <p><img src="/assets/2024-02-01-pbits/just-zener.png" alt="Source: http://www.reallyreallyrandom.com" /></p>
 
-<p>Here are some of the advantages of using zener diode avalanche breakdown as an entropy source:</p>
-
-<ul>
-  <li>High entropy: The avalanche breakdown process is a very random phenomenon, which means that it generates a lot of entropy.</li>
-  <li>Uniformity: The amount of entropy generated by zener diode avalanche breakdown is relatively uniform over a wide range of input voltages.</li>
-  <li>Scalability: Zener diodes can be easily scaled to generate high amounts of entropy.</li>
-</ul>
-
-<p>Here are some of the disadvantages of using zener diode avalanche breakdown as an entropy source:</p>
-
-<ul>
-  <li>Power consumption: The avalanche breakdown process is a non-ideal process, and it generates some heat. This means that zener diodes consume some power while generating entropy.</li>
-  <li>Noise: The avalanche breakdown process can also generate noise, which can interfere with other electronic signals.</li>
-</ul>
+<p>The avalanche breakdown process is a <strong>random event</strong>, and the amount of current that flows through the diode is not directly proportional to the applied voltage. This makes zener diodes a good source of entropy, which is a measure of randomness or uncertainty. For my prototype I choose to use this effect to generate the random oscillations of the p-bits.</p>
 
 <h2 id="the-prototype">The prototype</h2>
 
-<p>The first step in building the prototype was to design the PCB layout. This was done using the free and open-source electronic design automation (EDA) tool KiCad. The PCB layout for the prototype was relatively simple, consisting of a handful of components, including TL072 op-amps, zener diodes, and passive components like resistors and capacitors. The op-amps were used to amplify the random signals generated by the zener diodes and to combine them with p-bit inputs, while the passive components were used to condition the signals and provide biasing for the op-amps.</p>
+<p>The first step in building the prototype was to design the PCB layout. This was done using the free and open-source electronic design automation (EDA) tool KiCad. The PCB layout for the prototype was relatively simple, consisting of a handful of components, including <em>TL072 op-amps</em>, zener diodes, and passive components like resistors and capacitors. The op-amps were used to amplify the random signals generated by the zener diodes and to combine them with p-bit inputs, while the passive components were used to condition the signals and provide biasing for the op-amps.</p>
 
 <p>Once the PCB layout was finalized, it was exported to a Gerber file, which is the standard file format used for PCB printing. The Gerber file was then sent to a PCB fabrication service, where five copies of the PCB were printed on a high-quality circuit board material.</p>
 
@@ -341,8 +325,6 @@
 <p>With the PCBs in hand, the next step was to assemble the circuit. This involved carefully placing the components onto the PCBs and soldering them in place. The process was relatively straightforward, but it required patience and attention to detail to ensure that the components were properly aligned and soldered.</p>
 
 <p><img src="/assets/2024-02-01-pbits/assembly.jpg" alt="" /></p>
-
-<p>Once the circuit was assembled, it was time to test it. This involved connecting the prototype to a power supply and measuring the output signals. The output signals were found to be random, as expected, with a high entropy content. This confirmed that the prototype was successfully generating random numbers using the zener diode avalanche breakdown technique.</p>
 
 <h2 id="testing-the-prototype">Testing the prototype</h2>
 
@@ -356,7 +338,7 @@
 
 <p>In this video I show the probabilistic not gate implemented using two p-bits.</p>
 
-<p><a href="https://youtu.be/shorts/GNX7OaAMqR0"><img src="https://img.youtube.com/vi/GNX7OaAMqR0/1.jpg" alt="Watch the video" /></a></p>
+<p><a href="https://youtu.be/shorts/GNX7OaAMqR0"><img src="https://img.youtube.com/vi/GNX7OaAMqR0/0.jpg" alt="Watch the video" /></a></p>
 
 <h2 id="conclusion">Conclusion</h2>
 
@@ -369,9 +351,9 @@
 <h2 id="references">References</h2>
 
 <ul>
-  <li>https://www.purdue.edu/p-bit/</li>
-  <li>https://rebootingcomputing.ieee.org/archived-articles-and-videos/feature-articles/probabilistic-bits-p-bits</li>
-  <li>http://www.reallyreallyrandom.com/zener/</li>
+  <li><a href="https://www.purdue.edu/p-bit/">https://www.purdue.edu/p-bit/</a></li>
+  <li><a href="https://rebootingcomputing.ieee.org/archived-articles-and-videos/feature-articles/probabilistic-bits-p-bits">ieee.org/probabilistic-bits-p-bits</a></li>
+  <li><a href="http://www.reallyreallyrandom.com/zener/">http://www.reallyreallyrandom.com/zener/</a></li>
 </ul>
 
 
