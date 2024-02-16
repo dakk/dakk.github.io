@@ -3,7 +3,7 @@ layout: posts
 title:  "Factorization using Qlasskit and DWave Quantum Annealer"
 date:   2024-02-16 10:28:01 +0200
 categories: quantumcomputing
-canonical_url: 
+canonical_url: https://medium.com/@dakk/factorization-using-qlasskit-and-dwave-quantum-annealer-ae3a61875f55
 ---
 
 In the last release of *Qlasskit*, I introduced a new feature able to export a `qlassf` function to a binary quadratic model (as bqm, qubo or ising model). 
@@ -74,3 +74,9 @@ In this post, we've demonstrated how to leverage Qlasskit and the DWave quantum 
 
 If you have any questions, please don't hesitate to leave a comment below!
 
+
+**Useful Links:**
+
+- [Qlasskit library on github](https://github.com/dakk/qlasskit)
+- [Qlasskit docs](https://dakk.github.io/qlasskit)
+- [My Twitter Profile](https://twitter.com/dagide)

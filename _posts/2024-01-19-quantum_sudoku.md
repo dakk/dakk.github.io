@@ -115,3 +115,12 @@ print(sudoku_check.circuit())
 ```
 QCircuit<sudoku_check>(1309 gates, 178 qubits)
 ```
+
+
+**Useful Links:**
+
+- [Qlasskit library on github](https://github.com/dakk/qlasskit)
+- [Qlasskit docs](https://dakk.github.io/qlasskit)
+- [How qlasskit works](https://dakk.github.io/qlasskit/how_it_works.html)
+- [My Twitter Profile](https://twitter.com/dagide)
+
