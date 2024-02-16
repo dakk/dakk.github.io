@@ -72,8 +72,6 @@ print(best_sample.sample)
 
 In this post, we've demonstrated how to leverage Qlasskit and the DWave quantum annealer to factorize a number. Although this example is relatively straightforward, it underscores the potential of the qlasskit library in describing optimization problems using high-level abstractions.
 
-If you have any questions, please don't hesitate to leave a comment below!
-
 
 **Useful Links:**
 
