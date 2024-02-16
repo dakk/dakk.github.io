@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure - Davide Gessa @dakk</title>
-<meta name="description" content="This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund.">
+<!-- begin _includes/seo.html --><title>Factorization using Qlasskit and DWave Quantum Annealer - Davide Gessa @dakk</title>
+<meta name="description" content="In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model).  This feature introduces qlasskit to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we’ll explore this  new feature, using Qlasskit and the DWave quantum annealer for prime factorization.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure">
-<meta property="og:url" content="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html">
+<meta property="og:title" content="Factorization using Qlasskit and DWave Quantum Annealer">
+<meta property="og:url" content="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html">
 
 
-  <meta property="og:description" content="This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-05-24T17:02:28+02:00">
+  <meta property="og:description" content="In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model).  This feature introduces qlasskit to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we’ll explore this  new feature, using Qlasskit and the DWave quantum annealer for prime factorization.">
 
 
 
 
 
 
-<link rel="canonical" href="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html">
+
+  <meta property="article:published_time" content="2024-02-16T09:28:01+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html">
 
 
 
@@ -263,26 +263,68 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure</h1>
+      <h1 id="page-title" class="page__title">Factorization using Qlasskit and DWave Quantum Annealer</h1>
     
-    <p>This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the <a href="https://unitaryhack.dev">#UnitaryHack</a> Hackathon, hosted by the <a href="https://unitary.fund/">Unitary Fund</a>.</p>
+    <p>In the last release of <em>Qlasskit</em>, I introduced a new feature able to export a <code class="language-plaintext highlighter-rouge">qlassf</code> function to a binary quadratic model (as bqm, qubo or ising model). 
+This feature introduces <em>qlasskit</em> to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we’ll explore this 
+new feature, using Qlasskit and the DWave quantum annealer for prime factorization.</p>
 
-<p>For those unfamiliar, the UnitaryHack Hackathon is an event that gathers quantum computing enthusiasts from across the globe to work together and address exciting challenges in the field. It was an journey where I had the opportunity to explore, learn, and contribute to the burgeoning open-source ecosystem of quantum computing.</p>
+<p><img src="/assets/2024-02-16-factorize_annealer.jpg" alt="" /></p>
 
-<p>Here is the list of bounties that I tackled:</p>
-<ul>
-  <li><a href="https://github.com/Qiskit/qiskit-aer/issues/1632">qiskit-aer: Qiskit Aer still uses execute</a></li>
-  <li><a href="https://github.com/bqskit/bqskit/issues/150">bqskit: Non-deterministic circuit iteration for regions</a></li>
-  <li><a href="https://github.com/qiskit-community/qiskit-braket-provider/issues/47">qiskit-braket-provider: add get_statevector support for BraketLocalBackend</a></li>
-  <li><a href="https://github.com/qiskit-community/qiskit-braket-provider/issues/37">qiskit-braket-provider: Updates for Qiskit to Braket circuit conversion</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/522">pulser: Adding a function to draw SequenceSamples</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/501">pulser: Drawing of Register goes out of window boundaries</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/497">pulser: Add an error when a Channel is called with an eom_config but without a modulation bandwidth</a></li>
-  <li><a href="https://github.com/pasqal-io/Pulser/issues/352">pulser: SPAM errors introduce large simulation overhead</a></li>
-  <li><a href="https://github.com/aws/amazon-braket-sdk-python/issues/320">amazon-braket-sdk-python: Support for the run_batch() method on LocalSimulator</a></li>
-</ul>
+<p>Instead of employing the traditional <em>Shor algorithm</em> utilized in circuit-base quantum computers, we opt to frame our problem as a minimization problem
+and we exploit the <em>adiabatic quantum computing</em> for searching a solution.</p>
 
-<p>Each of these projects allowed me to dive deeper into quantum computing, tackle real-world problems, and collaborate with an incredible community of passionate learners and experienced professionals. This experience reaffirmed my belief in the power of open-source collaborations and their transformative role in shaping the future of technology.</p>
+<p>We begin defining a Qlasskit function called <code class="language-plaintext highlighter-rouge">test_factor_generic</code> which takes the number <code class="language-plaintext highlighter-rouge">num</code> to be factorized along with its two factors <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> as inputs. 
+It returns 0 if <code class="language-plaintext highlighter-rouge">a</code> multiplied by <code class="language-plaintext highlighter-rouge">b</code> equals <code class="language-plaintext highlighter-rouge">num</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qlasskit</span> <span class="kn">import</span> <span class="n">qlassf</span><span class="p">,</span> <span class="n">Qint4</span><span class="p">,</span> <span class="n">Qint3</span><span class="p">,</span> <span class="n">Parameter</span>
+
+<span class="o">@</span><span class="n">qlassf</span>
+<span class="k">def</span> <span class="nf">test_factor_generic</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">[</span><span class="n">Qint4</span><span class="p">],</span> <span class="n">a</span><span class="p">:</span> <span class="n">Qint3</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Qint3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Qint4</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Next, we bind the <code class="language-plaintext highlighter-rouge">num</code> parameter to the number 15 and convert the Qlasskit function to a binary quadratic model (BQM) using the <code class="language-plaintext highlighter-rouge">to_bqm</code> function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test_factor</span> <span class="o">=</span> <span class="n">test_factor_generic</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">bqm</span> <span class="o">=</span> <span class="n">test_factor</span><span class="p">.</span><span class="n">to_bqm</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>This BQM represents the optimization problem of finding the factors of 15.</p>
+
+<h2 id="running-the-sampler">Running the sampler</h2>
+
+<p>With our problem encoded into a BQM, we’re now poised to execute it on a real quantum annealer. Here’s how:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dwave.system</span> <span class="kn">import</span> <span class="n">DWaveSampler</span><span class="p">,</span> <span class="n">EmbeddingComposite</span>
+<span class="kn">from</span> <span class="nn">qlasskit.bqm</span> <span class="kn">import</span> <span class="n">decode_samples</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">EmbeddingComposite</span><span class="p">(</span><span class="n">DWaveSampler</span><span class="p">())</span>
+<span class="n">sampleset</span> <span class="o">=</span> <span class="n">sampler</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bqm</span><span class="p">,</span> <span class="n">num_reads</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">decoded_samples</span> <span class="o">=</span> <span class="n">decode_samples</span><span class="p">(</span><span class="n">test_factor</span><span class="p">,</span> <span class="n">sampleset</span><span class="p">)</span>
+<span class="n">best_sample</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">decoded_samples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">energy</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">best_sample</span><span class="p">.</span><span class="n">sample</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This code snippet runs the BQM on a <strong>DWave</strong> quantum annealer and prints the best solution found, which, as expected, yields <code class="language-plaintext highlighter-rouge">{'a': 3, 'b': 5}</code>, since 5 times 3 equals 15.</p>
+
+<p>If you don’t have access to a DWave account, you can still run smaller problems like this one using a simulated annealing sampler as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">neal</span>
+
+<span class="n">sa</span> <span class="o">=</span> <span class="n">neal</span><span class="p">.</span><span class="n">SimulatedAnnealingSampler</span><span class="p">()</span>
+<span class="n">sampleset</span> <span class="o">=</span> <span class="n">sa</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bqm</span><span class="p">,</span> <span class="n">num_reads</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">decoded_samples</span> <span class="o">=</span> <span class="n">decode_samples</span><span class="p">(</span><span class="n">test_factor</span><span class="p">,</span> <span class="n">sampleset</span><span class="p">)</span>
+<span class="n">best_sample</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">decoded_samples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">energy</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">best_sample</span><span class="p">.</span><span class="n">sample</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this post, we’ve demonstrated how to leverage Qlasskit and the DWave quantum annealer to factorize a number. Although this example is relatively straightforward, it underscores the potential of the qlasskit library in describing optimization problems using high-level abstractions.</p>
+
+<p>If you have any questions, please don’t hesitate to leave a comment below!</p>
+
 
 
 <ul class="taxonomy__index">

@@ -100,4 +100,10 @@ var store = [{
         "tags": [],
         "url": "/unconventionalcomputing/2024/01/31/pbits.html",
         "teaser": null
+      },{
+        "title": "Factorization using Qlasskit and DWave Quantum Annealer",
+        "excerpt":"In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model). This feature introduces qlasskit to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we’ll explore...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2024/02/16/annealing_factorization.html",
+        "teaser": null
       }]
