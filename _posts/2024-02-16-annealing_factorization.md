@@ -10,7 +10,7 @@ In the last release of *Qlasskit*, I introduced a new feature able to export a `
 This feature introduces *qlasskit* to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we'll explore this 
 new feature, using Qlasskit and the DWave quantum annealer for prime factorization.
 
-![](/assets/2024-02-16-factorize_annealer.jpg)
+![](/assets/2024-02-16-annealing_factorization.jpg)
 
 Instead of employing the traditional *Shor algorithm* utilized in circuit-base quantum computers, we opt to frame our problem as a minimization problem
 and we exploit the *adiabatic quantum computing* for searching a solution.
