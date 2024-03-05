@@ -3,7 +3,7 @@ layout: posts
 title:  "Optimizing quantum circuit using boolean algebra"
 date:   2024-03-05 16:00:01 +0200
 categories: quantumcomputing
-canonical_url: 
+canonical_url: Optimizing quantum circuit using boolean algebra
 ---
 
 Since the latest v0.1.18 version, the [**Qlasskit**](https://github.com/dakk/qlasskit) library offers two useful tool for circuit analysis and optimization.
