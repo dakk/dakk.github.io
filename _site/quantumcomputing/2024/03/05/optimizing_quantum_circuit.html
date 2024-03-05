@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>The Time I Built a Probabilistic Computer - Davide Gessa @dakk</title>
-<meta name="description" content="In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype, and this is its story.">
+<!-- begin _includes/seo.html --><title>Optimizing quantum circuit using boolean algebra - Davide Gessa @dakk</title>
+<meta name="description" content="Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="The Time I Built a Probabilistic Computer">
-<meta property="og:url" content="https://medium.com/@dakk/the-time-i-built-a-probabilistic-computer-0e8090883bbc">
+<meta property="og:title" content="Optimizing quantum circuit using boolean algebra">
+<meta property="og:url" content="https://dakk.github.io//quantumcomputing/2024/03/05/optimizing_quantum_circuit.html">
 
 
-  <meta property="og:description" content="In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype, and this is its story.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2024-01-31T11:33:01+01:00">
+  <meta property="og:description" content="Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.">
 
 
 
 
 
 
-<link rel="canonical" href="https://medium.com/@dakk/the-time-i-built-a-probabilistic-computer-0e8090883bbc">
+
+  <meta property="article:published_time" content="2024-03-05T15:00:01+01:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//quantumcomputing/2024/03/05/optimizing_quantum_circuit.html">
 
 
 
@@ -263,97 +263,54 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">The Time I Built a Probabilistic Computer</h1>
+      <h1 id="page-title" class="page__title">Optimizing quantum circuit using boolean algebra</h1>
     
-    <p>In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype, and this is its story.</p>
-
-<p><img src="/assets/2024-01-31-pbits/pbit_comp.jpg" alt="" /></p>
-
-<p>The evolution of <strong>unconventional computing</strong> models, from the analog computing of yesteryears to the promises of quantum computing, has opened doors to new possibilities. Analog computers, with their continuous range of values, offered solutions to certain problems that were computationally intractable for digital systems. Quantum computing, on the other hand, harnesses the principles of superposition and entanglement to perform complex calculations at speeds unattainable by classical computers.</p>
-
-<p>In this ever-expanding landscape of computing paradigms, my curiosity led me to explore the uncharted territory of <strong>probabilistic computing</strong>. Embracing the inherent uncertainty of probabilistic bits, I embarked on a journey to build a hardware prototype that could compute in a fundamentally different way. This endeavor, while not seeking to overshadow the achievements of traditional and quantum computing, aimed to carve out its niche in addressing specific challenges with a unique perspective.</p>
-
-<p>In the upcoming chapters of this post, I will share the intricacies of my probabilistic computing prototype – the challenges encountered, the design choices made, and the insights gained along the way. Join me on this expedition into the world of probabilities, where the binary certainty of 0s and 1s gives way to a nuanced landscape of potentialities.</p>
-
-<h2 id="probabilistic-bits">Probabilistic bits</h2>
-
-<p>A probabilistic bit, also known as a <strong>p-bit</strong>, is a new type of computational unit that lies between classical bits and quantum bits (qubits). Unlike classical bits, which can only be either 0 or 1, p-bits can <strong>fluctuate</strong> between the states of 0 and 1. This means that they can represent and process information with greater efficiency than classical computers, and they can also perform certain computational tasks way better than a classical computers.</p>
-
-<p>P-bits were introduced by <strong>Supriyo Datta</strong>, a professor at Purdue University. <a href="https://www.purdue.edu/p-bit/">Datta’s research</a> suggests that p-bits could be used to create a new type of computer that is more powerful and energy-efficient than current computers.</p>
-
-<p><img src="/assets/2024-01-31-pbits/pbit.gif" alt="Source: https://www.purdue.edu/p-bit/" /></p>
-
-<p>Here are some of the key properties of p-bits:</p>
+    <p>Since the latest v0.1.18 version, the <a href="https://github.com/dakk/qlasskit"><strong>Qlasskit</strong></a> library offers two useful tool for circuit analysis and optimization.</p>
 
 <ul>
-  <li>Fluctuation: P-bits can fluctuate between the states of 0 and 1. This means that they can represent a range of values between 0 and 1, rather than just two discrete values.</li>
-  <li>Pinning: P-bits can be pinned to the state of 0 or 1 with a certain probability. This allows them to perform computations in a probabilistic manner, which can be more efficient than classical computations.</li>
+  <li>
+    <p><em>Decompiler</em>: given a quantum circuit is able to detect section that can be represented as boolean expressions</p>
+  </li>
+  <li>
+    <p><em>circuit_boolean_optimizer</em>: a pipeline that given a quantum circuit, decompose it in boolean expressions form and optimize it using boolean algebra</p>
+  </li>
 </ul>
 
-<p>Datta has proposed a number of potential applications for p-bits, including optimization, machine learning and invertible logic.</p>
+<p>Let’s have a look on how to use these features. We first create the following quantum circuit:</p>
 
-<p>The application of p-bits that caught my attention the most, is the <strong>invertible logic</strong>; using p-bits we are able to implement any boolean function and find the input that produces a specific output in an efficient way. This process resembles the one performed by a <strong>Grover search</strong> in a quantum computer.</p>
+<p><img src="/assets/2024-03-05-qoptimize/unoptimized.png" alt="" /></p>
 
-<h2 id="implementing-p-bits">Implementing p-bits</h2>
+<p>Now, using the <em>decompile</em> function we can detect “classical parts” and decode them as boolean expression; 
+this is the result for the previous quantum circuit.</p>
 
-<p>There are several potential hardware approaches for implementing p-bits, but one of the most promising is to use spintronics. Spintronics is a field of electronics that utilizes the spin of electrons, in addition to their charge, to store and process information. Spintronics offers several advantages for implementing p-bits, including:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dc</span> <span class="o">=</span> <span class="n">Decompiler</span><span class="p">().</span><span class="n">decompile</span><span class="p">(</span><span class="n">qcircuit</span><span class="p">)</span>
+</code></pre></div></div>
 
-<ul>
-  <li>Room-temperature operation: Spintronics devices can operate at room temperature, which is a significant advantage over quantum computers, which require cryogenic temperatures.</li>
-  <li>Scalability: Spintronics devices can be scaled to large sizes, which is necessary for building practical computers.</li>
-  <li>Low power consumption: Spintronics devices are relatively low-power consumers, which is important for energy-efficient computing.</li>
-</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DecompiledResults[
+	(
+		(0, 7)
+		(X, [2], None), (CCX, [0, 2, 3], None), (CCX, [1, 3, 4], None), (CX, [4, 5], None), (CCX, [1, 3, 4], None), (CCX, [0, 2, 3], None), (X, [2], None)
+		(q5, q4 ^ q5 ^ (q1 &amp; (q3 ^ (q0 &amp; ~q2))))
+	)
+]
+</code></pre></div></div>
 
-<p>One specific approach to implementing p-bits using spintronics is to use <strong>magnetic tunnel junctions</strong> (MTJs), where the spin is able to fluctuate randomly between the two orientation million of times in a second.</p>
+<p>Reading the resulting boolean expression <code class="language-plaintext highlighter-rouge">(q5, q4 ^ q5 ^ (q1 &amp; (q3 ^ (q0 &amp; ~q2))))</code>, and knowing that q0 and q1 are inputs, while the other qubits are used as ancilla and output qubits, it is clear that the circuit can be optimized.</p>
 
-<h3 id="zener-diode-as-p-bits-entropy-source">Zener diode as p-bits entropy source</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">qc</span> <span class="o">=</span> <span class="n">circuit_boolean_optimizer</span><span class="p">(</span><span class="n">qf</span><span class="p">.</span><span class="n">circuit</span><span class="p">(),</span> <span class="n">preserve</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
 
-<p><em>Zener diode avalanche breakdown</em> is a phenomenon that occurs when a reverse-biased zener diode is subjected to a sufficiently high reverse voltage. The high electric field across the depletion region of the diode causes electrons to gain enough energy to break away from their covalent bonds and become free electrons. These free electrons collide with other electrons and atoms, creating a chain reaction that releases a large amount of energy in the form of heat and light.</p>
+<p>The <em>circuit_boolean_optimizer</em> allows us to perform boolean optimizations in a quantum circuit; from the previous unoptimized example, we then get the following optimized circuit:</p>
 
-<p><img src="/assets/2024-01-31-pbits/just-zener.png" alt="Source: http://www.reallyreallyrandom.com" /></p>
-
-<p>The avalanche breakdown process is a <strong>random event</strong>, and the amount of current that flows through the diode is not directly proportional to the applied voltage. This makes zener diodes a good source of entropy, which is a measure of randomness or uncertainty. For my prototype I choose to use this effect to generate the random oscillations of the p-bits.</p>
-
-<h2 id="the-prototype">The prototype</h2>
-
-<p>The first step in building the prototype was to design the PCB layout. This was done using the free and open-source electronic design automation (EDA) tool KiCad. The PCB layout for the prototype was relatively simple, consisting of a handful of components, including <em>TL072 op-amps</em>, zener diodes, and passive components like resistors and capacitors. The op-amps were used to amplify the random signals generated by the zener diodes and to combine them with p-bit inputs, while the passive components were used to condition the signals and provide biasing for the op-amps.</p>
-
-<p>Once the PCB layout was finalized, it was exported to a Gerber file, which is the standard file format used for PCB printing. The Gerber file was then sent to a PCB fabrication service, where five copies of the PCB were printed on a high-quality circuit board material.</p>
-
-<p><img src="/assets/2024-01-31-pbits/pcb.jpg" alt="" /></p>
-
-<p>With the PCBs in hand, the next step was to assemble the circuit. This involved carefully placing the components onto the PCBs and soldering them in place. The process was relatively straightforward, but it required patience and attention to detail to ensure that the components were properly aligned and soldered.</p>
-
-<p><img src="/assets/2024-01-31-pbits/assembly.jpg" alt="" /></p>
-
-<h2 id="testing-the-prototype">Testing the prototype</h2>
-
-<p>With the hardware prototype assembled, I was eager to put it to the test and explore the computational capabilities of probabilistic computing. To begin, I focused on implementing fundamental reversible logic gates in the probabilistic domain.</p>
-
-<p><img src="/assets/2024-01-31-pbits/testing.jpg" alt="Not gate" /></p>
-
-<p>The reversible AND gate is a crucial component of probabilistic computing, enabling the manipulation of probabilistic states in a reversible manner. I designed a circuit that could implement the reversible AND gate using my probabilistic computing prototype.</p>
-
-<p><img src="/assets/2024-01-31-pbits/testing_osc.jpg" alt="" /></p>
-
-<p>In this video I show the probabilistic not gate implemented using two p-bits.</p>
-
-<p><a href="https://youtu.be/shorts/GNX7OaAMqR0"><img src="https://img.youtube.com/vi/GNX7OaAMqR0/0.jpg" alt="Watch the video" /></a></p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>The successful construction of my probabilistic computing prototype marked a significant milestone in my exploration of this emerging technology. While the prototype demonstrated the feasibility of probabilistic computing principles, scaling up to larger-scale systems remains a challenge.</p>
-
-<p>The current design employed a centralized approach, where all p-bits were interconnected (using a breadboard), making it impractical to scale to millions of p-bits. To address this scalability issue, decentralizing the p-bit circuitry and employing communication protocols to exchange information between p-bit clusters could be promising strategies.</p>
-
-<p>Further research is needed to optimize the hardware architecture and develop efficient communication protocols to enable scalable probabilistic computing systems. The potential of probabilistic computing to tackle complex problems with enhanced efficiency and robustness remains a compelling motivation for continued exploration and innovation.</p>
+<p><img src="/assets/2024-03-05-qoptimize/optimized.png" alt="" /></p>
 
 <p><strong>Useful Links:</strong></p>
 
+<p>The Python notebook for this blog post is available here: <a href="https://dakk.github.io/qlasskit/decompiler_and_optimizer.html"></a></p>
+
 <ul>
-  <li><a href="https://www.purdue.edu/p-bit/">https://www.purdue.edu/p-bit/</a></li>
-  <li><a href="https://rebootingcomputing.ieee.org/archived-articles-and-videos/feature-articles/probabilistic-bits-p-bits">ieee.org/probabilistic-bits-p-bits</a></li>
-  <li><a href="http://www.reallyreallyrandom.com/zener/">http://www.reallyreallyrandom.com/zener/</a></li>
+  <li><a href="https://github.com/dakk/qlasskit">Qlasskit library on github</a></li>
+  <li><a href="https://dakk.github.io/qlasskit">Qlasskit docs</a></li>
   <li><a href="https://twitter.com/dagide">My Twitter Profile</a></li>
 </ul>
 

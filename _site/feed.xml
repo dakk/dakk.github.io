@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2024-02-16T10:42:30+01:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">Factorization using Qlasskit and DWave Quantum Annealer</title><link href="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html" rel="alternate" type="text/html" title="Factorization using Qlasskit and DWave Quantum Annealer" /><published>2024-02-16T09:28:01+01:00</published><updated>2024-02-16T09:28:01+01:00</updated><id>https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html">&lt;p&gt;In the last release of &lt;em&gt;Qlasskit&lt;/em&gt;, I introduced a new feature able to export a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;qlassf&lt;/code&gt; function to a binary quadratic model (as bqm, qubo or ising model). 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2024-03-05T16:01:10+01:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">Optimizing quantum circuit using boolean algebra</title><link href="https://dakk.github.io//quantumcomputing/2024/03/05/optimizing_quantum_circuit.html" rel="alternate" type="text/html" title="Optimizing quantum circuit using boolean algebra" /><published>2024-03-05T15:00:01+01:00</published><updated>2024-03-05T15:00:01+01:00</updated><id>https://dakk.github.io//quantumcomputing/2024/03/05/optimizing_quantum_circuit</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2024/03/05/optimizing_quantum_circuit.html">&lt;p&gt;Since the latest v0.1.18 version, the &lt;a href=&quot;https://github.com/dakk/qlasskit&quot;&gt;&lt;strong&gt;Qlasskit&lt;/strong&gt;&lt;/a&gt; library offers two useful tool for circuit analysis and optimization.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Decompiler&lt;/em&gt;: given a quantum circuit is able to detect section that can be represented as boolean expressions&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;circuit_boolean_optimizer&lt;/em&gt;: a pipeline that given a quantum circuit, decompose it in boolean expressions form and optimize it using boolean algebra&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s have a look on how to use these features. We first create the following quantum circuit:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2024-03-05-qoptimize/unoptimized.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, using the &lt;em&gt;decompile&lt;/em&gt; function we can detect “classical parts” and decode them as boolean expression; 
+this is the result for the previous quantum circuit.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Decompiler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decompile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;qcircuit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DecompiledResults[
+	(
+		(0, 7)
+		(X, [2], None), (CCX, [0, 2, 3], None), (CCX, [1, 3, 4], None), (CX, [4, 5], None), (CCX, [1, 3, 4], None), (CCX, [0, 2, 3], None), (X, [2], None)
+		(q5, q4 ^ q5 ^ (q1 &amp;amp; (q3 ^ (q0 &amp;amp; ~q2))))
+	)
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reading the resulting boolean expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(q5, q4 ^ q5 ^ (q1 &amp;amp; (q3 ^ (q0 &amp;amp; ~q2))))&lt;/code&gt;, and knowing that q0 and q1 are inputs, while the other qubits are used as ancilla and output qubits, it is clear that the circuit can be optimized.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;qc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;circuit_boolean_optimizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;qf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;circuit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;preserve&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;em&gt;circuit_boolean_optimizer&lt;/em&gt; allows us to perform boolean optimizations in a quantum circuit; from the previous unoptimized example, we then get the following optimized circuit:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2024-03-05-qoptimize/optimized.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Useful Links:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The Python notebook for this blog post is available here: &lt;a href=&quot;https://dakk.github.io/qlasskit/decompiler_and_optimizer.html&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dakk/qlasskit&quot;&gt;Qlasskit library on github&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dakk.github.io/qlasskit&quot;&gt;Qlasskit docs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/dagide&quot;&gt;My Twitter Profile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="quantumcomputing" /><summary type="html">Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.</summary></entry><entry><title type="html">Factorization using Qlasskit and DWave Quantum Annealer</title><link href="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html" rel="alternate" type="text/html" title="Factorization using Qlasskit and DWave Quantum Annealer" /><published>2024-02-16T09:28:01+01:00</published><updated>2024-02-16T09:28:01+01:00</updated><id>https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2024/02/16/annealing_factorization.html">&lt;p&gt;In the last release of &lt;em&gt;Qlasskit&lt;/em&gt;, I introduced a new feature able to export a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;qlassf&lt;/code&gt; function to a binary quadratic model (as bqm, qubo or ising model). 
 This feature introduces &lt;em&gt;qlasskit&lt;/em&gt; to the realm of quantum annealer like the ones manufactered by DWave; in this blog post, we’ll explore this 
 new feature, using Qlasskit and the DWave quantum annealer for prime factorization.&lt;/p&gt;
 
@@ -758,46 +805,4 @@ What astonished mew as the fact that all the produced data is open to public and
 
 &lt;p&gt;Github repo: &lt;a href=&quot;https://github.com/dakk/sentiship&quot;&gt;https://github.com/dakk/sentiship&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Article on &lt;a href=&quot;https://medium.com/@dakk/ship-detection-from-sentinel-2-satellite-images-3312d8930df6&quot;&gt;medium&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="ml" /><summary type="html">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters. What astonished mew as the fact that all the produced data is open to public and updated every day, so anyone can download and utilize it.</summary></entry><entry><title type="html">OCaml and Quantum Computing</title><link href="https://dakk.github.io//quantum/2020/07/29/ocaml_quantum.html" rel="alternate" type="text/html" title="OCaml and Quantum Computing" /><published>2020-07-29T11:00:28+02:00</published><updated>2020-07-29T11:00:28+02:00</updated><id>https://dakk.github.io//quantum/2020/07/29/ocaml_quantum</id><content type="html" xml:base="https://dakk.github.io//quantum/2020/07/29/ocaml_quantum.html">&lt;p&gt;Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quantum computer. Qiskit is a very good environment for moving first steps in QC: it’s powerful, but simple at the same time; furthermore it provides many learning resources (ie: the textbook and Abraham (Abe) Asfaw youtube tutorials).&lt;/p&gt;
-
-&lt;p&gt;Qiskit is usable only with Python at the moment (since the whole library is written using this language); Python is a really good language for this kind of libraries, since its syntax is clear, and the learning time for this language is usually really short.&lt;/p&gt;
-
-&lt;p&gt;Nevertheless I want to use Ocaml language for my quantum experiments, so I started to write a binding library from Qiskit to OCaml, and today I released the library on opam (install via opam install qiskit). At the moment the library allows to write simple quantum circuits, simulate them locally and run them on IBM quantum computers.&lt;/p&gt;
-
-&lt;p&gt;The source code is available here while the docs are here.&lt;/p&gt;
-
-&lt;p&gt;Let’s see a short example:&lt;/p&gt;
-
-&lt;div class=&quot;language-ocaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;open&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Qiskit&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;(* Create the circuit *)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quantum_circuit&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;barrier&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cx&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;barrier&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;measure&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;measure&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;(* Start a simulation *)&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;Aer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_backend&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;qasm_simulator&quot;&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qc&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_counts&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Visualization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot_histogram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;(* Run the circuit on real quantum hardware *)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prov&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;IBMQ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enable_account&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;IBMQ_API_KEY&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_backend&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ibmq_london&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prov&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qc&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;Tools&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;Monitor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;job_monitor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_counts&lt;/span&gt; 
-  &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Visualization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot_histogram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you liked caml_qiskit, please put a star on &lt;a href=&quot;https://github.com/dakk/caml_qiskit&quot;&gt;github.com/dakk/caml_qiskit&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Article on &lt;a href=&quot;https://medium.com/@dakk/ocaml-and-quantum-computing-fcf4b60d3159&quot;&gt;medium&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="quantum" /><summary type="html">Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quantum computer. Qiskit is a very good environment for moving first steps in QC: it’s powerful, but simple at the same time; furthermore it provides many learning resources (ie: the textbook and Abraham (Abe) Asfaw youtube tutorials).</summary></entry></feed>
+&lt;p&gt;Article on &lt;a href=&quot;https://medium.com/@dakk/ship-detection-from-sentinel-2-satellite-images-3312d8930df6&quot;&gt;medium&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="ml" /><summary type="html">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters. What astonished mew as the fact that all the produced data is open to public and updated every day, so anyone can download and utilize it.</summary></entry></feed>

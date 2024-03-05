@@ -106,4 +106,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2024/02/16/annealing_factorization.html",
         "teaser": null
+      },{
+        "title": "Optimizing quantum circuit using boolean algebra",
+        "excerpt":"Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization. Decompiler: given a quantum circuit is able to detect section that can be represented as boolean expressions circuit_boolean_optimizer: a pipeline that given a quantum circuit, decompose it in boolean expressions form and optimize...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html",
+        "teaser": null
       }]
