@@ -1,6 +1,6 @@
 ---
 layout: posts
-title:  "Free Cartography on Garmin Etrex 10 (and all Garmin GPSs)"
+title:  "Free Cartography on Garmin eTrex 10 (and all Garmin GPSs)"
 date:   2024-04-20 17:00:22 +0200
 categories: gis
 canonical_url: https://medium.com/@dakk/free-cartography-on-garmin-etrex-10-and-all-garmin-gps-2ead846ffd21
