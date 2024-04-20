@@ -112,4 +112,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html",
         "teaser": null
+      },{
+        "title": "Free Cartography on Garmin Etrex 10 (and all Garmin GPSs)",
+        "excerpt":"Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like almost all Garmin devices, is capable of reading Garmin cartography in IMG format. However, the storage limitation prevents to use standard Garmin...","categories": ["gis"],
+        "tags": [],
+        "url": "/gis/2024/04/20/osm_to_garmin.html",
+        "teaser": null
       }]

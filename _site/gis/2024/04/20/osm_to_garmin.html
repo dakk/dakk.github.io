@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Optimizing quantum circuit using boolean algebra - Davide Gessa @dakk</title>
-<meta name="description" content="Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.">
+<!-- begin _includes/seo.html --><title>Free Cartography on Garmin Etrex 10 (and all Garmin GPSs) - Davide Gessa @dakk</title>
+<meta name="description" content="Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like almost all Garmin devices, is capable of reading Garmin cartography in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of OpenStreetMap (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="Optimizing quantum circuit using boolean algebra">
-<meta property="og:url" content="Optimizing quantum circuit using boolean algebra">
+<meta property="og:title" content="Free Cartography on Garmin Etrex 10 (and all Garmin GPSs)">
+<meta property="og:url" content="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html">
 
 
-  <meta property="og:description" content="Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2024-03-05T15:00:01+01:00">
+  <meta property="og:description" content="Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like almost all Garmin devices, is capable of reading Garmin cartography in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of OpenStreetMap (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.">
 
 
 
 
 
 
-<link rel="canonical" href="Optimizing quantum circuit using boolean algebra">
+
+  <meta property="article:published_time" content="2024-04-20T17:00:22+02:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html">
 
 
 
@@ -263,55 +263,87 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">Optimizing quantum circuit using boolean algebra</h1>
+      <h1 id="page-title" class="page__title">Free Cartography on Garmin Etrex 10 (and all Garmin GPSs)</h1>
     
-    <p>Since the latest v0.1.18 version, the <a href="https://github.com/dakk/qlasskit"><strong>Qlasskit</strong></a> library offers two useful tool for circuit analysis and optimization.</p>
+    <p>Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the <strong>eTrex 10</strong> GPS, like almost all Garmin devices, is capable of reading Garmin cartography in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of <a href="https://openstreetmap.org">OpenStreetMap</a> (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.</p>
+
+<p><img src="/assets/osm_to_garmin/garmin_etrex.jpg" alt="Garmin eTrex 10" /></p>
+
+<p>I’d like to advocate for the eTrex 10 by highlighting its compatibility with OSM maps, which can be a game-changer for outdoor enthusiasts and adventurers, at a fair price of around 90$. With just 5 MB of storage, I have been able to map out half of <em>southern Sardinia</em>, including contour lines, thanks to OpenStreetMap.</p>
+
+<p>Now, let’s delve into two methods to integrate OpenStreetMap data into your Garmin device:</p>
+
+<h2 id="the-easy-way-bbbike-extract">The easy way: bbbike extract</h2>
+
+<p>The easiest way to obtain Openstreetmap maps in Garmin format, is to use <a href="https://extract.bbbike.org/">BBBike extractor service</a>.</p>
+
+<ol>
+  <li>Select the are you want to download</li>
+  <li>Choose a Garmin format from the select box</li>
+  <li>Put your email and press the “Extract” button</li>
+</ol>
+
+<p><img src="/assets/osm_to_garmin/bbbike_export.png" alt="BBBike export example" /></p>
+
+<p>Within minutes, your map file will be ready for download. Some Garmin devices, such as the eTrex, require the map file to be named <code class="language-plaintext highlighter-rouge">gmapsupp.img</code> for compatibility.</p>
+
+<h2 id="crafting-customized-maps">Crafting Customized Maps</h2>
+
+<p>For those who enjoy tinkering and want to optimize their maps further, manual customization is an option; this method allow for instance selecting only desidered OSM features, add contour lines, simplify tracks, etc.</p>
+
+<h3 id="1-download-osm-data">1. Download osm data</h3>
+
+<p>Download roads and all OSM data for your area using <a href="https://wiki.openstreetmap.org/wiki/Overpass_API">Overpass-api services</a> like overpass-api.de. You can select specific features, such as roads, trails, rivers, peaks, and notable points of interest like churches and railways.</p>
+
+<p>First you need to define an osm-script containing your query; you can write it in XML or OverpassQL; use this wiki as reference: <a href="https://wiki.openstreetmap.org/wiki/Overpass_API#Simple_usage_examples">Overpass_API#Simple_usage_examples</a>.</p>
+
+<p>The most important thing you have to specify in the query is the bounding box of the area you want to download.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;osm-script</span> <span class="na">timeout=</span><span class="s">"900"</span> <span class="na">element-limit=</span><span class="s">"1073741824"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;bbox-query</span> <span class="na">s=</span><span class="s">"51.15"</span> <span class="na">w=</span><span class="s">"7.0"</span> <span class="na">n=</span><span class="s">"51.35"</span> <span class="na">e=</span><span class="s">"7.3"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;print/&gt;</span>
+<span class="nt">&lt;/osm-script&gt;</span>
+</code></pre></div></div>
+
+<p>After defining and saving your query, use wget or similar software in order to download osm data:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget --post-file=your_query_file.xml -O map.osm http://overpass-api.de/api/interpreter
+</code></pre></div></div>
+
+<h3 id="2-create-contour-lines-optional">2. Create contour lines (optional)</h3>
+
+<p>If you are going to use this map for outdoor sports, sometimes is useful to also have contour lines.</p>
+
+<p><img src="/assets/osm_to_garmin/contour.png" alt="Contour lines" /></p>
+
+<p>You can use <a href="https://wiki.openstreetmap.org/wiki/Srtm2Osm">Srtm2Osm</a> to obtain an OSM file of digital elevation models for your area of interest.</p>
+
+<h3 id="3-transform-osm-to-img">3. Transform .osm to .img</h3>
+
+<p>Now that we have openstreetmap data files, we can use a tool named <a href="https://www.mkgmap.org.uk/"><strong>mkgmap</strong></a> in order to convert those file to a Garmin .img file.</p>
+
+<p>This is the command I use, but it can customized with parameters in order to fit with your needs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkgmap --reduce-point-density=3 --gmapsupp --input-file=contour.osm --input-file=map.osm --merge-lines 
+</code></pre></div></div>
 
 <ul>
-  <li>
-    <p><em>Decompiler</em>: given a quantum circuit is able to detect section that can be represented as boolean expressions</p>
-  </li>
-  <li>
-    <p><em>circuit_boolean_optimizer</em>: a pipeline that given a quantum circuit, decompose it in boolean expressions form and optimize it using boolean algebra</p>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">--reduce-point-density</code>: simplifies lines</li>
+  <li><code class="language-plaintext highlighter-rouge">--gmapsupp</code>: create a gmapsupp map file</li>
+  <li><code class="language-plaintext highlighter-rouge">--merge-lines</code>: try to merge straight lines</li>
 </ul>
 
-<p>Let’s have a look on how to use these features. We first create the following quantum circuit:</p>
+<p>Now copy the file to your device, using an appropriate name and it’s done.</p>
 
-<p><img src="/assets/2024-03-05-qoptimize/unoptimized.png" alt="" /></p>
+<h2 id="conclusions">Conclusions</h2>
 
-<p>Now, using the <em>decompile</em> function we can detect “classical parts” and decode them as boolean expression; 
-this is the result for the previous quantum circuit.</p>
+<p>Both methods are compatible with any Garmin device that supports the Garmin .img map format, ensuring you always have up-to-date maps at your fingertips. Whether you opt for the convenience of BBBike Extract or the customization of manual crafting, OpenStreetMap offers a wealth of possibilities for enhancing your outdoor adventures.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dc</span> <span class="o">=</span> <span class="n">Decompiler</span><span class="p">().</span><span class="n">decompile</span><span class="p">(</span><span class="n">qcircuit</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DecompiledResults[
-	(
-		(0, 7)
-		(X, [2], None), (CCX, [0, 2, 3], None), (CCX, [1, 3, 4], None), (CX, [4, 5], None), (CCX, [1, 3, 4], None), (CCX, [0, 2, 3], None), (X, [2], None)
-		(q5, q4 ^ q5 ^ (q1 &amp; (q3 ^ (q0 &amp; ~q2))))
-	)
-]
-</code></pre></div></div>
-
-<p>Reading the resulting boolean expression <code class="language-plaintext highlighter-rouge">(q5, q4 ^ q5 ^ (q1 &amp; (q3 ^ (q0 &amp; ~q2))))</code>, and knowing that q0 and q1 are inputs, while the other qubits are used as ancilla and output qubits, it is clear that the circuit can be optimized.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">qc</span> <span class="o">=</span> <span class="n">circuit_boolean_optimizer</span><span class="p">(</span><span class="n">qf</span><span class="p">.</span><span class="n">circuit</span><span class="p">(),</span> <span class="n">preserve</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-</code></pre></div></div>
-
-<p>The <em>circuit_boolean_optimizer</em> allows us to perform boolean optimizations in a quantum circuit; from the previous unoptimized example, we then get the following optimized circuit:</p>
-
-<p><img src="/assets/2024-03-05-qoptimize/optimized.png" alt="" /></p>
-
-<p><strong>Useful Links:</strong></p>
-
-<p>The Python notebook for this blog post is available here: <a href="https://dakk.github.io/qlasskit/decompiler_and_optimizer.html"></a></p>
+<p>Have fun!</p>
 
 <ul>
-  <li><a href="https://github.com/dakk/qlasskit">Qlasskit library on github</a></li>
-  <li><a href="https://dakk.github.io/qlasskit">Qlasskit docs</a></li>
   <li><a href="https://twitter.com/dagide">My Twitter Profile</a></li>
+  <li><a href="https://github.com/dakk">My Github Profile</a></li>
 </ul>
 
 
