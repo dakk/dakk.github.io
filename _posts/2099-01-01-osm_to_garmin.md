@@ -21,16 +21,59 @@ The easiest way to obtain Openstreetmap maps in Garmin format, is to use [BBBike
 2. Choose a Garmin format from the select box
 3. Put your email and press the "Extract" button
 
+![BBBike export example](/assets/osm_to_garmin/bbbike_export.png)
+
 Within minutes, your map file will be ready for download. Some Garmin devices, such as the eTrex, require the map file to be named `gmapsupp.img` for compatibility.
 
 
 ## Crafting Customized Maps
 
-For those who enjoy tinkering and want to optimize their maps further, manual customization is an option:
+For those who enjoy tinkering and want to optimize their maps further, manual customization is an option; this method allow for instance selecting only desidered OSM features, add contourn lines, simplify tracks, etc.
 
-    Use SRTM2OSM to obtain an OSM file of digital elevation models for your area of interest.
-    Download roads and all OSM data for your area using services like overpass-api.de. You can select specific features, such as roads, trails, rivers, peaks, and notable points of interest like churches and railways.
-    Utilize the mkgmap tool to create the .img file, combining contour lines and roads. You can also adjust parameters to simplify the road data for a smaller file size.
+### 1. Download osm data
+
+Download roads and all OSM data for your area using [Overpass-api services](https://wiki.openstreetmap.org/wiki/Overpass_API) like overpass-api.de. You can select specific features, such as roads, trails, rivers, peaks, and notable points of interest like churches and railways.
+
+First you need to define an osm-script containing your query; you can write it in XML or OverpassQL; use this wiki as reference: [Overpass_API#Simple_usage_examples](https://wiki.openstreetmap.org/wiki/Overpass_API#Simple_usage_examples).
+
+The most important thing you have to specify in the query is the bounding box of the area you want to download.
+
+
+```xml
+<osm-script timeout="900" element-limit="1073741824">
+  <bbox-query s="51.15" w="7.0" n="51.35" e="7.3"/>
+  <print/>
+</osm-script>
+```
+
+After defining and saving your query, use wget or similar software in order to download osm data:
+
+```
+wget --post-file=your_query_file.xml -O map.osm http://overpass-api.de/api/interpreter
+```
+
+
+### 2. Create contourn lines (optional)
+
+If you are going to use this map for outdoor sports, sometimes is useful to also have contourn lines.
+
+You can use [Srtm2Osm](https://wiki.openstreetmap.org/wiki/Srtm2Osm) to obtain an OSM file of digital elevation models for your area of interest.
+
+
+### 3. Transform .osm to .img
+
+Now that we have openstreetmap data files, we can use a tool named [**mkgmap**](https://www.mkgmap.org.uk/) in order to convert those file to a Garmin .img file. 
+
+This is the command I use, but it can customized with parameters in order to fit with your needs:
+
+```
+mkgmap --reduce-point-density=3 --gmapsupp --input-file=contourn.osm --input-file=map.osm --merge-lines 
+```
+
+- `--reduce-point-density`: simplifies lines
+- `--gmapsupp`: create a gmapsupp map file
+- `--merge-lines`: try to merge straight lines
+
 
 ## Conclusions
 
