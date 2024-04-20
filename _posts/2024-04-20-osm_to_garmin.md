@@ -3,7 +3,7 @@ layout: posts
 title:  "Free Maps on Garmin eTrex 10 (and all Garmin GPS)"
 date:   2024-04-20 17:00:22 +0200
 categories: gis
-canonical_url: https://medium.com/@dakk/free-maps-on-garmin-etrex-10-and-all-garmin-gps-2ead846ffd21
+canonical_url: https://medium.com/@dakk/free-maps-on-garmin-etrex-10-and-all-garmin-gps-4f03fdc33944
 ---
 
 Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the **eTrex 10** GPS, like almost all Garmin devices, is capable of reading Garmin maps in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of [OpenStreetMap](https://openstreetmap.org) (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.
