@@ -8,7 +8,7 @@ canonical_url: https://medium.com/@dakk/free-maps-on-garmin-etrex-10-and-all-gar
 
 Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the **eTrex 10** GPS, like almost all Garmin devices, is capable of reading Garmin maps in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of [OpenStreetMap](https://openstreetmap.org) (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.
 
-![Garmin eTrex 10](/assets/osm_to_garmin/garmin_etrex.jpg)
+![Garmin eTrex 10](/assets/2024-04-20-osm_to_garmin/garmin_etrex.jpg)
 
 I'd like to advocate for the eTrex 10 by highlighting its compatibility with OSM maps, which can be a game-changer for outdoor enthusiasts and adventurers, at a fair price of around 90$. With just 5 MB of storage, I have been able to map out half of *southern Sardinia*, including contour lines, thanks to OpenStreetMap.
 
@@ -23,7 +23,7 @@ The easiest way to obtain Openstreetmap maps in Garmin format, is to use [BBBike
 2. Choose a Garmin format from the select box
 3. Put your email and press the "Extract" button
 
-![BBBike export example](/assets/osm_to_garmin/bbbike_export.png)
+![BBBike export example](/assets/2024-04-20-osm_to_garmin/bbbike_export.png)
 
 Within minutes, your map file will be ready for download. Some Garmin devices, such as the eTrex, require the map file to be named `gmapsupp.img` for compatibility.
 
@@ -59,7 +59,7 @@ wget --post-file=your_query_file.xml -O map.osm http://overpass-api.de/api/inter
 
 If you are going to use this map for outdoor sports, sometimes is useful to also have contour lines.
 
-![Contour lines](/assets/osm_to_garmin/contour.png)
+![Contour lines](/assets/2024-04-20-osm_to_garmin/contour.png)
 
 You can use [Srtm2Osm](https://wiki.openstreetmap.org/wiki/Srtm2Osm) to obtain an OSM file of digital elevation models for your area of interest.
 

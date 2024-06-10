@@ -118,4 +118,10 @@ var store = [{
         "tags": [],
         "url": "/gis/2024/04/20/osm_to_garmin.html",
         "teaser": null
+      },{
+        "title": "DQPU, the decentralized quantum simulator",
+        "excerpt":"During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer. I started trying Quantum cloud providers, both simulators and real quantum computers, like the...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2024/06/10/dqpu.html",
+        "teaser": null
       }]

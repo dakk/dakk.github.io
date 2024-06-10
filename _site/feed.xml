@@ -1,6 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2024-04-20T17:11:06+02:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">Free Maps on Garmin eTrex 10 (and all Garmin GPS)</title><link href="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html" rel="alternate" type="text/html" title="Free Maps on Garmin eTrex 10 (and all Garmin GPS)" /><published>2024-04-20T17:00:22+02:00</published><updated>2024-04-20T17:00:22+02:00</updated><id>https://dakk.github.io//gis/2024/04/20/osm_to_garmin</id><content type="html" xml:base="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html">&lt;p&gt;Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the &lt;strong&gt;eTrex 10&lt;/strong&gt; GPS, like almost all Garmin devices, is capable of reading Garmin maps in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of &lt;a href=&quot;https://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://dakk.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://dakk.github.io//" rel="alternate" type="text/html" /><updated>2024-06-10T16:57:30+02:00</updated><id>https://dakk.github.io//feed.xml</id><title type="html">Davide Gessa @dakk</title><subtitle>I'm Davide Gessa, a software developer, computer scientist and sailor from Sardinia, Italy.</subtitle><author><name>Davide Gessa @dakk</name></author><entry><title type="html">DQPU, the decentralized quantum simulator</title><link href="https://dakk.github.io//quantumcomputing/2024/06/10/dqpu.html" rel="alternate" type="text/html" title="DQPU, the decentralized quantum simulator" /><published>2024-06-10T16:30:00+02:00</published><updated>2024-06-10T16:30:00+02:00</updated><id>https://dakk.github.io//quantumcomputing/2024/06/10/dqpu</id><content type="html" xml:base="https://dakk.github.io//quantumcomputing/2024/06/10/dqpu.html">&lt;p&gt;During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/osm_to_garmin/garmin_etrex.jpg&quot; alt=&quot;Garmin eTrex 10&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I started trying Quantum cloud providers, both simulators and real quantum computers, like the servces offered by &lt;em&gt;AWS&lt;/em&gt; and &lt;em&gt;IBMQ&lt;/em&gt;. But after the free-tiers, I come out to an idea: why don’t pay random people to perform my quantum computations, exploiting their quantum computers or classical simulators?&lt;/p&gt;
+
+&lt;p&gt;The answer is trivial: we can’t trust them. But after some research on &lt;a href=&quot;https://www.nature.com/articles/s41534-017-0025-3&quot;&gt;blind quantum computing and related protocols&lt;/a&gt;, I came across to the concept of &lt;strong&gt;trap qubits&lt;/strong&gt;. This concept is based on a simple idea: before delegating the execution of the quantum circuit, you can add some sort of hidden computations that you’re able to verify from results, using classical resources; if the delegated user try to cheat, you will be able to detect it.&lt;/p&gt;
+
+&lt;h2 id=&quot;dqpu&quot;&gt;DQPU&lt;/h2&gt;
+
+&lt;p&gt;Using this approach, I created the &lt;a href=&quot;https://dqpu.io&quot;&gt;&lt;strong&gt;DQPU.io&lt;/strong&gt;&lt;/a&gt; system (&lt;em&gt;Decentralized Quantum Processing Unit&lt;/em&gt;) which addresses the challenge of securely and reliably delegating the execution of quantum computations in a trustless and transparent manner, encouraging competition between independent quantum resource providers. This is achieved by exploiting a decentralized smart contract (currently) running on the &lt;em&gt;Near&lt;/em&gt; blockchain.&lt;/p&gt;
+
+&lt;p&gt;The operating workflow is really easy:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Client Submits Job&lt;/strong&gt;: A Client sends a quantum circuit along with a reward to the DQPU smart contract&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Verifier Validates Circuit&lt;/strong&gt;: A Verifier validates the submitted circuit adding trap qubits&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Simulation or Hardware Execution&lt;/strong&gt;: A Sampler executes the job retrieved from the waiting list and submit the result&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Verifier Checks Result&lt;/strong&gt;: The Verifier checks result validity and the rewards are distributed&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Client Receives Result&lt;/strong&gt;: The Client can retrieve the final result from the smart contract.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The whole process requires only few seconds.&lt;/p&gt;
+
+&lt;p&gt;The current MVC is already a fully working system, and it also integrate a &lt;strong&gt;qiskit backend&lt;/strong&gt;, so you can use it as any other provider. You can read the &lt;a href=&quot;https://dqpu.io/docs/qiskit_example.html&quot;&gt;Quickstart Tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;dqpu.backends.qiskit&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DQPUBackend&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;backend&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DQPUBackend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load_account&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dqpu_alice.testnet&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;job&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quantum_circuit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shots&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;job&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_counts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;circ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Every user can track the realtime flow of jobs inside the smart contract:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dqpu.io/app/&quot;&gt;&lt;img src=&quot;/assets/2024-06-10-dqpu/dqpu_smart_contract_ui.png&quot; alt=&quot;DQPU Smart Contract&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;While the current implementation is already functional and integrates with popular frameworks like Qiskit, the DQPU project holds promise for further development and expansion. As quantum computing continues to evolve, decentralized approaches like DQPU could play a crucial role in &lt;em&gt;democratizing access&lt;/em&gt; to these powerful computational resources, enabling a wide range of applications and accelerating the pace of innovation in various fields.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;absence of a centralized pricing&lt;/em&gt; structure ensures that the costs of executing quantum computations on DQPU are organically shaped by the interplay of resource availability and computational demand. Providers are incentivized to offer competitive rates to attract clients, while clients can leverage the market dynamics to access the most favorable pricing options.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/dqpu&quot;&gt;Follow the project on github&lt;/a&gt;, and stay tuned on DQPU updates.&lt;/p&gt;
+
+&lt;p&gt;Links:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dqpu.io&quot;&gt;DQPU.io website&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dakk/dqpu&quot;&gt;DQPU Github repository&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/dagide&quot;&gt;My Twitter Profile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dakk&quot;&gt;My Github Profile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="quantumcomputing" /><summary type="html">During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer.</summary></entry><entry><title type="html">Free Maps on Garmin eTrex 10 (and all Garmin GPS)</title><link href="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html" rel="alternate" type="text/html" title="Free Maps on Garmin eTrex 10 (and all Garmin GPS)" /><published>2024-04-20T17:00:22+02:00</published><updated>2024-04-20T17:00:22+02:00</updated><id>https://dakk.github.io//gis/2024/04/20/osm_to_garmin</id><content type="html" xml:base="https://dakk.github.io//gis/2024/04/20/osm_to_garmin.html">&lt;p&gt;Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the &lt;strong&gt;eTrex 10&lt;/strong&gt; GPS, like almost all Garmin devices, is capable of reading Garmin maps in IMG format. However, the storage limitation prevents to use standard Garmin maps, which are hundreds of megabyte big, not well updated and expensive. We can overcome these limits by utilizing the vast resources of &lt;a href=&quot;https://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; (OSM), a collaborative mapping project that empowers users to contribute and update maps themselves.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2024-04-20-osm_to_garmin/garmin_etrex.jpg&quot; alt=&quot;Garmin eTrex 10&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I’d like to advocate for the eTrex 10 by highlighting its compatibility with OSM maps, which can be a game-changer for outdoor enthusiasts and adventurers, at a fair price of around 90$. With just 5 MB of storage, I have been able to map out half of &lt;em&gt;southern Sardinia&lt;/em&gt;, including contour lines, thanks to OpenStreetMap.&lt;/p&gt;
 
@@ -16,7 +67,7 @@
   &lt;li&gt;Put your email and press the “Extract” button&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/osm_to_garmin/bbbike_export.png&quot; alt=&quot;BBBike export example&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2024-04-20-osm_to_garmin/bbbike_export.png&quot; alt=&quot;BBBike export example&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Within minutes, your map file will be ready for download. Some Garmin devices, such as the eTrex, require the map file to be named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gmapsupp.img&lt;/code&gt; for compatibility.&lt;/p&gt;
 
@@ -47,7 +98,7 @@
 
 &lt;p&gt;If you are going to use this map for outdoor sports, sometimes is useful to also have contour lines.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/osm_to_garmin/contour.png&quot; alt=&quot;Contour lines&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/2024-04-20-osm_to_garmin/contour.png&quot; alt=&quot;Contour lines&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You can use &lt;a href=&quot;https://wiki.openstreetmap.org/wiki/Srtm2Osm&quot;&gt;Srtm2Osm&lt;/a&gt; to obtain an OSM file of digital elevation models for your area of interest.&lt;/p&gt;
 
@@ -698,21 +749,4 @@ Finally, we use the download_all method to download all the images that matched 
 &lt;p&gt;The beauty of this approach is its flexibility. You can adjust the query parameters based on your specific needs, like the date range, the satellite platform, or the acceptable cloud cover percentage.
 It’s that simple! Now, you can start exploring, analyzing, and using high-resolution satellite imagery, free of charge, and with just a few lines of code. The sky is not the limit; it’s the starting point!&lt;/p&gt;
 
-&lt;p&gt;Article on &lt;a href=&quot;https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab&quot;&gt;medium&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="python" /><summary type="html"></summary></entry><entry><title type="html">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure</title><link href="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html" rel="alternate" type="text/html" title="My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure" /><published>2023-05-24T17:02:28+02:00</published><updated>2023-05-24T17:02:28+02:00</updated><id>https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack</id><content type="html" xml:base="https://dakk.github.io//quantum-computing/2023/05/24/unitaryhack.html">&lt;p&gt;This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the &lt;a href=&quot;https://unitaryhack.dev&quot;&gt;#UnitaryHack&lt;/a&gt; Hackathon, hosted by the &lt;a href=&quot;https://unitary.fund/&quot;&gt;Unitary Fund&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For those unfamiliar, the UnitaryHack Hackathon is an event that gathers quantum computing enthusiasts from across the globe to work together and address exciting challenges in the field. It was an journey where I had the opportunity to explore, learn, and contribute to the burgeoning open-source ecosystem of quantum computing.&lt;/p&gt;
-
-&lt;p&gt;Here is the list of bounties that I tackled:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/Qiskit/qiskit-aer/issues/1632&quot;&gt;qiskit-aer: Qiskit Aer still uses execute&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/bqskit/bqskit/issues/150&quot;&gt;bqskit: Non-deterministic circuit iteration for regions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/qiskit-community/qiskit-braket-provider/issues/47&quot;&gt;qiskit-braket-provider: add get_statevector support for BraketLocalBackend&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/qiskit-community/qiskit-braket-provider/issues/37&quot;&gt;qiskit-braket-provider: Updates for Qiskit to Braket circuit conversion&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/pasqal-io/Pulser/issues/522&quot;&gt;pulser: Adding a function to draw SequenceSamples&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/pasqal-io/Pulser/issues/501&quot;&gt;pulser: Drawing of Register goes out of window boundaries&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/pasqal-io/Pulser/issues/497&quot;&gt;pulser: Add an error when a Channel is called with an eom_config but without a modulation bandwidth&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/pasqal-io/Pulser/issues/352&quot;&gt;pulser: SPAM errors introduce large simulation overhead&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/aws/amazon-braket-sdk-python/issues/320&quot;&gt;amazon-braket-sdk-python: Support for the run_batch() method on LocalSimulator&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Each of these projects allowed me to dive deeper into quantum computing, tackle real-world problems, and collaborate with an incredible community of passionate learners and experienced professionals. This experience reaffirmed my belief in the power of open-source collaborations and their transformative role in shaping the future of technology.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="quantum-computing" /><summary type="html">This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hosted by the Unitary Fund.</summary></entry></feed>
+&lt;p&gt;Article on &lt;a href=&quot;https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab&quot;&gt;medium&lt;/a&gt;.&lt;/p&gt;</content><author><name>Davide Gessa @dakk</name></author><category term="python" /><summary type="html"></summary></entry></feed>

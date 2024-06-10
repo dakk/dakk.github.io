@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Quantum Computing on a Commodore 64 in 200 Lines of BASIC - Davide Gessa @dakk</title>
-<meta name="description" content="In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler.">
+<!-- begin _includes/seo.html --><title>DQPU, the decentralized quantum simulator - Davide Gessa @dakk</title>
+<meta name="description" content="During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer.">
 
 
   <meta name="author" content="Davide Gessa @dakk">
@@ -22,26 +22,26 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Davide Gessa @dakk">
-<meta property="og:title" content="Quantum Computing on a Commodore 64 in 200 Lines of BASIC">
-<meta property="og:url" content="https://medium.com/@dakk/quantum-computing-on-a-commodore-64-in-200-lines-of-basic-eda7658b32a4">
+<meta property="og:title" content="DQPU, the decentralized quantum simulator">
+<meta property="og:url" content="https://dakk.github.io//quantumcomputing/2024/06/10/dqpu.html">
 
 
-  <meta property="og:description" content="In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-07-02T18:02:28+02:00">
+  <meta property="og:description" content="During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer.">
 
 
 
 
 
 
-<link rel="canonical" href="https://medium.com/@dakk/quantum-computing-on-a-commodore-64-in-200-lines-of-basic-eda7658b32a4">
+
+  <meta property="article:published_time" content="2024-06-10T16:30:00+02:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://dakk.github.io//quantumcomputing/2024/06/10/dqpu.html">
 
 
 
@@ -263,164 +263,60 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">Quantum Computing on a Commodore 64 in 200 Lines of BASIC</h1>
+      <h1 id="page-title" class="page__title">DQPU, the decentralized quantum simulator</h1>
     
-    <p>In an age where companies are selling two-qubit quantum computers for a <a href="https://www.beyondgames.biz/29903/spinq-is-selling-quantum-computers-to-consumers/">sum of money</a> that would make your wallet recoil in horror, here we are, stepping off the beaten path and walking down memory lane to a time when computers were, well, somewhat simpler.</p>
+    <p>During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough to be impossible to run on my 8 GB ram computer.</p>
 
-<p><img src="/assets/2023-07-02-bellstate.gif" alt="QC64 preparing a Bell’s state" /></p>
+<p>I started trying Quantum cloud providers, both simulators and real quantum computers, like the servces offered by <em>AWS</em> and <em>IBMQ</em>. But after the free-tiers, I come out to an idea: why don’t pay random people to perform my quantum computations, exploiting their quantum computers or classical simulators?</p>
 
-<p>Join me on this delightful journey where we shatter the belief that quantum simulations need groundbreaking technologies. Get ready to be amazed as we simulate two-qubit quantum computing operations on none other than our retro powerhouse, the Commodore 64.</p>
+<p>The answer is trivial: we can’t trust them. But after some research on <a href="https://www.nature.com/articles/s41534-017-0025-3">blind quantum computing and related protocols</a>, I came across to the concept of <strong>trap qubits</strong>. This concept is based on a simple idea: before delegating the execution of the quantum circuit, you can add some sort of hidden computations that you’re able to verify from results, using classical resources; if the delegated user try to cheat, you will be able to detect it.</p>
 
-<p>You heard it right! Our beloved Commodore 64, an 8-bit home computer introduced in January 1982, is ready to show those fancy, pricey quantum computers how it’s done. Let’s roll up our sleeves, dust off those old systems, and dive into the world of quantum simulations!</p>
+<h2 id="dqpu">DQPU</h2>
 
-<h2 id="the-commodore-quantum-simulator">The Commodore Quantum Simulator</h2>
+<p>Using this approach, I created the <a href="https://dqpu.io"><strong>DQPU.io</strong></a> system (<em>Decentralized Quantum Processing Unit</em>) which addresses the challenge of securely and reliably delegating the execution of quantum computations in a trustless and transparent manner, encouraging competition between independent quantum resource providers. This is achieved by exploiting a decentralized smart contract (currently) running on the <em>Near</em> blockchain.</p>
 
-<p>The Commodore Quantum Simulator is a BASIC program capable of simulating various quantum gate operations on a two-qubit system. With this system, you can simulate operations such as Pauli-X, Pauli-Y, Pauli-Z, Hadamard, CNOT, and he SWAP gate.</p>
+<p>The operating workflow is really easy:</p>
 
-<p>Upon launching the simulator, it defaults to the initial state of <code class="language-plaintext highlighter-rouge">|00&gt;</code>. The simulator then prompts for a sequence of quantum gates to be applied. For instance, inputting “H0CX” instructs the simulator to apply the Hadamard gate on qubit 0, followed by a CNOT gate operation. Subsequent to this state manipulation, the simulator proceeds to run a defined number of iterations, simulating the quantum state’s evolution with each step. At the end of this process, it then provides the user with the distribution of quantum states, offering a tangible insight into the fascinating probabilistic nature of quantum mechanics.</p>
+<ol>
+  <li><strong>Client Submits Job</strong>: A Client sends a quantum circuit along with a reward to the DQPU smart contract</li>
+  <li><strong>Verifier Validates Circuit</strong>: A Verifier validates the submitted circuit adding trap qubits</li>
+  <li><strong>Simulation or Hardware Execution</strong>: A Sampler executes the job retrieved from the waiting list and submit the result</li>
+  <li><strong>Verifier Checks Result</strong>: The Verifier checks result validity and the rewards are distributed</li>
+  <li><strong>Client Receives Result</strong>: The Client can retrieve the final result from the smart contract.</li>
+</ol>
 
-<h2 id="conclusion">Conclusion</h2>
+<p>The whole process requires only few seconds.</p>
 
-<p>Quantum computing might seem like a domain only for the most advanced hardware on the planet. But at its heart, it’s a series of mathematical transformations, all of which are perfectly suited for our good old Commodore 64.</p>
+<p>The current MVC is already a fully working system, and it also integrate a <strong>qiskit backend</strong>, so you can use it as any other provider. You can read the <a href="https://dqpu.io/docs/qiskit_example.html">Quickstart Tutorial</a>.</p>
 
-<p>So next time when someone brags about their ultra-advanced quantum computer, remind them gently of the time when you performed quantum simulations on an 8-bit computer from the 1980s. The Commodore 64 might not break any speed records, but it will definitely break some preconceived notions about quantum computing.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">dqpu.backends.qiskit</span> <span class="kn">import</span> <span class="n">DQPUBackend</span>
 
-<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">05</span> <span class="nv">rem</span> <span class="nv">r</span><span class="o">*</span> <span class="nv">are</span> <span class="nv">real</span> <span class="nv">parts</span> <span class="ow">and</span> <span class="nv">i</span><span class="o">*</span> <span class="nv">are</span> <span class="nv">imagenary</span> <span class="nv">parts</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">sv</span>
-<span class="mi">10</span> <span class="nv">r0</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nv">i0</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">r1</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i1</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="mi">15</span> <span class="nv">r2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">r3</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">i3</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="mi">20</span> <span class="nv">a0</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="mi">25</span> <span class="nv">shots</span> <span class="o">=</span> <span class="mi">28</span>
-<span class="mi">30</span> <span class="k">print</span> <span class="nb">chr</span><span class="nv">$</span><span class="err">(</span><span class="nv">147</span><span class="p">)</span>
-<span class="mi">40</span> <span class="k">print</span> <span class="p">"</span><span class="s2">c64 quantum simulator</span><span class="p">"</span>
-<span class="mi">45</span> <span class="k">print</span> <span class="p">"</span><span class="s2">created by davide gessa (dakk)</span><span class="p">"</span>
-<span class="mi">50</span> <span class="k">print</span> <span class="p">"</span><span class="s2">enter gate seq (x0,x1,y0,y1,z0,z1,h0,h1,cx,sw)</span><span class="p">"</span>
-<span class="mi">60</span> <span class="nv">input</span> <span class="nv">g$</span>
-<span class="nv">65</span> <span class="k">print</span> <span class="p">"</span><span class="s2">calculating the statevector...</span><span class="p">";</span>
-<span class="mi">70</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">len</span><span class="p">(</span><span class="nv">g$</span><span class="p">)</span> <span class="nv">step</span> <span class="mi">2</span>
-<span class="mi">80</span>  <span class="nv">gate$</span> <span class="err">=</span> <span class="nv">mid$</span><span class="err">(</span><span class="nv">g</span><span class="vg">$,</span> <span class="nv">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="mi">90</span>  <span class="nv">gosub</span> <span class="mi">200</span>
-<span class="mi">91</span>  <span class="k">print</span> <span class="p">"</span><span class="s2">.</span><span class="p">";</span>
-<span class="mi">100</span> <span class="k">next</span> <span class="nv">i</span>
-<span class="mi">101</span> <span class="k">print</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">DQPUBackend</span><span class="p">()</span>
+<span class="n">backend</span><span class="p">.</span><span class="n">load_account</span><span class="p">(</span><span class="s">"dqpu_alice.testnet"</span><span class="p">)</span>
 
-<span class="mi">102</span> <span class="nv">sq</span> <span class="o">=</span> <span class="nv">r0</span><span class="o">*</span><span class="nv">r0</span> <span class="o">+</span> <span class="nv">i0</span><span class="o">*</span><span class="nv">i0</span> <span class="o">+</span> <span class="nv">r1</span><span class="o">*</span><span class="nv">r1</span> <span class="o">+</span> <span class="nv">i1</span><span class="o">*</span><span class="nv">i1</span> <span class="o">+</span> <span class="nv">r2</span><span class="o">*</span><span class="nv">r2</span> <span class="o">+</span> <span class="nv">i2</span><span class="o">*</span><span class="nv">i2</span> <span class="o">+</span> <span class="nv">r3</span><span class="o">*</span><span class="nv">r3</span> <span class="o">+</span> <span class="nv">i3</span><span class="o">*</span><span class="nv">i3</span>
-<span class="mi">103</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">sq</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.00001</span> <span class="k">then</span> <span class="nv">gosub</span> <span class="mi">600</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">backend</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">quantum_circuit</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">job</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">get_counts</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</code></pre></div></div>
 
-<span class="mi">105</span> <span class="k">print</span> <span class="p">"</span><span class="s2">running</span><span class="p">"</span> <span class="nv">shots</span> <span class="p">"</span><span class="s2">iterations...</span><span class="p">"</span>
-<span class="mi">110</span> <span class="nv">z0</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z1</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z2</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="nv">z3</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="mi">115</span> <span class="nv">p0</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r0</span> <span class="o">*</span> <span class="nv">r0</span> <span class="o">+</span> <span class="nv">i0</span> <span class="o">*</span> <span class="nv">i0</span><span class="p">)</span>
-<span class="mi">120</span> <span class="nv">p1</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r1</span> <span class="o">*</span> <span class="nv">r1</span> <span class="o">+</span> <span class="nv">i1</span> <span class="o">*</span> <span class="nv">i1</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p0</span>
-<span class="mi">125</span> <span class="nv">p2</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r2</span> <span class="o">*</span> <span class="nv">r2</span> <span class="o">+</span> <span class="nv">i2</span> <span class="o">*</span> <span class="nv">i2</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p1</span>
-<span class="mi">130</span> <span class="nv">p3</span> <span class="o">=</span> <span class="p">(</span><span class="nv">r3</span> <span class="o">*</span> <span class="nv">r3</span> <span class="o">+</span> <span class="nv">i3</span> <span class="o">*</span> <span class="nv">i3</span><span class="p">)</span> <span class="o">+</span> <span class="nv">p2</span>
+<p>Every user can track the realtime flow of jobs inside the smart contract:</p>
 
-<span class="mi">135</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">shots</span>
-<span class="mi">140</span>  <span class="nv">r</span> <span class="o">=</span> <span class="nv">rnd</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="mi">141</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p0</span> <span class="k">then</span> <span class="nv">z0</span> <span class="o">=</span> <span class="nv">z0</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="mi">142</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p0</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p1</span> <span class="k">then</span> <span class="nv">z1</span> <span class="o">=</span> <span class="nv">z1</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="mi">143</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p1</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p2</span> <span class="k">then</span> <span class="nv">z2</span> <span class="o">=</span> <span class="nv">z2</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="mi">144</span>  <span class="k">if</span> <span class="nv">r</span> <span class="o">&gt;=</span> <span class="nv">p2</span> <span class="ow">and</span> <span class="nv">r</span> <span class="o">&lt;</span> <span class="nv">p3</span> <span class="k">then</span> <span class="nv">z3</span> <span class="o">=</span> <span class="nv">z3</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="mi">146</span> <span class="k">next</span> <span class="nv">i</span>
+<p><a href="https://dqpu.io/app/"><img src="/assets/2024-06-10-dqpu/dqpu_smart_contract_ui.png" alt="DQPU Smart Contract" /></a></p>
 
-<span class="mi">150</span> <span class="k">print</span> <span class="p">"</span><span class="s2">results:</span><span class="p">"</span>
-<span class="mi">155</span> <span class="k">print</span> <span class="p">"</span><span class="s2">00: [</span><span class="p">"</span><span class="nv">z0</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z0</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
-<span class="mi">165</span> <span class="k">print</span> <span class="p">"</span><span class="s2">01: [</span><span class="p">"</span><span class="nv">z2</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z2</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span> 
-<span class="mi">160</span> <span class="k">print</span> <span class="p">"</span><span class="s2">10: [</span><span class="p">"</span><span class="nv">z1</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z1</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
-<span class="mi">170</span> <span class="k">print</span> <span class="p">"</span><span class="s2">11: [</span><span class="p">"</span><span class="nv">z3</span><span class="p">"</span><span class="s2">] </span><span class="p">";</span> <span class="p">:</span> <span class="k">for</span> <span class="nv">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">z3</span> <span class="p">:</span> <span class="k">print</span> <span class="p">"</span><span class="s2">Q</span><span class="p">";</span> <span class="p">:</span> <span class="k">next</span> <span class="nv">i</span> <span class="p">:</span> <span class="k">print</span>
-<span class="mi">175</span> <span class="nb">goto</span> <span class="mi">1000</span>
+<h2 id="conclusions">Conclusions</h2>
 
-<span class="mi">200</span> <span class="nv">rem</span> <span class="nv">simulate</span> <span class="nv">gate</span> <span class="nv">operation</span>
-<span class="mi">210</span> <span class="k">if</span> <span class="nv">gate$</span> <span class="err">=</span> <span class="err">"</span><span class="nv">x0</span><span class="p">"</span><span class="s2"> then gosub 400
-220 if gate$ = </span><span class="p">"</span><span class="nv">x1</span><span class="p">"</span><span class="s2"> then gosub 420
-230 if gate$ = </span><span class="p">"</span><span class="nv">y0</span><span class="p">"</span><span class="s2"> then gosub 440
-240 if gate$ = </span><span class="p">"</span><span class="nv">y1</span><span class="p">"</span><span class="s2"> then gosub 460
-250 if gate$ = </span><span class="p">"</span><span class="nv">z0</span><span class="p">"</span><span class="s2"> then gosub 480
-260 if gate$ = </span><span class="p">"</span><span class="nv">z1</span><span class="p">"</span><span class="s2"> then gosub 500
-270 if gate$ = </span><span class="p">"</span><span class="nv">h0</span><span class="p">"</span><span class="s2"> then gosub 520
-280 if gate$ = </span><span class="p">"</span><span class="nv">h1</span><span class="p">"</span><span class="s2"> then gosub 540
-290 if gate$ = </span><span class="p">"</span><span class="nv">cx</span><span class="p">"</span><span class="s2"> then gosub 560
-300 if gate$ = </span><span class="p">"</span><span class="nv">sw</span><span class="p">"</span><span class="s2"> then gosub 580
-310 return
+<p>While the current implementation is already functional and integrates with popular frameworks like Qiskit, the DQPU project holds promise for further development and expansion. As quantum computing continues to evolve, decentralized approaches like DQPU could play a crucial role in <em>democratizing access</em> to these powerful computational resources, enabling a wide range of applications and accelerating the pace of innovation in various fields.</p>
 
-400 rem x0 gate
-410 a0 = r0 : r0 = r1 : r1 = a0
-411 a0 = i0 : i0 = i1 : i1 = a0
-412 a0 = r2 : r2 = r3 : r3 = a0
-413 a0 = i2 : i2 = i3 : i3 = a0
-416 return
+<p>The <em>absence of a centralized pricing</em> structure ensures that the costs of executing quantum computations on DQPU are organically shaped by the interplay of resource availability and computational demand. Providers are incentivized to offer competitive rates to attract clients, while clients can leverage the market dynamics to access the most favorable pricing options.</p>
 
-420 rem x1 gate
-425 a0 = r1 : r1 = r3 : r3 = a0
-426 a0 = i1 : i1 = i3 : i3 = a0
-427 a0 = r0 : r0 = r2 : r2 = a0
-428 a0 = i0 : i0 = i2 : i2 = a0
+<p><a href="https://github.com/dqpu">Follow the project on github</a>, and stay tuned on DQPU updates.</p>
 
-440 rem y0 gate
-446 a0 = i0 : i0 = -r0 : r0 = a0
-447 a0 = i1 : i1 = -r1 : r1 = a0
-448 a0 = i2 : i2 = -r2 : r2 = a0
-449 a0 = i3 : i3 = -r3 : r3 = a0
-450 return
-
-460 rem y1 gate
-466 a0 = i1 : i1 = -r1 : r1 = a0
-467 a0 = i3 : i3 = -r3 : r3 = a0
-468 return
-
-480 rem z0 gate
-482 i2 = -i2 : i3 = -i3
-483 return
-
-500 rem z1 gate
-502 i1 = -i1 : i3 = -i3
-503 return
-
-520 rem h0 gate
-521 a0 = (r0 + r1) / sqr(2) : a1 = (i0 + i1) / sqr(2)
-522 b0 = (r0 - r1) / sqr(2) : b1 = (i0 - i1) / sqr(2)
-523 r0 = a0 : i0 = a1 : r1 = b0 : i1 = b1
-525 a0 = (r2 + r3) / sqr(2) : a1 = (i2 + i3) / sqr(2)
-526 b0 = (r2 - r3) / sqr(2) : b1 = (i2 - i3) / sqr(2)
-527 r2 = a0 : i2 = a1 : r3 = b0 : i3 = b1
-528 return
-
-540 rem h1 gate
-541 a0 = (r0 + r2) / sqr(2) : a1 = (i0 + i2) / sqr(2)
-542 b0 = (r0 - r2) / sqr(2) : b1 = (i0 - i2) / sqr(2)
-543 r0 = a0 : i0 = a1 : r2 = b0 : i2 = b1
-545 a0 = (r1 + r3) / sqr(2) : a1 = (i1 + i3) / sqr(2)
-546 b0 = (r1 - r3) / sqr(2) : b1 = (i1 - i3) / sqr(2)
-547 r1 = a0 : i1 = a1 : r3 = b0 : i3 = b1
-548 return
-
-560 rem cx gate
-561 a0 = r1 : r1 = r3 : r3 = a0
-562 a0 = i1 : i1 = i3 : i3 = a0
-579 return 
-
-580 rem sw gate
-581 a0 = r1 : r1 = r2 : r2 = a0
-582 a0 = i1 : i1 = i2 : i2 = a0
-590 return
-
-600 rem statevcector normalization
-601 nf = sqr(1 / sq)
-602 r0 = r0 * nf
-603 i0 = i0 * nf
-604 r1 = r1 * nf
-605 i1 = i1 * nf
-606 r2 = r2 * nf
-607 i2 = i2 * nf
-608 r3 = r3 * nf
-609 i3 = i3 * nf
-610 return
-
-1000 end
-</span></code></pre></div></div>
-
-<p>The source code is accessible here: <a href="https://github.com/dakk/qc64">https://github.com/dakk/qc64</a>
-Twitter: <a href="https://twitter.com/dagide">@dagide</a></p>
-
-<p>Article on <a href="https://medium.com/@dakk/quantum-computing-on-a-commodore-64-in-200-lines-of-basic-eda7658b32a4">medium</a>.</p>
+<p>Links:</p>
+<ul>
+  <li><a href="https://dqpu.io">DQPU.io website</a></li>
+  <li><a href="https://github.com/dakk/dqpu">DQPU Github repository</a></li>
+  <li><a href="https://twitter.com/dagide">My Twitter Profile</a></li>
+  <li><a href="https://github.com/dakk">My Github Profile</a></li>
+</ul>
 
 
 <ul class="taxonomy__index">
@@ -697,7 +593,7 @@ This...</p>
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          6 minute read
+          5 minute read
         
       </span>
     
