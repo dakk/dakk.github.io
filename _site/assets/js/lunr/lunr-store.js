@@ -124,4 +124,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2024/06/10/dqpu.html",
         "teaser": null
+      },{
+        "title": "Quantum Computing on Arduino",
+        "excerpt":"In a world where tech giants are pouring billions into quantum computing, spending fortunes on superconducting circuits and cryogenic cooling systems, I decided to take a slightly different approach. Armed with nothing more than an Arduino Uno (actually a much cheaper Elegoo Uno), a handful of LEDs, and an unquenchable...","categories": ["quantumcomputing"],
+        "tags": [],
+        "url": "/quantumcomputing/2024/06/27/arduino_quantum.html",
+        "teaser": null
       }]
