@@ -12,7 +12,6 @@ In a world where tech giants are pouring billions into quantum computing, spendi
 
 I present to you: the Arduino Quantum Computer. With a whopping 7 qubits, this powerhouse of quantum computation fits in the palm of your hand and runs at room temperature. Take that, dilution refrigerators!
 
-// PHOTO OF THE DEVICE BEHIND A TERMOMETER SHOWING ROOM TEMPERATURE
 ![Arduino QC running at room temperature](/assets/2024-06-28-arduino_quantum/room_temperature_arduino.jpg)
 
 Now, you might be thinking, "But wait, doesn't Google's Sycamore processor have 53 qubits? And isn't IBM's latest quantum computer boasting 433 qubits?" Well, sure, if you want to get all technical about it. But let me ask you this: can their quantum computers blink LEDs? I didn't think so.
