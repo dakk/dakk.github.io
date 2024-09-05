@@ -49,6 +49,8 @@ The procedure I adopted for creating a module is the following:
 
 ### Integrators
 
+### Inverters
+
 
 ### Comparators
 
