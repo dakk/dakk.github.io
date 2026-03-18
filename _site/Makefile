@@ -1,9 +1,9 @@
 all:
 	rm -f _posts/*.html
-	JEKYLL_ENV=production jekyll build
+	JEKYLL_ENV=production ~/bin/jekyll build
 
 serve:
-	jekyll serve
+	~/bin/jekyll serve
 
 prereq:
 	bundle-2.7 install
@@ -13,4 +13,4 @@ deploy:
 	git add _site
 
 import:
-	jekyll import medium --username dakk --canonical_link
+	~/bin/jekyll import medium --username dakk --canonical_link

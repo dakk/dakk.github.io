@@ -130,4 +130,10 @@ var store = [{
         "tags": [],
         "url": "/quantumcomputing/2024/06/27/arduino_quantum.html",
         "teaser": null
+      },{
+        "title": "A Very Cheap Sailboat Autopilot WiFi Remote Using ESP32",
+        "excerpt":"In my spare time, I like to go out with my sailboat. I also frequently sail solo, and even if not mandatory, it would be useful to be able to control the direction of the autopilot from every point of the sailboat. The “official” remote for my autopilot is the...","categories": ["sailing"],
+        "tags": [],
+        "url": "/sailing/2026/03/18/seatalk_wifi_remote.html",
+        "teaser": null
       }]

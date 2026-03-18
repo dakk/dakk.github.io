@@ -1,13 +1,19 @@
+
+
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
-  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.28.0 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
+
 <html lang="en" class="no-js">
   <head>
-    <meta charset="utf-8">
+    
+<meta charset="utf-8">
+
 
 <!-- begin _includes/seo.html --><title>Qlasskit - a bridge between Python and Quantum algorithms - Davide Gessa @dakk</title>
 <meta name="description" content="Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.">
@@ -34,6 +40,8 @@
 
 
 
+
+
   <meta property="article:published_time" content="2023-11-29T13:50:28+01:00">
 
 
@@ -46,16 +54,7 @@
 
 
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    
-      "@type": "Person",
-      "name": "Davide Gessa",
-      "url": "https://dakk.github.io//"
-    
-  }
-</script>
+
 
 
 
@@ -68,19 +67,17 @@
 
 
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Davide Gessa @dakk Feed">
-
-
-<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
@@ -92,8 +89,9 @@
 
   </head>
 
-  <body class="layout--posts">
-    <nav class="skip-links">
+  <body class="layout--posts" dir="ltr">
+    
+<nav class="skip-links" aria-label="Skip links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -101,23 +99,24 @@
   </ul>
 </nav>
 
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
     
+
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
         
         <a class="site-title" href="/">
           Davide Gessa @dakk
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about">About</a>
+              <a
+                href="/about"
+                
+                
+              >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -136,28 +135,32 @@
 
 
 
+
+
 <div id="main" role="main">
   
+
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="https://schema.org/Person">
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-        <img src="/assets/avatar.jpg" alt="Davide Gessa @dakk" itemprop="image">
-      
+      <a href="https://dakk.github.io//">
+        <img src="/assets/avatar.jpg" alt="Davide Gessa @dakk" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://dakk.github.io//" itemprop="url">Davide Gessa @dakk</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Davide Gessa @dakk</h3>
-    
-    
-      <div class="author__bio" itemprop="description">
+      <div class="author__bio p-note" itemprop="description">
         <p>I’m Davide Gessa, a software developer, computer scientist and sailor.</p>
 
       </div>
@@ -169,30 +172,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Sardinia - Italy</span>
+          <i class="fas fa-fw fa-location-dot" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Sardinia - Italy</span>
         </li>
       
 
       
         
           
-            <li><a href="https://twitter.com/dagide" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/dagide" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
           
-            <li><a href="https://github.com/dakk" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/dakk" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://instagram.com/dagide" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+            <li><a href="https://instagram.com/dagide" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
           
         
           
-            <li><a href="https://medium.com/@dakk" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-medium" aria-hidden="true"></i><span class="label">Medium</span></a></li>
+            <li><a href="https://medium.com/@dakk" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-medium" aria-hidden="true"></i><span class="label">Medium</span></a></li>
           
         
           
-            <li><a href="https://linkedin.com/in/davide-gessa-71798b80" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+            <li><a href="https://linkedin.com/in/davide-gessa-71798b80" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
           
         
       
@@ -247,7 +250,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -257,6 +260,7 @@
 </div>
 
   
+  
   </div>
 
 
@@ -265,7 +269,9 @@
     
       <h1 id="page-title" class="page__title">Qlasskit - a bridge between Python and Quantum algorithms</h1>
     
-    <p>Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.</p>
+    
+
+<p>Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorithm inside a quantum circuit, for instance, for an oracle or a black-box component of a quantum algorithm. This often becomes a time wasting job, since we almost always already have a classical implementation in a traditional high level language.</p>
 
 <p><img src="/assets/2023-11-09-qlasskit/head.jpg" alt="" /></p>
 
@@ -279,9 +285,9 @@
 
 <p>We write a toy hash function <code class="language-plaintext highlighter-rouge">hash_simp</code> which operates on messages composed of two 4 bit values and uses bitwise xor to create an 8 bit hash value.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qlasskit</span> <span class="kn">import</span> <span class="n">qlassf</span><span class="p">,</span> <span class="n">Qint4</span><span class="p">,</span> <span class="n">Qint8</span><span class="p">,</span> <span class="n">Qlist</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">qlasskit</span> <span class="kn">import</span> <span class="n">qlassf</span><span class="p">,</span> <span class="n">Qint4</span><span class="p">,</span> <span class="n">Qint8</span><span class="p">,</span> <span class="n">Qlist</span>
 
-<span class="o">@</span><span class="n">qlassf</span>
+<span class="nd">@qlassf</span>
 <span class="k">def</span> <span class="nf">hash_simp</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">Qlist</span><span class="p">[</span><span class="n">Qint4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Qint8</span><span class="p">:</span>
     <span class="n">hv</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
@@ -300,7 +306,7 @@
 
 <p>To see the resulting quantum circuit we can export and draw in qiskit:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hash_simp</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="s">'qiskit'</span><span class="p">).</span><span class="n">draw</span><span class="p">(</span><span class="s">'mpl'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hash_simp</span><span class="p">.</span><span class="nf">export</span><span class="p">(</span><span class="sh">'</span><span class="s">qiskit</span><span class="sh">'</span><span class="p">).</span><span class="nf">draw</span><span class="p">(</span><span class="sh">'</span><span class="s">mpl</span><span class="sh">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>And this is the resulting circuit, produced by the <em>qlasskit</em> internal compiler:</p>
@@ -309,11 +315,11 @@
 
 <p>Thanks to the fact that <em>qlasskit</em> function are standard Python functions, we can call the <code class="language-plaintext highlighter-rouge">original_f</code> to perform some kind of analysis and test on the hash function. Since the input space is tiny (it is a toy hash function), we can check if the hash function is uniform (if it maps equally to the output space).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 
-<span class="n">d</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="n">original_f</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">(</span><span class="nf">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="nf">original_f</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'Hash function output space:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Hash function output space:</span><span class="sh">'</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p><img src="/assets/2023-11-09-qlasskit/output_space_result.png" alt="" /></p>
@@ -322,25 +328,25 @@
 
 <p>Now we use our quantum function as an oracle for a Grover search, in order to find which input maps to the value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qlasskit.algorithms</span> <span class="kn">import</span> <span class="n">Grover</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">qlasskit.algorithms</span> <span class="kn">import</span> <span class="n">Grover</span>
 
-<span class="n">q_algo</span> <span class="o">=</span> <span class="n">Grover</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">,</span> <span class="n">Qint8</span><span class="p">(</span><span class="mh">0xca</span><span class="p">))</span>
+<span class="n">q_algo</span> <span class="o">=</span> <span class="nc">Grover</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">,</span> <span class="nc">Qint8</span><span class="p">(</span><span class="mh">0xca</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>Then we use our preferred framework and simulator for sampling the result; this is an example using <code class="language-plaintext highlighter-rouge">qiskit</code> with <code class="language-plaintext highlighter-rouge">aer_simulator</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
-<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="n">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
 
-<span class="n">qc</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="n">export</span><span class="p">(</span><span class="s">'qiskit'</span><span class="p">)</span>
-<span class="n">qc</span><span class="p">.</span><span class="n">measure_all</span><span class="p">()</span>
-<span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="p">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s">"aer_simulator"</span><span class="p">)</span>
-<span class="n">circ</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">simulator</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">circ</span><span class="p">).</span><span class="n">result</span><span class="p">()</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">get_counts</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="nf">export</span><span class="p">(</span><span class="sh">'</span><span class="s">qiskit</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">qc</span><span class="p">.</span><span class="nf">measure_all</span><span class="p">()</span>
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="p">.</span><span class="nf">get_backend</span><span class="p">(</span><span class="sh">"</span><span class="s">aer_simulator</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="nf">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">simulator</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">circ</span><span class="p">).</span><span class="nf">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="nf">get_counts</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
 
-<span class="n">counts_readable</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="n">decode_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">discard_lower</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts_readable</span><span class="p">)</span>
+<span class="n">counts_readable</span> <span class="o">=</span> <span class="n">q_algo</span><span class="p">.</span><span class="nf">decode_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">discard_lower</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nf">plot_histogram</span><span class="p">(</span><span class="n">counts_readable</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>And this is the result of the simulation, where we can see that the pre-image that leads to <code class="language-plaintext highlighter-rouge">h(x) = 0xca</code> is the list <code class="language-plaintext highlighter-rouge">[12,12]</code>.</p>
@@ -349,7 +355,7 @@
 
 <p>Using <code class="language-plaintext highlighter-rouge">QlassF.original_f</code> we can double check the result without invoking a quantum simulator; calling it with the list <code class="language-plaintext highlighter-rouge">[12,12]</code> must result in the hash value <code class="language-plaintext highlighter-rouge">0xca</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="n">original_f</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">hex</span><span class="p">(</span><span class="n">hash_simp</span><span class="p">.</span><span class="nf">original_f</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))))</span>
 </code></pre></div></div>
 
 <p><img src="/assets/2023-11-09-qlasskit/result.png" alt="" /></p>
@@ -372,6 +378,12 @@
 
 <ul class="taxonomy__index">
   
+  
+    <li>
+      <a href="#2026">
+        <strong>2026</strong> <span class="taxonomy__count">1</span>
+      </a>
+    </li>
   
     <li>
       <a href="#2024">
@@ -420,6 +432,63 @@
 
 
 
+  <section id="2026" class="taxonomy__section">
+    <h2 class="archive__subtitle">2026</h2>
+    <div class="entries-list">
+      
+        
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
+      
+        <a class="u-url" href="/sailing/2026/03/18/seatalk_wifi_remote.html" rel="permalink">A Very Cheap Sailboat Autopilot WiFi Remote Using ESP32
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2026-03-18T12:40:00+01:00">March 18, 2026</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt p-summary" itemprop="description">
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+  </section>
+
   <section id="2024" class="taxonomy__section">
     <h2 class="archive__subtitle">2024</h2>
     <div class="entries-list">
@@ -428,16 +497,18 @@
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/06/27/arduino_quantum.html" rel="permalink">Quantum Computing on Arduino
+        <a class="u-url" href="/quantumcomputing/2024/06/27/arduino_quantum.html" rel="permalink">Quantum Computing on Arduino
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -465,7 +536,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
 </p>
   </article>
 </div>
@@ -475,16 +546,18 @@
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/06/10/dqpu.html" rel="permalink">DQPU, the decentralized quantum simulator
+        <a class="u-url" href="/quantumcomputing/2024/06/10/dqpu.html" rel="permalink">DQPU, the decentralized quantum simulator
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -512,7 +585,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough ...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough ...</p>
   </article>
 </div>
 
@@ -521,16 +594,18 @@
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/gis/2024/04/20/osm_to_garmin.html" rel="permalink">Free Maps on Garmin eTrex 10 (and all Garmin GPS)
+        <a class="u-url" href="/gis/2024/04/20/osm_to_garmin.html" rel="permalink">Free Maps on Garmin eTrex 10 (and all Garmin GPS)
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -558,7 +633,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like al...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like al...</p>
   </article>
 </div>
 
@@ -567,16 +642,18 @@
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html" rel="permalink">Optimizing quantum circuit using boolean algebra
+        <a class="u-url" href="/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html" rel="permalink">Optimizing quantum circuit using boolean algebra
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -604,7 +681,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.
+    <p class="archive__item-excerpt p-summary" itemprop="description">Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.
 </p>
   </article>
 </div>
@@ -614,16 +691,18 @@
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/02/16/annealing_factorization.html" rel="permalink">Factorization using Qlasskit and DWave Quantum Annealer
+        <a class="u-url" href="/quantumcomputing/2024/02/16/annealing_factorization.html" rel="permalink">Factorization using Qlasskit and DWave Quantum Annealer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -651,7 +730,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model). 
+    <p class="archive__item-excerpt p-summary" itemprop="description">In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model). 
 This...</p>
   </article>
 </div>
@@ -661,16 +740,18 @@ This...</p>
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/unconventionalcomputing/2024/01/31/pbits.html" rel="permalink">The Time I Built a Probabilistic Computer
+        <a class="u-url" href="/unconventionalcomputing/2024/01/31/pbits.html" rel="permalink">The Time I Built a Probabilistic Computer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -698,7 +779,7 @@ This...</p>
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype,...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype,...</p>
   </article>
 </div>
 
@@ -707,16 +788,18 @@ This...</p>
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/01/19/quantum_sudoku.html" rel="permalink">Solving Sudoku Puzzles on a Quantum Computer
+        <a class="u-url" href="/quantumcomputing/2024/01/19/quantum_sudoku.html" rel="permalink">Solving Sudoku Puzzles on a Quantum Computer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -744,7 +827,7 @@ This...</p>
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Today, I’m going to show you how to use Qlasskit to create a quantum circuit able to search for 
+    <p class="archive__item-excerpt p-summary" itemprop="description">Today, I’m going to show you how to use Qlasskit to create a quantum circuit able to search for 
 Sudoku puzzle solutions.
 </p>
   </article>
@@ -763,16 +846,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/12/13/qc64_followup.html" rel="permalink">Expanding the Commodore 64 Quantum Emulator
+        <a class="u-url" href="/quantumcomputing/2023/12/13/qc64_followup.html" rel="permalink">Expanding the Commodore 64 Quantum Emulator
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -800,7 +885,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantu...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantu...</p>
   </article>
 </div>
 
@@ -809,16 +894,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/11/29/qlasskit.html" rel="permalink">Qlasskit - a bridge between Python and Quantum algorithms
+        <a class="u-url" href="/quantumcomputing/2023/11/29/qlasskit.html" rel="permalink">Qlasskit - a bridge between Python and Quantum algorithms
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -846,7 +933,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorit...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorit...</p>
   </article>
 </div>
 
@@ -855,16 +942,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/07/02/qc64.html" rel="permalink">Quantum Computing on a Commodore 64 in 200 Lines of BASIC
+        <a class="u-url" href="/quantumcomputing/2023/07/02/qc64.html" rel="permalink">Quantum Computing on a Commodore 64 in 200 Lines of BASIC
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -892,7 +981,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off ...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off ...</p>
   </article>
 </div>
 
@@ -901,16 +990,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantum-computing/2023/05/24/unitaryhack.html" rel="permalink">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure
+        <a class="u-url" href="/quantum-computing/2023/05/24/unitaryhack.html" rel="permalink">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -938,7 +1029,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hoste...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hoste...</p>
   </article>
 </div>
 
@@ -947,16 +1038,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/python/2023/05/24/sentinelsat_download.html" rel="permalink">Free near real-time 10-meter resolution satellite imagery with 5 lines of code
+        <a class="u-url" href="/python/2023/05/24/sentinelsat_download.html" rel="permalink">Free near real-time 10-meter resolution satellite imagery with 5 lines of code
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -984,7 +1077,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
 </p>
   </article>
 </div>
@@ -994,16 +1087,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/ml/2023/05/15/sentinel_ship_detection.html" rel="permalink">Ship detection from Sentinel-2 satellite images
+        <a class="u-url" href="/ml/2023/05/15/sentinel_ship_detection.html" rel="permalink">Ship detection from Sentinel-2 satellite images
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1031,7 +1126,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This...</p>
   </article>
 </div>
 
@@ -1048,16 +1143,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantum/2020/07/29/ocaml_quantum.html" rel="permalink">OCaml and Quantum Computing
+        <a class="u-url" href="/quantum/2020/07/29/ocaml_quantum.html" rel="permalink">OCaml and Quantum Computing
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1085,7 +1182,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quan...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quan...</p>
   </article>
 </div>
 
@@ -1094,16 +1191,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/tezos/2020/07/07/yallo_a_new_tezos_language.html" rel="permalink">Yallo, a new Tezos language
+        <a class="u-url" href="/tezos/2020/07/07/yallo_a_new_tezos_language.html" rel="permalink">Yallo, a new Tezos language
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1131,7 +1230,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially int...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially int...</p>
   </article>
 </div>
 
@@ -1140,16 +1239,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/tezos/2020/06/24/king_of_tezos.html" rel="permalink">King of Tezos: a smart-ponzi on Tezos
+        <a class="u-url" href="/tezos/2020/06/24/king_of_tezos.html" rel="permalink">King of Tezos: a smart-ponzi on Tezos
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1177,7 +1278,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleann...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleann...</p>
   </article>
 </div>
 
@@ -1186,16 +1287,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/random/2020/06/24/favorite_quote.html" rel="permalink">Favorite dev quote
+        <a class="u-url" href="/random/2020/06/24/favorite_quote.html" rel="permalink">Favorite dev quote
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1223,7 +1326,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
   Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing
 
 </p>
@@ -1235,16 +1338,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/random/2020/06/24/new_blog.html" rel="permalink">New blog
+        <a class="u-url" href="/random/2020/06/24/new_blog.html" rel="permalink">New blog
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1272,7 +1377,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.
+    <p class="archive__item-excerpt p-summary" itemprop="description">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.
 </p>
   </article>
 </div>
@@ -1290,16 +1395,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2016/01/11/contractvm.html" rel="permalink">Contractvm: decentralized applications on Bitcoin
+        <a class="u-url" href="/bitcoin/2016/01/11/contractvm.html" rel="permalink">Contractvm: decentralized applications on Bitcoin
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1327,7 +1434,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an eas...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an eas...</p>
   </article>
 </div>
 
@@ -1344,16 +1451,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2015/02/26/dice_nonce_overflow.html" rel="permalink">Dices provably fair - Nonce overflow vulnerability
+        <a class="u-url" href="/bitcoin/2015/02/26/dice_nonce_overflow.html" rel="permalink">Dices provably fair - Nonce overflow vulnerability
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1381,7 +1490,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server se...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server se...</p>
   </article>
 </div>
 
@@ -1398,16 +1507,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/sys/2014/05/04/apache2_subfolder_redirect.html" rel="permalink">Apache2: redirect different domains to subfolder
+        <a class="u-url" href="/sys/2014/05/04/apache2_subfolder_redirect.html" rel="permalink">Apache2: redirect different domains to subfolder
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1435,7 +1546,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour...</p>
   </article>
 </div>
 
@@ -1452,16 +1563,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2013/08/28/mineml_miner.html" rel="permalink">MineML: F# miner
+        <a class="u-url" href="/bitcoin/2013/08/28/mineml_miner.html" rel="permalink">MineML: F# miner
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1489,7 +1602,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">MineML is a multithread CPU based bitcoin miner written in F#. At the moment it’s a slow implementation, but the class structure offers the possibility to im...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">MineML is a multithread CPU based bitcoin miner written in F#. At the moment it’s a slow implementation, but the class structure offers the possibility to im...</p>
   </article>
 </div>
 
@@ -1501,6 +1614,8 @@ Sudoku puzzle solutions.
 
   </div>
 </div>
+
+      
     </div>
 
     
@@ -1510,24 +1625,29 @@ Sudoku puzzle solutions.
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        <div class="page__footer-follow">
+        
+
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
 
     
 
     
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
     
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 Davide Gessa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://dakk.github.io/">Davide Gessa @dakk</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
+
   <script src="/assets/js/main.min.js"></script>
 
 

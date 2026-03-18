@@ -1,13 +1,19 @@
+
+
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
-  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.28.0 by Michael Rose
+  Copyright 2013-2026 Michael Rose - mademistakes.com | @mmistakes
+  Copyright 2024-2026 iBug - ibugone.com | @iBug
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
+
 <html lang="en" class="no-js">
   <head>
-    <meta charset="utf-8">
+    
+<meta charset="utf-8">
+
 
 <!-- begin _includes/seo.html --><title>Ship detection from Sentinel-2 satellite images - Davide Gessa @dakk</title>
 <meta name="description" content="A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters. What astonished mew as the fact that all the produced data is open to public and updated every day, so anyone can download and utilize it.">
@@ -34,6 +40,8 @@
 
 
 
+
+
   <meta property="article:published_time" content="2023-05-15T15:30:28+02:00">
 
 
@@ -46,16 +54,7 @@
 
 
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    
-      "@type": "Person",
-      "name": "Davide Gessa",
-      "url": "https://dakk.github.io//"
-    
-  }
-</script>
+
 
 
 
@@ -68,19 +67,17 @@
 
 
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Davide Gessa @dakk Feed">
-
-
-<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
 </script>
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
 
 
@@ -92,8 +89,9 @@
 
   </head>
 
-  <body class="layout--posts">
-    <nav class="skip-links">
+  <body class="layout--posts" dir="ltr">
+    
+<nav class="skip-links" aria-label="Skip links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -101,23 +99,24 @@
   </ul>
 </nav>
 
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
     
+
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
+      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
         
         <a class="site-title" href="/">
           Davide Gessa @dakk
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about">About</a>
+              <a
+                href="/about"
+                
+                
+              >About</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -136,28 +135,32 @@
 
 
 
+
+
 <div id="main" role="main">
   
+
   <div class="sidebar sticky">
   
 
 
-<div itemscope itemtype="https://schema.org/Person">
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
   
     <div class="author__avatar">
-      
-        <img src="/assets/avatar.jpg" alt="Davide Gessa @dakk" itemprop="image">
-      
+      <a href="https://dakk.github.io//">
+        <img src="/assets/avatar.jpg" alt="Davide Gessa @dakk" itemprop="image" class="u-photo">
+      </a>
     </div>
   
 
   <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://dakk.github.io//" itemprop="url">Davide Gessa @dakk</a>
+    </h3>
     
-      <h3 class="author__name" itemprop="name">Davide Gessa @dakk</h3>
-    
-    
-      <div class="author__bio" itemprop="description">
+      <div class="author__bio p-note" itemprop="description">
         <p>I’m Davide Gessa, a software developer, computer scientist and sailor.</p>
 
       </div>
@@ -169,30 +172,30 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Sardinia - Italy</span>
+          <i class="fas fa-fw fa-location-dot" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Sardinia - Italy</span>
         </li>
       
 
       
         
           
-            <li><a href="https://twitter.com/dagide" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+            <li><a href="https://twitter.com/dagide" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
           
         
           
-            <li><a href="https://github.com/dakk" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            <li><a href="https://github.com/dakk" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://instagram.com/dagide" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+            <li><a href="https://instagram.com/dagide" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
           
         
           
-            <li><a href="https://medium.com/@dakk" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-medium" aria-hidden="true"></i><span class="label">Medium</span></a></li>
+            <li><a href="https://medium.com/@dakk" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-medium" aria-hidden="true"></i><span class="label">Medium</span></a></li>
           
         
           
-            <li><a href="https://linkedin.com/in/davide-gessa-71798b80" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+            <li><a href="https://linkedin.com/in/davide-gessa-71798b80" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
           
         
       
@@ -247,7 +250,7 @@
 
       <!--
   <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
       <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
@@ -257,6 +260,7 @@
 </div>
 
   
+  
   </div>
 
 
@@ -265,7 +269,9 @@
     
       <h1 id="page-title" class="page__title">Ship detection from Sentinel-2 satellite images</h1>
     
-    <p>A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters.
+    
+
+<p>A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This constellation is composed of numerous satellites called Sentinels, which scan the Earth daily for different parameters.
 What astonished mew as the fact that all the produced data is open to public and updated every day, so anyone can download and utilize it.</p>
 
 <p>So, on a rather dull Monday, I embarked on: to create something using this data. Given my fondness for ships, I decided to create something ship-related, a software to download and recognize ships using machine learning.</p>
@@ -282,27 +288,27 @@ What astonished mew as the fact that all the produced data is open to public and
 
 <p>Downloading data from Copernicus is straightforward. Just signup at <a href="https://scihub.copernicus.eu">https://scihub.copernicus.eu</a>, select the area, and download. Using the code is easy as well, as can be seen in the following snippet.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">fnmatch</span>
-<span class="kn">from</span> <span class="nn">sentinelsat</span> <span class="kn">import</span> <span class="n">SentinelAPI</span><span class="p">,</span> <span class="n">make_path_filter</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">fnmatch</span>
+<span class="kn">from</span> <span class="n">sentinelsat</span> <span class="kn">import</span> <span class="n">SentinelAPI</span><span class="p">,</span> <span class="n">make_path_filter</span>
 
-<span class="n">sapi</span> <span class="o">=</span> <span class="n">SentinelAPI</span><span class="p">(</span><span class="n">SUSER</span><span class="p">,</span> <span class="n">SPASSWORD</span><span class="p">,</span> <span class="s">'https://scihub.copernicus.eu/dhus/'</span><span class="p">)</span>
+<span class="n">sapi</span> <span class="o">=</span> <span class="nc">SentinelAPI</span><span class="p">(</span><span class="n">SUSER</span><span class="p">,</span> <span class="n">SPASSWORD</span><span class="p">,</span> <span class="sh">'</span><span class="s">https://scihub.copernicus.eu/dhus/</span><span class="sh">'</span><span class="p">)</span>
 
 <span class="c1"># Query scihub for Sentinel2 data from the last 24h
-</span><span class="n">p</span> <span class="o">=</span> <span class="n">sapi</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="p">(</span><span class="s">'NOW-1DAYS'</span><span class="p">,</span> <span class="s">'NOW'</span><span class="p">),</span> <span class="n">area_relation</span><span class="o">=</span><span class="s">"Intersects"</span><span class="p">,</span> <span class="n">platformname</span><span class="o">=</span><span class="s">'Sentinel-2'</span><span class="p">,</span>
-     <span class="n">processinglevel</span><span class="o">=</span><span class="s">'Level-2A'</span><span class="p">)</span>
+</span><span class="n">p</span> <span class="o">=</span> <span class="n">sapi</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="p">(</span><span class="sh">'</span><span class="s">NOW-1DAYS</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">NOW</span><span class="sh">'</span><span class="p">),</span> <span class="n">area_relation</span><span class="o">=</span><span class="sh">"</span><span class="s">Intersects</span><span class="sh">"</span><span class="p">,</span> <span class="n">platformname</span><span class="o">=</span><span class="sh">'</span><span class="s">Sentinel-2</span><span class="sh">'</span><span class="p">,</span>
+     <span class="n">processinglevel</span><span class="o">=</span><span class="sh">'</span><span class="s">Level-2A</span><span class="sh">'</span><span class="p">)</span>
 
 <span class="c1"># Create a pathfilter for downloading only TCI at 10m resolution
 </span><span class="k">def</span> <span class="nf">path_filter</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
- <span class="n">npath</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s">'node_path'</span><span class="p">]</span>
- <span class="k">return</span> <span class="n">fnmatch</span><span class="p">.</span><span class="n">fnmatch</span><span class="p">(</span><span class="n">npath</span><span class="p">,</span> <span class="s">'*_TCI_10m.jp2'</span><span class="p">)</span>
+ <span class="n">npath</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="sh">'</span><span class="s">node_path</span><span class="sh">'</span><span class="p">]</span>
+ <span class="k">return</span> <span class="n">fnmatch</span><span class="p">.</span><span class="nf">fnmatch</span><span class="p">(</span><span class="n">npath</span><span class="p">,</span> <span class="sh">'</span><span class="s">*_TCI_10m.jp2</span><span class="sh">'</span><span class="p">)</span>
 
 <span class="c1"># Download only if the cloud coverage is less than 30%
-</span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">p</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
- <span class="n">cov</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s">'cloudcoverpercentage'</span><span class="p">]</span>
+</span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">p</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+ <span class="n">cov</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="sh">'</span><span class="s">cloudcoverpercentage</span><span class="sh">'</span><span class="p">]</span>
  <span class="k">if</span> <span class="n">cov</span> <span class="o">&gt;</span> <span class="mf">30.</span><span class="p">:</span>
-  <span class="k">print</span> <span class="p">(</span><span class="s">'skipping for cloud coverage'</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">cov</span><span class="p">)</span>
+  <span class="nf">print </span><span class="p">(</span><span class="sh">'</span><span class="s">skipping for cloud coverage</span><span class="sh">'</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">cov</span><span class="p">)</span>
   <span class="k">continue</span>
- <span class="n">sapi</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s">'./tempdataset'</span><span class="p">,</span> <span class="n">nodefilter</span><span class="o">=</span><span class="n">path_filter</span><span class="p">)</span>
+ <span class="n">sapi</span><span class="p">.</span><span class="nf">download</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="sh">'</span><span class="s">./tempdataset</span><span class="sh">'</span><span class="p">,</span> <span class="n">nodefilter</span><span class="o">=</span><span class="n">path_filter</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Once you run it, you’ll have jp2 images from Sentinel-2 from the last day.</p>
@@ -321,42 +327,42 @@ What astonished mew as the fact that all the produced data is open to public and
 
 <p>For my proof of concept, I used it as a framework as follows: I defined two scenes, one for training and the other for validating the results. Then, I created all the configurations for the training, returning an ObjectDetectionConfig object.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">dirname</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">dirname</span>
 
-<span class="kn">from</span> <span class="nn">rastervision.core.rv_pipeline</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ObjectDetectionConfig</span><span class="p">,</span>
+<span class="kn">from</span> <span class="n">rastervision.core.rv_pipeline</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ObjectDetectionConfig</span><span class="p">,</span>
                                            <span class="n">ObjectDetectionChipOptions</span><span class="p">,</span>
                                            <span class="n">ObjectDetectionPredictOptions</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">rastervision.core.data</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="n">rastervision.core.data</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ClassConfig</span><span class="p">,</span> <span class="n">ObjectDetectionLabelSourceConfig</span><span class="p">,</span> <span class="n">GeoJSONVectorSourceConfig</span><span class="p">,</span>
     <span class="n">RasterioSourceConfig</span><span class="p">,</span> <span class="n">SceneConfig</span><span class="p">,</span> <span class="n">DatasetConfig</span><span class="p">,</span> <span class="n">ClassInferenceTransformerConfig</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">rastervision.pytorch_backend</span> <span class="kn">import</span> <span class="n">PyTorchObjectDetectionConfig</span>
-<span class="kn">from</span> <span class="nn">rastervision.pytorch_learner</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="n">rastervision.pytorch_backend</span> <span class="kn">import</span> <span class="n">PyTorchObjectDetectionConfig</span>
+<span class="kn">from</span> <span class="n">rastervision.pytorch_learner</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Backbone</span><span class="p">,</span> <span class="n">SolverConfig</span><span class="p">,</span> <span class="n">ObjectDetectionModelConfig</span><span class="p">,</span>
     <span class="n">ObjectDetectionImageDataConfig</span><span class="p">,</span> <span class="n">ObjectDetectionGeoDataConfig</span><span class="p">,</span>
     <span class="n">ObjectDetectionGeoDataWindowConfig</span><span class="p">,</span> <span class="n">GeoDataWindowMethod</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="n">os</span>
 
 
-<span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">data_uri</span><span class="o">=</span><span class="s">'./dataset'</span><span class="p">,</span> <span class="n">full_train</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nochip</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">data_uri</span><span class="o">=</span><span class="sh">'</span><span class="s">./dataset</span><span class="sh">'</span><span class="p">,</span> <span class="n">full_train</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nochip</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">part</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">join</span><span class="p">(</span><span class="n">data_uri</span><span class="p">,</span> <span class="n">part</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">join</span><span class="p">(</span><span class="n">data_uri</span><span class="p">,</span> <span class="n">part</span><span class="p">)</span>
 
-    <span class="n">class_config</span> <span class="o">=</span> <span class="n">ClassConfig</span><span class="p">(</span>
-        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">'ship'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s">'red'</span><span class="p">])</span>
+    <span class="n">class_config</span> <span class="o">=</span> <span class="nc">ClassConfig</span><span class="p">(</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">ship</span><span class="sh">'</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">red</span><span class="sh">'</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">make_scene</span><span class="p">(</span><span class="n">scene_id</span><span class="p">,</span> <span class="n">img_path</span><span class="p">,</span> <span class="n">label_path</span><span class="p">):</span>
-        <span class="n">raster_source</span> <span class="o">=</span> <span class="n">RasterioSourceConfig</span><span class="p">(</span>
+        <span class="n">raster_source</span> <span class="o">=</span> <span class="nc">RasterioSourceConfig</span><span class="p">(</span>
             <span class="n">channel_order</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">uris</span><span class="o">=</span><span class="p">[</span><span class="n">img_path</span><span class="p">])</span>
-        <span class="n">label_source</span> <span class="o">=</span> <span class="n">ObjectDetectionLabelSourceConfig</span><span class="p">(</span>
-            <span class="n">vector_source</span><span class="o">=</span><span class="n">GeoJSONVectorSourceConfig</span><span class="p">(</span> 
+        <span class="n">label_source</span> <span class="o">=</span> <span class="nc">ObjectDetectionLabelSourceConfig</span><span class="p">(</span>
+            <span class="n">vector_source</span><span class="o">=</span><span class="nc">GeoJSONVectorSourceConfig</span><span class="p">(</span> 
                 <span class="n">uri</span><span class="o">=</span><span class="n">label_path</span><span class="p">,</span> 
                 <span class="n">ignore_crs_field</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
                 <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
-                    <span class="n">ClassInferenceTransformerConfig</span><span class="p">(</span><span class="n">default_class_id</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="nc">ClassInferenceTransformerConfig</span><span class="p">(</span><span class="n">default_class_id</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="p">])</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">SceneConfig</span><span class="p">(</span>
+        <span class="k">return</span> <span class="nc">SceneConfig</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="n">scene_id</span><span class="p">,</span>
             <span class="n">raster_source</span><span class="o">=</span><span class="n">raster_source</span><span class="p">,</span>
             <span class="n">label_source</span><span class="o">=</span><span class="n">label_source</span><span class="p">)</span>
@@ -365,54 +371,54 @@ What astonished mew as the fact that all the produced data is open to public and
     <span class="n">img_sz</span> <span class="o">=</span> <span class="n">chip_sz</span>
 
     <span class="n">scenes</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">make_scene</span><span class="p">(</span><span class="s">'od_test'</span><span class="p">,</span> <span class="n">get_path</span><span class="p">(</span><span class="s">'t1.jp2'</span><span class="p">),</span>
-                   <span class="n">get_path</span><span class="p">(</span><span class="s">'t1.geojson'</span><span class="p">)),</span>
-        <span class="n">make_scene</span><span class="p">(</span><span class="s">'od_test-2'</span><span class="p">,</span> <span class="n">get_path</span><span class="p">(</span><span class="s">'t2.jp2'</span><span class="p">),</span>
-                   <span class="n">get_path</span><span class="p">(</span><span class="s">'t2.geojson'</span><span class="p">))</span>
+        <span class="nf">make_scene</span><span class="p">(</span><span class="sh">'</span><span class="s">od_test</span><span class="sh">'</span><span class="p">,</span> <span class="nf">get_path</span><span class="p">(</span><span class="sh">'</span><span class="s">t1.jp2</span><span class="sh">'</span><span class="p">),</span>
+                   <span class="nf">get_path</span><span class="p">(</span><span class="sh">'</span><span class="s">t1.geojson</span><span class="sh">'</span><span class="p">)),</span>
+        <span class="nf">make_scene</span><span class="p">(</span><span class="sh">'</span><span class="s">od_test-2</span><span class="sh">'</span><span class="p">,</span> <span class="nf">get_path</span><span class="p">(</span><span class="sh">'</span><span class="s">t2.jp2</span><span class="sh">'</span><span class="p">),</span>
+                   <span class="nf">get_path</span><span class="p">(</span><span class="sh">'</span><span class="s">t2.geojson</span><span class="sh">'</span><span class="p">))</span>
                    
     <span class="p">]</span>
-    <span class="n">scene_dataset</span> <span class="o">=</span> <span class="n">DatasetConfig</span><span class="p">(</span>
+    <span class="n">scene_dataset</span> <span class="o">=</span> <span class="nc">DatasetConfig</span><span class="p">(</span>
         <span class="n">class_config</span><span class="o">=</span><span class="n">class_config</span><span class="p">,</span>
         <span class="n">train_scenes</span><span class="o">=</span><span class="n">scenes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span>
         <span class="n">validation_scenes</span><span class="o">=</span><span class="n">scenes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 
-    <span class="n">chip_options</span> <span class="o">=</span> <span class="n">ObjectDetectionChipOptions</span><span class="p">(</span><span class="n">neg_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ioa_thresh</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">chip_options</span> <span class="o">=</span> <span class="nc">ObjectDetectionChipOptions</span><span class="p">(</span><span class="n">neg_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ioa_thresh</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">nochip</span><span class="p">:</span>
-        <span class="n">window_opts</span> <span class="o">=</span> <span class="n">ObjectDetectionGeoDataWindowConfig</span><span class="p">(</span>
+        <span class="n">window_opts</span> <span class="o">=</span> <span class="nc">ObjectDetectionGeoDataWindowConfig</span><span class="p">(</span>
             <span class="n">method</span><span class="o">=</span><span class="n">GeoDataWindowMethod</span><span class="p">.</span><span class="n">sliding</span><span class="p">,</span>
             <span class="n">stride</span><span class="o">=</span><span class="n">chip_sz</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="n">chip_sz</span><span class="p">,</span>
             <span class="n">neg_ratio</span><span class="o">=</span><span class="n">chip_options</span><span class="p">.</span><span class="n">neg_ratio</span><span class="p">,</span>
             <span class="n">ioa_thresh</span><span class="o">=</span><span class="n">chip_options</span><span class="p">.</span><span class="n">ioa_thresh</span><span class="p">)</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="n">ObjectDetectionGeoDataConfig</span><span class="p">(</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nc">ObjectDetectionGeoDataConfig</span><span class="p">(</span>
             <span class="n">scene_dataset</span><span class="o">=</span><span class="n">scene_dataset</span><span class="p">,</span>
             <span class="n">window_opts</span><span class="o">=</span><span class="n">window_opts</span><span class="p">,</span>
             <span class="n">img_sz</span><span class="o">=</span><span class="n">img_sz</span><span class="p">,</span>
             <span class="n">augmentors</span><span class="o">=</span><span class="p">[])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">ObjectDetectionImageDataConfig</span><span class="p">(</span><span class="n">img_sz</span><span class="o">=</span><span class="n">img_sz</span><span class="p">,</span> <span class="n">augmentors</span><span class="o">=</span><span class="p">[])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nc">ObjectDetectionImageDataConfig</span><span class="p">(</span><span class="n">img_sz</span><span class="o">=</span><span class="n">img_sz</span><span class="p">,</span> <span class="n">augmentors</span><span class="o">=</span><span class="p">[])</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">ObjectDetectionModelConfig</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="n">Backbone</span><span class="p">.</span><span class="n">resnet18</span><span class="p">)</span>
-    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverConfig</span><span class="p">(</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="nc">ObjectDetectionModelConfig</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="n">Backbone</span><span class="p">.</span><span class="n">resnet18</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="nc">SolverConfig</span><span class="p">(</span>
             <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
             <span class="n">num_epochs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
             <span class="n">batch_sz</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
             <span class="n">one_cycle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
             <span class="n">sync_interval</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-    <span class="n">backend</span> <span class="o">=</span> <span class="n">PyTorchObjectDetectionConfig</span><span class="p">(</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="nc">PyTorchObjectDetectionConfig</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
         <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
         <span class="n">log_tensorboard</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">run_tensorboard</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="n">predict_options</span> <span class="o">=</span> <span class="n">ObjectDetectionPredictOptions</span><span class="p">(</span>
+    <span class="n">predict_options</span> <span class="o">=</span> <span class="nc">ObjectDetectionPredictOptions</span><span class="p">(</span>
         <span class="n">merge_thresh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">score_thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">ObjectDetectionConfig</span><span class="p">(</span>
-        <span class="n">root_uri</span><span class="o">=</span><span class="s">'.'</span><span class="p">,</span>
+    <span class="k">return</span> <span class="nc">ObjectDetectionConfig</span><span class="p">(</span>
+        <span class="n">root_uri</span><span class="o">=</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">,</span>
         <span class="n">dataset</span><span class="o">=</span><span class="n">scene_dataset</span><span class="p">,</span>
         <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
         <span class="n">train_chip_sz</span><span class="o">=</span><span class="n">chip_sz</span><span class="p">,</span>
@@ -439,6 +445,12 @@ What astonished mew as the fact that all the produced data is open to public and
 
 <ul class="taxonomy__index">
   
+  
+    <li>
+      <a href="#2026">
+        <strong>2026</strong> <span class="taxonomy__count">1</span>
+      </a>
+    </li>
   
     <li>
       <a href="#2024">
@@ -487,6 +499,63 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+  <section id="2026" class="taxonomy__section">
+    <h2 class="archive__subtitle">2026</h2>
+    <div class="entries-list">
+      
+        
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
+      
+        <a class="u-url" href="/sailing/2026/03/18/seatalk_wifi_remote.html" rel="permalink">A Very Cheap Sailboat Autopilot WiFi Remote Using ESP32
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2026-03-18T12:40:00+01:00">March 18, 2026</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt p-summary" itemprop="description">
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+  </section>
+
   <section id="2024" class="taxonomy__section">
     <h2 class="archive__subtitle">2024</h2>
     <div class="entries-list">
@@ -495,16 +564,18 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/06/27/arduino_quantum.html" rel="permalink">Quantum Computing on Arduino
+        <a class="u-url" href="/quantumcomputing/2024/06/27/arduino_quantum.html" rel="permalink">Quantum Computing on Arduino
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -532,7 +603,7 @@ What astonished mew as the fact that all the produced data is open to public and
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
 </p>
   </article>
 </div>
@@ -542,16 +613,18 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/06/10/dqpu.html" rel="permalink">DQPU, the decentralized quantum simulator
+        <a class="u-url" href="/quantumcomputing/2024/06/10/dqpu.html" rel="permalink">DQPU, the decentralized quantum simulator
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -579,7 +652,7 @@ What astonished mew as the fact that all the produced data is open to public and
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough ...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">During my Quantum Computing journey, I often needed to simulate some quantum circuits; sometimes they are small, but some other times they are bigger enough ...</p>
   </article>
 </div>
 
@@ -588,16 +661,18 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/gis/2024/04/20/osm_to_garmin.html" rel="permalink">Free Maps on Garmin eTrex 10 (and all Garmin GPS)
+        <a class="u-url" href="/gis/2024/04/20/osm_to_garmin.html" rel="permalink">Free Maps on Garmin eTrex 10 (and all Garmin GPS)
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -625,7 +700,7 @@ What astonished mew as the fact that all the produced data is open to public and
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like al...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Despite it is sold as a non-cartographic handled GPS device, with limited storage capacity of 10 MB and the inability to expand it, the eTrex 10 GPS, like al...</p>
   </article>
 </div>
 
@@ -634,16 +709,18 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html" rel="permalink">Optimizing quantum circuit using boolean algebra
+        <a class="u-url" href="/quantumcomputing/2024/03/05/optimizing_quantum_circuit.html" rel="permalink">Optimizing quantum circuit using boolean algebra
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -671,7 +748,7 @@ What astonished mew as the fact that all the produced data is open to public and
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.
+    <p class="archive__item-excerpt p-summary" itemprop="description">Since the latest v0.1.18 version, the Qlasskit library offers two useful tool for circuit analysis and optimization.
 </p>
   </article>
 </div>
@@ -681,16 +758,18 @@ What astonished mew as the fact that all the produced data is open to public and
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/02/16/annealing_factorization.html" rel="permalink">Factorization using Qlasskit and DWave Quantum Annealer
+        <a class="u-url" href="/quantumcomputing/2024/02/16/annealing_factorization.html" rel="permalink">Factorization using Qlasskit and DWave Quantum Annealer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -718,7 +797,7 @@ What astonished mew as the fact that all the produced data is open to public and
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model). 
+    <p class="archive__item-excerpt p-summary" itemprop="description">In the last release of Qlasskit, I introduced a new feature able to export a qlassf function to a binary quadratic model (as bqm, qubo or ising model). 
 This...</p>
   </article>
 </div>
@@ -728,16 +807,18 @@ This...</p>
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/unconventionalcomputing/2024/01/31/pbits.html" rel="permalink">The Time I Built a Probabilistic Computer
+        <a class="u-url" href="/unconventionalcomputing/2024/01/31/pbits.html" rel="permalink">The Time I Built a Probabilistic Computer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -765,7 +846,7 @@ This...</p>
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype,...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In early 2023, I embarked on a journey to explore the field of probabilistic computing. This endeavor culminated in the construction of a hardware prototype,...</p>
   </article>
 </div>
 
@@ -774,16 +855,18 @@ This...</p>
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2024/01/19/quantum_sudoku.html" rel="permalink">Solving Sudoku Puzzles on a Quantum Computer
+        <a class="u-url" href="/quantumcomputing/2024/01/19/quantum_sudoku.html" rel="permalink">Solving Sudoku Puzzles on a Quantum Computer
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -811,7 +894,7 @@ This...</p>
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Today, I’m going to show you how to use Qlasskit to create a quantum circuit able to search for 
+    <p class="archive__item-excerpt p-summary" itemprop="description">Today, I’m going to show you how to use Qlasskit to create a quantum circuit able to search for 
 Sudoku puzzle solutions.
 </p>
   </article>
@@ -830,16 +913,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/12/13/qc64_followup.html" rel="permalink">Expanding the Commodore 64 Quantum Emulator
+        <a class="u-url" href="/quantumcomputing/2023/12/13/qc64_followup.html" rel="permalink">Expanding the Commodore 64 Quantum Emulator
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -867,7 +952,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantu...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In a recent article I wrote, “Quantum Computing on a Commodore 64 in 200 Lines of BASIC”, published both on Medium and Hackaday.com, shows a two-qubit quantu...</p>
   </article>
 </div>
 
@@ -876,16 +961,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/11/29/qlasskit.html" rel="permalink">Qlasskit - a bridge between Python and Quantum algorithms
+        <a class="u-url" href="/quantumcomputing/2023/11/29/qlasskit.html" rel="permalink">Qlasskit - a bridge between Python and Quantum algorithms
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -913,7 +1000,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorit...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Traditionally, creating quantum circuits requires specialized knowledge in quantum programming. This requirement holds true when encoding a classical algorit...</p>
   </article>
 </div>
 
@@ -922,16 +1009,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantumcomputing/2023/07/02/qc64.html" rel="permalink">Quantum Computing on a Commodore 64 in 200 Lines of BASIC
+        <a class="u-url" href="/quantumcomputing/2023/07/02/qc64.html" rel="permalink">Quantum Computing on a Commodore 64 in 200 Lines of BASIC
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -959,7 +1048,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off ...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In an age where companies are selling two-qubit quantum computers for a sum of money that would make your wallet recoil in horror, here we are, stepping off ...</p>
   </article>
 </div>
 
@@ -968,16 +1057,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantum-computing/2023/05/24/unitaryhack.html" rel="permalink">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure
+        <a class="u-url" href="/quantum-computing/2023/05/24/unitaryhack.html" rel="permalink">My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1005,7 +1096,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hoste...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">This June I emerged as one of the top participants with 9 bounties collected (alongside another exceptional contributor) in the #UnitaryHack Hackathon, hoste...</p>
   </article>
 </div>
 
@@ -1014,16 +1105,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/python/2023/05/24/sentinelsat_download.html" rel="permalink">Free near real-time 10-meter resolution satellite imagery with 5 lines of code
+        <a class="u-url" href="/python/2023/05/24/sentinelsat_download.html" rel="permalink">Free near real-time 10-meter resolution satellite imagery with 5 lines of code
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1051,7 +1144,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
 </p>
   </article>
 </div>
@@ -1061,16 +1154,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/ml/2023/05/15/sentinel_ship_detection.html" rel="permalink">Ship detection from Sentinel-2 satellite images
+        <a class="u-url" href="/ml/2023/05/15/sentinel_ship_detection.html" rel="permalink">Ship detection from Sentinel-2 satellite images
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1098,7 +1193,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">A few days ago I came across a yt video discussing the ESA Copernicus program, a European initiative for monitoring earth via a satellite constellation. This...</p>
   </article>
 </div>
 
@@ -1115,16 +1210,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/quantum/2020/07/29/ocaml_quantum.html" rel="permalink">OCaml and Quantum Computing
+        <a class="u-url" href="/quantum/2020/07/29/ocaml_quantum.html" rel="permalink">OCaml and Quantum Computing
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1152,7 +1249,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quan...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Qiskit is a python SDK developed by IBM and allows everyone to create quantum circuits, simulate them locally and also run the quantum circuit on a real quan...</p>
   </article>
 </div>
 
@@ -1161,16 +1258,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/tezos/2020/07/07/yallo_a_new_tezos_language.html" rel="permalink">Yallo, a new Tezos language
+        <a class="u-url" href="/tezos/2020/07/07/yallo_a_new_tezos_language.html" rel="permalink">Yallo, a new Tezos language
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1198,7 +1297,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially int...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">As someone noticed from the previous post, last weeks I started to write a new programming language for Tezos smart contracts. This project was initially int...</p>
   </article>
 </div>
 
@@ -1207,16 +1306,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/tezos/2020/06/24/king_of_tezos.html" rel="permalink">King of Tezos: a smart-ponzi on Tezos
+        <a class="u-url" href="/tezos/2020/06/24/king_of_tezos.html" rel="permalink">King of Tezos: a smart-ponzi on Tezos
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1244,7 +1345,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleann...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">While writing a new programming language, it is often useful to write some real use-cases to test the syntax, the language expressiveness and the code cleann...</p>
   </article>
 </div>
 
@@ -1253,16 +1354,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/random/2020/06/24/favorite_quote.html" rel="permalink">Favorite dev quote
+        <a class="u-url" href="/random/2020/06/24/favorite_quote.html" rel="permalink">Favorite dev quote
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1290,7 +1393,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
+    <p class="archive__item-excerpt p-summary" itemprop="description">
   Documentation is like sex: when it is good, it is very, very good; and when it is bad, it is better than nothing
 
 </p>
@@ -1302,16 +1405,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/random/2020/06/24/new_blog.html" rel="permalink">New blog
+        <a class="u-url" href="/random/2020/06/24/new_blog.html" rel="permalink">New blog
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1339,7 +1444,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.
+    <p class="archive__item-excerpt p-summary" itemprop="description">This is my new blog, based on jekyll. I’ll soon import old posts from my old blog.
 </p>
   </article>
 </div>
@@ -1357,16 +1462,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2016/01/11/contractvm.html" rel="permalink">Contractvm: decentralized applications on Bitcoin
+        <a class="u-url" href="/bitcoin/2016/01/11/contractvm.html" rel="permalink">Contractvm: decentralized applications on Bitcoin
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1394,7 +1501,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an eas...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an eas...</p>
   </article>
 </div>
 
@@ -1411,16 +1518,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2015/02/26/dice_nonce_overflow.html" rel="permalink">Dices provably fair - Nonce overflow vulnerability
+        <a class="u-url" href="/bitcoin/2015/02/26/dice_nonce_overflow.html" rel="permalink">Dices provably fair - Nonce overflow vulnerability
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1448,7 +1557,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server se...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server se...</p>
   </article>
 </div>
 
@@ -1465,16 +1574,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/sys/2014/05/04/apache2_subfolder_redirect.html" rel="permalink">Apache2: redirect different domains to subfolder
+        <a class="u-url" href="/sys/2014/05/04/apache2_subfolder_redirect.html" rel="permalink">Apache2: redirect different domains to subfolder
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1502,7 +1613,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">In the aim to merge two of my server on digitalocean, today I tried to write a mod_rewrite rule to redirect a secondary domain to a subfolder. After one hour...</p>
   </article>
 </div>
 
@@ -1519,16 +1630,18 @@ Sudoku puzzle solutions.
 
 
 
+
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h2 class="archive__item-title no_toc p-name" itemprop="headline">
       
-        <a href="/bitcoin/2013/08/28/mineml_miner.html" rel="permalink">MineML: F# miner
+        <a class="u-url" href="/bitcoin/2013/08/28/mineml_miner.html" rel="permalink">MineML: F# miner
 </a>
       
     </h2>
     
+
 
   <p class="page__meta">
     
@@ -1556,7 +1669,7 @@ Sudoku puzzle solutions.
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">MineML is a multithread CPU based bitcoin miner written in F#. At the moment it’s a slow implementation, but the class structure offers the possibility to im...</p>
+    <p class="archive__item-excerpt p-summary" itemprop="description">MineML is a multithread CPU based bitcoin miner written in F#. At the moment it’s a slow implementation, but the class structure offers the possibility to im...</p>
   </article>
 </div>
 
@@ -1568,6 +1681,8 @@ Sudoku puzzle solutions.
 
   </div>
 </div>
+
+      
     </div>
 
     
@@ -1577,24 +1692,29 @@ Sudoku puzzle solutions.
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        <div class="page__footer-follow">
+        
+
+
+<div class="page__footer-follow">
   <ul class="social-icons">
     
 
     
 
     
-      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> Feed</a></li>
     
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 Davide Gessa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+<div class="page__footer-copyright">&copy; 2026 <a href="https://dakk.github.io/">Davide Gessa @dakk</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
+
   <script src="/assets/js/main.min.js"></script>
 
 
