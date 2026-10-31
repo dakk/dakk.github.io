@@ -1,16 +1,26 @@
-all:
-	rm -f _posts/*.html
-	JEKYLL_ENV=production ~/bin/jekyll build
+PODMAN_RUN = podman run --rm \
+	--volume="$(shell pwd):/srv/jekyll:Z" \
+	--volume="jekyll-gems:/usr/local/bundle" \
+	-p 4000:4000 \
+	-it docker.io/jekyll/jekyll
+
+.PHONY: all container-build container-serve build serve clean
+
+all: container-serve
+
+container-build:
+	$(PODMAN_RUN) make build
+
+container-serve:
+	$(PODMAN_RUN) make serve
+
+build: clean
+	bundle install
+	JEKYLL_ENV=production bundle exec jekyll build
 
 serve:
-	~/bin/jekyll serve
+	bundle install
+	bundle exec jekyll serve --host 0.0.0.0 --livereload
 
-prereq:
-	bundle-2.7 install
-
-deploy:
-	make
-	git add _site
-
-import:
-	~/bin/jekyll import medium --username dakk --canonical_link
+clean:
+	rm -rf _posts/*.html _site/ .jekyll-cache/
