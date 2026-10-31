@@ -23,4 +23,4 @@ serve:
 	bundle exec jekyll serve --host 0.0.0.0 --livereload
 
 clean:
-	rm -rf _posts/*.html _site/ .jekyll-cache/
+	rm -rf _site/ .jekyll-cache/
