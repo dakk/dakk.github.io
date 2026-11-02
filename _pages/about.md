@@ -9,6 +9,7 @@ I'm Davide Gessa (aka dak[k]*), a software developer, computer scientist and sai
 Have fun with my github at [github.com/dakk](http://github.com/dakk).
 
 
+- 2024 - Jampy: a python implementation of the graypaper (currently close source)
 - 2024 - [DQPU.io - decentralized quantum processing unit](https://github.com/dakk/dqpu) (Software)
 - 2023 - [Qlasskit - a python-to-quantum compiler](https://github.com/dakk/qlasskit) (Software)
 - 2016 - [Contractvm: decentralized applications on Bitcoin](http://contractvm.github.io/cvm-whitepaper.pdf) (White paper)
@@ -19,7 +20,7 @@ block-chain](/assets/papers/2016-master-degree-thesis-davide-gessa.pdf) (Master 
 ### Other projects
 
 - [Oceanook.com](https://oceanook.com)
-- [Ethereumwisdom.com](https://ethereumwisdom.com)
+- [GWeatherRouting](https://gweatherrouting.org)
 
 ### Blogs
 - [dakk on Medium](https://medium.com/@dakk)
