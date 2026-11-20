@@ -31,16 +31,22 @@ linkedin_username: davide-gessa-71798b80
 instagram_username: dagide
 stackoverflow_username: dakk
 gitlab_username: dakk
+bluesky_username: dagide.bsky.social
 
 # Build settings
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "neon" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 show_excerpts: true
 google_analytics: UA-43862044-30
 
-disqus:
-  shortname: dakkgithubio
+repository: dakk/dakk.github.io
+
+comments:
+  provider: utterances
+  utterances:
+    issue_term: pathname
+    theme: photon-dark
 
 include: ["_pages"]
 
@@ -68,9 +74,8 @@ defaults:
       read_time: true
       comments: true
       share: true
-      related: true
+      related: false
       show_date: true
-
 
 
 author:
@@ -85,6 +90,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/dakk"
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: "https://bsky.app/profile/dagide.bsky.social"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/dagide"
@@ -95,14 +103,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/davide-gessa-71798b80"
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
+
 # exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/
