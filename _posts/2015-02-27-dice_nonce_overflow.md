@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Dices provably fair - Nonce overflow vulnerability "
 date:   2015-02-27 00:00:01 +0200
 categories: bitcoin

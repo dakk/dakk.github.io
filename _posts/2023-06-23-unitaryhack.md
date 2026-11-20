@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "My Journey at the UnitaryHack Hackathon: A Quantum Computing Adventure"
 date:   2023-05-24 17:02:28 +0200
 categories: quantum-computing

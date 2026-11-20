@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Optimizing quantum circuit using boolean algebra"
 date:   2024-03-05 16:00:01 +0200
 categories: quantumcomputing

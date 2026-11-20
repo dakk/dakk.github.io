@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Free Maps on Garmin eTrex 10 (and all Garmin GPS)"
 date:   2024-04-20 17:00:22 +0200
 categories: gis

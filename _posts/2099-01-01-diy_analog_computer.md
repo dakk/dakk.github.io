@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Building my diy Analog Computer"
 date:   2099-01-01 12:18:22 +0200
 categories: analogcomputer

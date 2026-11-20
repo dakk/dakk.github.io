@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Quantum Computing on Arduino"
 date:   2024-06-27 16:49:00 +0200
 categories: quantumcomputing

@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Free near real-time 10-meter resolution satellite imagery with 5 lines of code"
 date:   2023-05-24 17:02:28 +0200
 categories: python

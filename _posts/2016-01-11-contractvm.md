@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Contractvm: decentralized applications on Bitcoin"
 date:   2016-01-11 12:00:01 +0200
 categories: bitcoin

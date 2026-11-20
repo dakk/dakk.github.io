@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Favorite dev quote"
 date:   2020-06-24 11:59:28 +0200
 categories: random

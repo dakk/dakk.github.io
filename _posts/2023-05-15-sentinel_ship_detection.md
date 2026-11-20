@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Ship detection from Sentinel-2 satellite images"
 date:   2023-05-15 15:30:28 +0200
 categories: ml

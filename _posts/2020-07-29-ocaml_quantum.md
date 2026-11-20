@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "OCaml and Quantum Computing"
 date:   2020-07-29 11:00:28 +0200
 categories: quantum

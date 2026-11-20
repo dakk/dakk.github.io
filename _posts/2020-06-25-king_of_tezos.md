@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "King of Tezos: a smart-ponzi on Tezos"
 date:   2020-06-24 15:59:28 +0200
 categories: tezos

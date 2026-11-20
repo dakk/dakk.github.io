@@ -1,21 +1,13 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 search: false
 ---
 
 @charset "utf-8";
 
-// Site overrides: theme variables are declared with !default, so assigning
-// them here (before the theme import) wins. Widen the centered #main
-// container so the body column gets more room on large screens; the
-// container stays margin-inline: auto, so left/right margins stay equal.
+// Site overrides
 $max-width: 1600px;
 
-// Neon-tinted dark palette for code blocks. The "neon" skin ships a light
-// syntax palette ($base00: #ffffff), which makes code blocks white; setting
-// these before the skin import (skin variables are !default, so ours win)
-// gives code blocks a dark background derived from the neon page background,
-// while the vivid token colors (base08-base0f) still come from the skin.
+// Neon-tinted dark palette for code blocks
 $base00: mix(#ffffff, #141010, 8%);  // code block background
 $base04: mix(#ffffff, #141010, 45%); // comments and line-number gutter
 $base05: #fff6fb;                     // code text (neon text color)

@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Factorization using Qlasskit and DWave Quantum Annealer"
 date:   2024-02-16 10:28:01 +0200
 categories: quantumcomputing

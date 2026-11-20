@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Solving Sudoku Puzzles on a Quantum Computer"
 date:   2024-01-19 11:19:01 +0200
 categories: quantumcomputing

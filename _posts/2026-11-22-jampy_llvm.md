@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: single
 title:  "Jampy and its PVM"
 date:   2026-11-20 12:01:00 +0200
 categories: blockchain, jam
@@ -126,3 +126,4 @@ These are the results of executing a heavy load program:
 | JIT  | 10m 50s |
 | LLVM recompiler  | 16s |
 
+There it is, I think that Jampy can now play in the major league.
