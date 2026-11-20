@@ -45,7 +45,7 @@ repository: dakk/dakk.github.io
 comments:
   provider: utterances
   utterances:
-    issue_term: pathname
+    issue_term: url
     theme: photon-dark
 
 include: ["_pages"]
