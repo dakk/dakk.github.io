@@ -2,10 +2,7 @@
 layout: single
 title:  "Jampy and its PVM"
 date:   2026-11-20 12:01:00 +0200
-categories: 
-  - blockchain 
-  - jam
-  - python
+category: jam
 canonical_url: 
 ---
 
