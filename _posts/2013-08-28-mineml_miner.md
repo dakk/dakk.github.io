@@ -2,7 +2,7 @@
 layout: single
 title:  "MineML: F# miner"
 date:   2013-08-28 10:59:28 +0200
-categories: bitcoin
+category: bitcoin
 ---
 MineML is a multithread CPU based bitcoin miner written in F#. At the moment it’s a slow implementation, but the class structure offers the possibility to implement different type of MinerThread using different processing methods (opencl, cuda, or sha256 dedicated hardware).
 

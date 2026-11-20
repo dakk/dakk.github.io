@@ -2,7 +2,7 @@
 layout: single
 title:  "Dices provably fair - Nonce overflow vulnerability "
 date:   2015-02-27 00:00:01 +0200
-categories: bitcoin
+category: bitcoin
 ---
 Most of bitcoin dice software use a system to prove the fair play of the server for each bet. Most of them implement this mechanism using two seed (server seed and client seed) combined with a session nonce in the aim to provide a fair random number for each bet and usually this nonce is initialized to 0 after each seed change.
 

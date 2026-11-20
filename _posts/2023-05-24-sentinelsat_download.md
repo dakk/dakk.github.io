@@ -2,7 +2,7 @@
 layout: single
 title:  "Free near real-time 10-meter resolution satellite imagery with 5 lines of code"
 date:   2023-05-24 17:02:28 +0200
-categories: python
+category: python
 canonical_url: https://medium.com/@dakk/free-near-real-time-10-meter-resolution-satellite-imagery-with-5-lines-of-code-d1f155778cab
 ---
 

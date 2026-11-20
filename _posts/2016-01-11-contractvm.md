@@ -2,7 +2,7 @@
 layout: single
 title:  "Contractvm: decentralized applications on Bitcoin"
 date:   2016-01-11 12:00:01 +0200
-categories: bitcoin
+category: bitcoin
 ---
 
 Contractvm is a general-purpose decentralized framework based on blockchain. The framework allows to implement arbitrary decentralized applications in an easy way, providing the necessary abstraction layer. Contractvm dapps are executed in an open network of nodes that perform computations by processing dapp interactions stored in messages. All messages are securely stored in an decentralized data structure that combines an existing blockchain with a distributed hash table. 

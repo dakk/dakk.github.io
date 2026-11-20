@@ -2,7 +2,7 @@
 layout: single
 title:  "Yallo, a new Tezos language"
 date:   2020-07-07 15:00:28 +0200
-categories: tezos
+category: tezos
 canonical_url: https://medium.com/coinmonks/yallo-a-new-tezos-language-f1298069d268
 ---
 

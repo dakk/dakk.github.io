@@ -2,7 +2,7 @@
 layout: single
 title:  "King of Tezos: a smart-ponzi on Tezos"
 date:   2020-06-24 15:59:28 +0200
-categories: tezos
+category: tezos
 canonical_url: https://medium.com/@dakk/king-of-tezos-a-smart-ponzi-on-tezos-db381b84c3c9?source=rss-cabef10421d0------2
 ---
 

@@ -2,7 +2,7 @@
 layout: single
 title:  "Quantum Computing on Arduino"
 date:   2024-06-27 16:49:00 +0200
-categories: quantumcomputing
+category: quantumcomputing
 canonical_url: https://medium.com/@dakk/quantum-computing-on-arduino-0c67eab4fdfc
 ---
 

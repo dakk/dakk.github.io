@@ -2,7 +2,7 @@
 layout: single
 title:  "A Cheap Sailboat Autopilot WiFi Remote Using ESP32"
 date:   2026-03-18 13:40:00 +0200
-categories: sailing
+category: sailing
 canonical_url: https://medium.com/@dakk/a-cheap-sailboat-autopilot-wifi-remote-using-esp32-021acd06a265
 ---
 
