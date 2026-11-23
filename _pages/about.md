@@ -12,6 +12,7 @@ Have fun with my github at [github.com/dakk](http://github.com/dakk).
 - 2024 - Jampy: a python implementation of the graypaper (currently closed source)
 - 2024 - [DQPU.io - decentralized quantum processing unit](https://github.com/dakk/dqpu) (Software)
 - 2023 - [Qlasskit - a python-to-quantum compiler](https://github.com/dakk/qlasskit) (Software)
+- 2018 - [GWeatherRouting - sailing weather routing](https://gweatherrouting.org)
 - 2016 - [Contractvm: decentralized applications on Bitcoin](http://contractvm.github.io/cvm-whitepaper.pdf) (White paper)
 - 2016 - [A general-purpose decentralized system based on the Bitcoin
 block-chain](/assets/papers/2016-master-degree-thesis-davide-gessa.pdf) (Master degree thesis)
@@ -20,7 +21,6 @@ block-chain](/assets/papers/2016-master-degree-thesis-davide-gessa.pdf) (Master 
 ### Other projects
 
 - [Oceanook.com](https://oceanook.com)
-- [GWeatherRouting](https://gweatherrouting.org)
 
 ### Blogs
 - [dakk on Medium](https://medium.com/@dakk)

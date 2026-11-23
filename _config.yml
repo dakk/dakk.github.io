@@ -102,6 +102,9 @@ author:
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/davide-gessa-71798b80"
+    - label: "Liberapay"
+      icon: "fab fa-fw fa-liberapay"
+      url: "https://liberapay.com/dakk/"
 
 
 # exclude:
