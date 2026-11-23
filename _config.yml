@@ -103,7 +103,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/davide-gessa-71798b80"
     - label: "Liberapay"
-      icon: "fab fa-fw fa-liberapay"
+      icon: "fas fa-fw fa-donate"
       url: "https://liberapay.com/dakk/"
 
 
